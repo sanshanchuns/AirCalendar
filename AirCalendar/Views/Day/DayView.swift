@@ -26,7 +26,6 @@ public struct DayView: View {
     }
     
     private func toggleSound() {
-        // 如果正在播放其他日期的音频，先停止
         if audioManager.isPlaying && audioManager.currentSoundKey != randomSound.key {
             audioManager.stop()
         }
@@ -151,7 +150,9 @@ public struct DayView: View {
                 // 在底部文字下方添加音频控制区域
                 Button(action: toggleSound) {
                     HStack {
-                        Image(systemName: audioManager.isPlaying ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: audioManager.isPlaying && audioManager.currentSoundKey == randomSound.key 
+                              ? "speaker.wave.2.fill" 
+                              : "speaker.wave.2")
                         Text(randomSound.name)
                     }
                     .foregroundColor(.secondary)
@@ -161,9 +162,21 @@ public struct DayView: View {
             }
             .padding(.horizontal, 16)
             .frame(height: UIScreen.main.bounds.height)
+            .onAppear {
+                // 页面出现时，如果有其他音频在播放，先停止
+                if audioManager.isPlaying && audioManager.currentSoundKey != randomSound.key {
+                    audioManager.stop()
+                }
+                // 自动开始播放当前页面的音频
+                if !audioManager.isPlaying {
+                    audioManager.playSound(name: randomSound.key)
+                }
+            }
             .onDisappear {
                 // 当视图消失时停止音频
-                audioManager.stop()
+                if audioManager.currentSoundKey == randomSound.key {
+                    audioManager.stop()
+                }
             }
         }
     }
