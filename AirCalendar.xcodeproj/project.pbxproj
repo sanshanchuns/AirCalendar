@@ -8,17 +8,47 @@
 
 /* Begin PBXBuildFile section */
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
-		B31E588C2D57058800B9F545 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E588B2D57058800B9F545 /* ContentView.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
+		B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */; };
+		B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0782D576521003BCDC2 /* DayItem.swift */; };
+		B3CCF0872D576521003BCDC2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07A2D576521003BCDC2 /* ImageCache.swift */; };
+		B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07B2D576521003BCDC2 /* AudioManager.swift */; };
+		B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */; };
+		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
+		B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayView.swift */; };
+		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
+		B3CCF08E2D5769FF003BCDC2 /* PoetryQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF08D2D5769FF003BCDC2 /* PoetryQuote.swift */; };
+		B3CCF0902D576C4A003BCDC2 /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF08F2D576C4A003BCDC2 /* DailyQuote.swift */; };
+		B3CCF0982D577960003BCDC2 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0922D577960003BCDC2 /* rain.mp3 */; };
+		B3CCF0992D577960003BCDC2 /* wave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0932D577960003BCDC2 /* wave.mp3 */; };
+		B3CCF09A2D577960003BCDC2 /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0942D577960003BCDC2 /* forest.mp3 */; };
+		B3CCF09B2D577960003BCDC2 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0952D577960003BCDC2 /* wind.mp3 */; };
+		B3CCF09C2D577960003BCDC2 /* creek.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0962D577960003BCDC2 /* creek.mp3 */; };
+		B3CCF09D2D577960003BCDC2 /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0972D577960003BCDC2 /* fire.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B31E58862D57058800B9F545 /* AirCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
-		B31E588B2D57058800B9F545 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B31E58902D57058900B9F545 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendar.swift; sourceTree = "<group>"; };
+		B3CCF0782D576521003BCDC2 /* DayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayItem.swift; sourceTree = "<group>"; };
+		B3CCF07A2D576521003BCDC2 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		B3CCF07B2D576521003BCDC2 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarTerms.swift; sourceTree = "<group>"; };
+		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		B3CCF0822D576521003BCDC2 /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B3CCF08D2D5769FF003BCDC2 /* PoetryQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetryQuote.swift; sourceTree = "<group>"; };
+		B3CCF08F2D576C4A003BCDC2 /* DailyQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyQuote.swift; sourceTree = "<group>"; };
+		B3CCF0922D577960003BCDC2 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		B3CCF0932D577960003BCDC2 /* wave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wave.mp3; sourceTree = "<group>"; };
+		B3CCF0942D577960003BCDC2 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
+		B3CCF0952D577960003BCDC2 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		B3CCF0962D577960003BCDC2 /* creek.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = creek.mp3; sourceTree = "<group>"; };
+		B3CCF0972D577960003BCDC2 /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +82,12 @@
 			isa = PBXGroup;
 			children = (
 				B31E58892D57058800B9F545 /* AirCalendarApp.swift */,
-				B31E588B2D57058800B9F545 /* ContentView.swift */,
+				B3CCF0762D576521003BCDC2 /* Models */,
+				B3CCF0792D576521003BCDC2 /* Services */,
+				B3CCF07C2D576521003BCDC2 /* Utils */,
+				B3CCF07E2D576521003BCDC2 /* Views */,
 				B31E588D2D57058900B9F545 /* Assets.xcassets */,
+				B3CCF0912D577960003BCDC2 /* Resources */,
 				B31E588F2D57058900B9F545 /* Preview Content */,
 			);
 			path = AirCalendar;
@@ -65,6 +99,81 @@
 				B31E58902D57058900B9F545 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B3CCF0762D576521003BCDC2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */,
+				B3CCF08D2D5769FF003BCDC2 /* PoetryQuote.swift */,
+				B3CCF08F2D576C4A003BCDC2 /* DailyQuote.swift */,
+				B3CCF0782D576521003BCDC2 /* DayItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B3CCF0792D576521003BCDC2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF07A2D576521003BCDC2 /* ImageCache.swift */,
+				B3CCF07B2D576521003BCDC2 /* AudioManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B3CCF07C2D576521003BCDC2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B3CCF07E2D576521003BCDC2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF07F2D576521003BCDC2 /* Components */,
+				B3CCF0812D576521003BCDC2 /* Day */,
+				B3CCF0832D576521003BCDC2 /* Main */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3CCF07F2D576521003BCDC2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B3CCF0812D576521003BCDC2 /* Day */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF0822D576521003BCDC2 /* DayView.swift */,
+			);
+			path = Day;
+			sourceTree = "<group>";
+		};
+		B3CCF0832D576521003BCDC2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B3CCF0912D577960003BCDC2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF0922D577960003BCDC2 /* rain.mp3 */,
+				B3CCF0932D577960003BCDC2 /* wave.mp3 */,
+				B3CCF0942D577960003BCDC2 /* forest.mp3 */,
+				B3CCF0952D577960003BCDC2 /* wind.mp3 */,
+				B3CCF0962D577960003BCDC2 /* creek.mp3 */,
+				B3CCF0972D577960003BCDC2 /* fire.mp3 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +235,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
+				B3CCF0992D577960003BCDC2 /* wave.mp3 in Resources */,
+				B3CCF09B2D577960003BCDC2 /* wind.mp3 in Resources */,
 				B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */,
+				B3CCF09D2D577960003BCDC2 /* fire.mp3 in Resources */,
+				B3CCF09A2D577960003BCDC2 /* forest.mp3 in Resources */,
+				B3CCF0982D577960003BCDC2 /* rain.mp3 in Resources */,
+				B3CCF09C2D577960003BCDC2 /* creek.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +252,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31E588C2D57058800B9F545 /* ContentView.swift in Sources */,
+				B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */,
+				B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */,
+				B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */,
+				B3CCF0872D576521003BCDC2 /* ImageCache.swift in Sources */,
+				B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */,
+				B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */,
+				B3CCF0902D576C4A003BCDC2 /* DailyQuote.swift in Sources */,
+				B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */,
+				B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */,
 				B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */,
+				B3CCF08E2D5769FF003BCDC2 /* PoetryQuote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
