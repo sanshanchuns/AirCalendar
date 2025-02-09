@@ -2,10 +2,13 @@ import AVFoundation
 
 public class AudioManager: ObservableObject {
     public static let shared = AudioManager()
+    
+    private init() {}
+    
     private var audioPlayer: AVAudioPlayer?
     
-    @Published public var isPlaying = false
-    @Published public var currentSoundKey: String?
+    @Published public var isPlaying: Bool = false
+    @Published public var currentSound: String?
     
     public let natureSounds: [String: String] = [
         "rain": "细雨绵绵",
@@ -16,35 +19,30 @@ public class AudioManager: ObservableObject {
         "fire": "温暖篝火"
     ]
     
+    public func randomSound(date: Date) -> (key: String, name: String) {
+        let keys = Array(natureSounds.keys)
+        let randomIndex = abs(date.hashValue) % keys.count
+        let key = keys[randomIndex]
+        return (key: key, name: natureSounds[key]!)
+    }
+    
     public func playSound(name: String) {
-        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-            print("找不到音频文件: \(name)")
-            return
+        if isPlaying && currentSound != name {
+            stop()
         }
-        
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.numberOfLoops = -1 // 无限循环
-            audioPlayer?.volume = 0.5
-            audioPlayer?.play()
-            isPlaying = true
-            currentSoundKey = name
-        } catch {
-            print("播放音频失败: \(error.localizedDescription)")
-        }
+        currentSound = name
+        isPlaying = true
+        // 实际的音频播放逻辑
     }
     
     public func stop() {
-        audioPlayer?.stop()
-        audioPlayer = nil
         isPlaying = false
-        currentSoundKey = nil
+        currentSound = nil
+        // 实际的音频停止逻辑
     }
     
     public func togglePlay(name: String) {
-        if isPlaying && currentSoundKey == name {
+        if isPlaying && currentSound == name {
             stop()
         } else {
             playSound(name: name)

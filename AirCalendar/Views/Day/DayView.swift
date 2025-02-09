@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct DayView: View {
-    let dayItem: DayItem
+    @ObservedObject var dayItem: DayItem
     @StateObject private var audioManager = AudioManager.shared
     @State private var isPlaying = false
     
@@ -21,163 +21,130 @@ public struct DayView: View {
         PoetryManager.shared.randomQuote(for: dayItem.date)
     }
     
-    private var dailyQuote: DailyQuote {
-        DailyQuoteManager.shared.quoteForDate(dayItem.date)
-    }
-    
     private func toggleSound() {
-        if audioManager.isPlaying && audioManager.currentSoundKey != randomSound.key {
+        if audioManager.isPlaying && audioManager.currentSound != randomSound.key {
             audioManager.stop()
         }
         audioManager.togglePlay(name: randomSound.key)
     }
     
     public var body: some View {
-            VStack(alignment: .leading, spacing: 12) {
-                VStack(alignment: .leading, spacing: 12) {
-                    // 日期头部区域
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack(alignment: .top) {
-                            // 日期数字
-                            Text(String(format: "%02d", dayItem.day))
-                                .font(.system(size: 40, weight: .bold))
-                                .foregroundColor(.primary)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                // 农历日期和节日
-                                HStack(spacing: 8) {
-                                    Text(dayItem.lunarDate)
-                                        .font(.headline)
-                                        .foregroundColor(.primary)
-                                    
-                                    // 节日标记
-                                    if let festival = dayItem.festival {
-                                        Text(festival)
-                                            .font(.caption)
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 2)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 4)
-                                                    .fill(Color.red)
-                                                    .shadow(color: .red.opacity(0.3), radius: 2, x: 0, y: 1)
-                                            )
-                                    }
-                                    
-                                    // 节气标记
-                                    if let term = dayItem.solarTerm {
-                                        Text(term)
-                                            .font(.caption)
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 2)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 4)
-                                                    .fill(Color.green)
-                                                    .shadow(color: .green.opacity(0.3), radius: 2, x: 0, y: 1)
-                                            )
-                                    }
-                                }
-                                
-                                // 公历年月和星期
-                                HStack(spacing: 8) {
-                                    Text(dayItem.yearMonth)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                    
-                                    Text("星期\(dayItem.weekday)")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                                
-                                // 今天标记
-                                if Calendar.current.isDateInToday(dayItem.date) {
-                                    Text("今天")
-                                        .font(.caption)
-                                        .foregroundColor(.blue)
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 2)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 4)
-                                                .fill(Color.blue.opacity(0.1))
-                                                .shadow(color: .blue.opacity(0.1), radius: 2, x: 0, y: 1)
-                                        )
-                                }
-                            }
-                            .padding(.leading, 12)
-                            
-                            Spacer()
+        ScrollView {
+            VStack(spacing: 0) {
+                Spacer()
+                // 日期部分拆分为两个部分
+                HStack {
+                    // 左侧大数字
+                    Text("\(String(format: "%02d", dayItem.day))")
+                        .font(.system(size: 80, weight: .bold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 20)
+                    
+                    // 右侧日期信息
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text(dayItem.lunarDate)
+                            .font(.system(size: 20, weight: .medium))
+                        
+                        HStack(spacing: 8) {
+                            Text(dayItem.yearMonth)
+                                .font(.system(size: 16))
+                            Text(dayItem.weekday)
+                                .font(.system(size: 16))
+                        }
+                        .foregroundColor(.gray)
+
+                        // 标记部分
+                        if Calendar.current.isDateInToday(dayItem.date) {
+                            TagView(text: "今天", color: .blue)
+                        }
+                        if let festival = dayItem.dailyContent.festival {
+                            TagView(text: festival, color: .red)
+                        }
+                        if let solarTerm = dayItem.dailyContent.solarTerm {
+                            TagView(text: solarTerm, color: .green)
                         }
                     }
+                    .padding(.trailing, 20)
+                }
+                // 图片部分
+                CachedAsyncImage(url: dayItem.imageUrl)
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .clipped()
+                    .cornerRadius(8)
+                    .padding(.horizontal, 20)
                     .padding(.top, 16)
-                    
-                    // 图片区域 - 修复语法错误
-                    GeometryReader { geometry in
-                        CachedAsyncImage(url: "https://picsum.photos/400/300?random=\(dayItem.day)")
-                            .frame(width: geometry.size.width, height: 300)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
-                    }
-                    .frame(height: 300)
-                    
-                    // 替换原来的固定文案
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(dailyQuote.content)
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                        
-                        if let author = poetryQuote.author {
+                
+                // 底部文字部分
+                VStack(spacing: 4) {
+                    if let quote = dayItem.dailyContent.quote,
+                        let author = dayItem.dailyContent.author,
+                        let title = dayItem.dailyContent.title {
+                        VStack(spacing: 10) {
+                            Text(quote)
+                                .font(.system(size: 18))
+                            
                             HStack {
                                 Spacer()
-                                Text("—— \(author)")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                if let title = poetryQuote.title {
-                                    Text("《\(title)》")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
+                                Text("—— \(author)《\(title)》")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(.gray)
                             }
                         }
+                        .padding()
                     }
-                    .padding(.horizontal, 20)
+                    
+                    if let soundName = dayItem.dailyContent.randomSound {
+                        HStack(spacing: 8) {
+                            Image(systemName: "speaker.wave.2")
+                                .foregroundColor(.gray)
+                            Text(soundName)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 14))
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+                    }
                 }
                 .padding(.horizontal, 20)
-                .background(Color(UIColor.systemBackground))
-                .cornerRadius(20)
-                .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 2)
-                
-                // 在底部文字下方添加音频控制区域
-                Button(action: toggleSound) {
-                    HStack {
-                        Image(systemName: audioManager.isPlaying && audioManager.currentSoundKey == randomSound.key 
-                              ? "speaker.wave.2.fill" 
-                              : "speaker.wave.2")
-                        Text(randomSound.name)
-                    }
-                    .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 16)
+                .padding(.top, 16)
+
+                Spacer()
             }
-            .padding(.horizontal, 16)
-            .frame(height: UIScreen.main.bounds.height)
-            .onAppear {
-                // 页面出现时，如果有其他音频在播放，先停止
-                if audioManager.isPlaying && audioManager.currentSoundKey != randomSound.key {
-                    audioManager.stop()
-                }
-                // 自动开始播放当前页面的音频
-                if !audioManager.isPlaying {
-                    audioManager.playSound(name: randomSound.key)
-                }
+            .frame(minHeight: UIScreen.main.bounds.height)
+        }
+        .onAppear {
+            // 页面出现时，如果有其他音频在播放，先停止
+            if audioManager.isPlaying && audioManager.currentSound != randomSound.key {
+                audioManager.stop()
             }
-            .onDisappear {
-                // 当视图消失时停止音频
-                if audioManager.currentSoundKey == randomSound.key {
-                    audioManager.stop()
-                }
+            // 自动开始播放当前页面的音频
+            if !audioManager.isPlaying {
+                audioManager.playSound(name: randomSound.key)
+            }
+        }
+        .onDisappear {
+            // 当视图消失时停止音频
+            if audioManager.currentSound == randomSound.key {
+                audioManager.stop()
             }
         }
     }
+}
+
+// 标签视图组件
+struct TagView: View {
+    let text: String
+    let color: Color
+    
+    var body: some View {
+        Text(text)
+            .font(.system(size: 14))
+            .foregroundColor(color)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 4)
+            .background(color.opacity(0.1))
+            .cornerRadius(4)
+    }
+}
 
