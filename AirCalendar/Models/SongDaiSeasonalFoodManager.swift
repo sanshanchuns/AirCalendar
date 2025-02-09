@@ -12,13 +12,7 @@ public class SongDaiSeasonalFoodManager {
         let effect: String        // 功效
         let cultural: String      // 文化背景
         let story: Story         // 相关典故
-    }
-    
-    public struct Story {
-        let title: String
-        let content: String
-        let source: String
-        let background: String
+        let poetry: Poetry?  // 添加诗词字段
     }
     
     public struct FoodArrangement {
@@ -67,7 +61,8 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'立春日，市井皆售五辛盘，以应节气，取其辟邪驱寒。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城立春时节的饮食习俗"
-                    )
+                    ),
+                    poetry: nil  // 添加 nil 值
                 ),
                 
                 SeasonalFood(
@@ -103,7 +98,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'立春之日，民间争食春饼，取其新岁之意。'",
                         source: "《宋东京考》",
                         background: "记载宋代民间立春饮食习俗"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "立春食五辛春饼，《历时杂记》载：'立春之日，食五辛以辟邪，食春饼以迎新。'",
@@ -143,7 +138,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'雨水时节，茶肆多煮梅花粥，香甜可口，最解困乏。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的饮食习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -181,7 +176,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋会要辑稿》载：'雨水之日，市井多售春卷，以时蔬为馅，民争食之。'",
                         source: "《宋会要辑稿》",
                         background: "记载宋代民间饮食习俗"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "雨水食梅食春，《历时习俗》载：'雨水之时，食梅以解困，食春以助阳。'",
@@ -223,7 +218,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'惊蛰日，市肆多售姜糖饼，取其温性，以御春寒。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安民间饮食习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -258,7 +253,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'惊蛰时，民间以豆芽配饭，取其发生之意，助春阳生发。'",
                         source: "《宋东京考》",
                         background: "记载宋代平民饮食习俗"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "惊蛰食姜豆芽，《历时习俗》载：'惊蛰之日，食姜以御寒，食芽以助阳。'",
@@ -299,7 +294,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'春分日，市井皆售艾糍，翠色如玉，香甜可口。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城春分时节的特色小吃"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -337,7 +332,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋会要辑稿》载：'雨水之日，市井多售春卷，以时蔬为馅，民争食之。'",
                         source: "《宋会要辑稿》",
                         background: "记载宋代民间饮食习俗"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "雨水食梅食春，《历时习俗》载：'雨水之时，食梅以解困，食春以助阳。'",
@@ -379,7 +374,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'清明时节，市肆皆售青团，翠色如玉，祭祖佳品。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的清明习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -415,7 +410,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'清明时节，民间以糯米配香椿为饭，谓之清明饭，最是时鲜。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的清明饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "清明食青团香椿，《历时集》载：'清明之日，食青团以祭祖，食香椿以尝春。'",
@@ -456,7 +451,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'谷雨时节，茶肆多以新茶煮饭，香气袭人，最宜清晨。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的饮食习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -492,7 +487,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'谷雨时节，市井多售豆芽饼，取其发生之意，最是时新。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的谷雨饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "谷雨尝新茶食豆芽，《历时杂记》载：'谷雨之日，尝新茶以清心，食豆芽以助长。'",
@@ -533,7 +528,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'立夏日，茶肆皆煮绿豆薄荷粥，清凉可口，消暑解热。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的夏季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -569,7 +564,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'立夏时节，市肆多售凉糕，以藕粉为主，清甜爽口。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的夏季小吃"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "立夏避暑，《历时集》载：'立夏之日，食绿豆粥以消暑，食凉糕以生津。'",
@@ -609,7 +604,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《本草纲目》载：'小满时枇杷最佳，蜜饯可存，止渴生津。'",
                         source: "《本草纲目》",
                         background: "记载宋代药膳制作方法"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -644,13 +639,51 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'小满前后，市井已售艾粽，以应端阳。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的节令食俗"
-                    )
+                    ), poetry: nil
+                ),
+                SeasonalFood(
+                    name: "时蔬饺",
+                    ingredients: [
+                        ("面粉", "300克"),
+                        ("黄瓜", "200克"),
+                        ("韭菜", "100克"),
+                        ("香菇", "50克"),
+                        ("咸菜", "50克"),
+                        ("葱花", "20克"),
+                        ("盐", "适量")
+                    ],
+                    preparation: [
+                        "面粉过筛",
+                        "黄瓜切丁",
+                        "韭菜切段",
+                        "香菇切碎",
+                        "咸菜剁碎",
+                        "葱花备用"
+                    ],
+                    method: [
+                        "1. 面粉加水和面",
+                        "2. 馅料混合调味",
+                        "3. 擀皮包馅",
+                        "4. 捏出褶子",
+                        "5. 上笼蒸10分钟"
+                    ],
+                    tips: "面要软硬适中，馅要清爽",
+                    storage: "当天食用为佳",
+                    usage: "小满时节午餐或晚餐",
+                    effect: "清淡爽口",
+                    cultural: "小满食饺，取'粽满'之意。",
+                    story: Story(
+                        title: "小满饺",
+                        content: "《宋东京考》载：'小满之日，市井多售时蔬饺，以黄瓜韭菜为馅，取其清新之味。'",
+                        source: "《宋东京考》",
+                        background: "记载宋代都城的应季小吃"
+                    ), poetry:nil
                 )
             ],
             custom: "小满食枇杷艾粽，《岁时集》载：'小满之时，食枇杷以清热，食艾粽以祛湿。'",
             source: "《本草纲目》《东京梦华录》《岁时集》"
         ),
-
+        
         "芒种": FoodArrangement(
             solarTerm: "芒种",
             foods: [
@@ -685,7 +718,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'芒种时新麦初熟，市肆竞制新麦饼，以献亲朋。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安的饮食习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -720,7 +753,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'芒种时樱桃盛产，贵家皆以制酒，待客赏月。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的饮食文化"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "芒种尝新酿酒，《岁时杂记》载：'芒种之日，尝新麦以报岁，酿樱桃以待客。'",
@@ -764,7 +797,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'夏至前后，市肆多售荷叶裹粽，香气四溢，消暑解腻。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的夏至饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -799,7 +832,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'夏至时节，贵家皆煮酸梅汤解暑，香气四溢，沁人心脾。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的避暑饮品"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "夏至食荷饮酸，《岁时集》载：'夏至之日，食荷以清心，饮酸以生津。'",
@@ -841,7 +874,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'小暑时节，茶肆多煮莲子粥，清香怡人，最解暑热。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的夏季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -877,7 +910,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'小暑时节，市井多售薄荷凉面，清爽可口，解暑良方。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的夏季饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "小暑食莲食凉，《岁时杂记》载：'小暑之日，食莲以清心，食凉以解暑。'",
@@ -919,7 +952,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'大暑时节，贵家皆以荷叶煮茶，清香四溢，最解暑热。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的避暑饮品"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -954,7 +987,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'大暑时节，市肆多售冰糖炖梨，甘甜可口，最解暑热。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的夏季饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "大暑避暑，《岁时集》载：'大暑之日，饮荷叶茶以清心，食冰梨以解暑。'",
@@ -994,7 +1027,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'立秋时节，市肆多售梨花酥，酥皮包梨，清甜可口。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的秋季点心"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1028,7 +1061,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'立秋后，贵家以菊花煮饭，清香怡人，最养心神。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的饮食习俗"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "立秋养生，《岁时集》载：'立秋之日，食梨以润燥，饮菊以明目。'",
@@ -1070,7 +1103,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'处暑时节，市井多售藕汤，清甜爽口，最解暑热。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的饮食习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1104,13 +1137,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'处暑时节，市肆皆售桂花糕，香甜可口，雅俗共赏。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的时令点心"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "处暑养生，《岁时杂记》载：'处暑之日，食藕以清热，食桂以理气。'",
             source: "《宋东京考》《武林旧事》《岁时杂记》"
         ),
-
+        
         "白露": FoodArrangement(
             solarTerm: "白露",
             foods: [
@@ -1146,7 +1179,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'白露时节，市肆多售蟹粥，鲜美可口，最养脾胃。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的秋季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1180,7 +1213,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'白露后，市肆多售栗糕，香甜软糯，最宜秋食。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的秋季点心"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "白露养生，《岁时集》载：'白露之日，食蟹以养胃，食栗以健脾。'",
@@ -1221,7 +1254,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'秋分时节，贵家皆以桂花酿酒，香气醉人，最宜月下。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的秋季饮品"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1256,13 +1289,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'秋分时节，市肆多售芝麻饼，香酥可口，老幼皆宜。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的秋季点心"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "秋分养生，《岁时集》载：'秋分之日，饮桂以养心，食芝以补血。'",
             source: "《梦粱录》《东京梦华录》《岁时集》"
         ),
-
+        
         "寒露": FoodArrangement(
             solarTerm: "寒露",
             foods: [
@@ -1297,7 +1330,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'寒露时节，市肆多售枣糕，甜香可口，最养人。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的秋季点心"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1332,13 +1365,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'寒露后，贵家皆以菊花酿酒，清香怡人，最宜赏月。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的秋季饮品"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "寒露养生，《岁时集》载：'寒露之日，食枣以养血，饮菊以明目。'",
             source: "《武林旧事》《梦粱录》《岁时集》"
         ),
-
+        
         "霜降": FoodArrangement(
             solarTerm: "霜降",
             foods: [
@@ -1374,7 +1407,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'霜降时节，市肆多售栗羹，温暖可口，最宜晨食。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的秋季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1409,7 +1442,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'霜降后，市井多售姜糖饼，温暖香甜，最御寒气。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的秋季点心"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "霜降养生，《岁时集》载：'霜降之日，食栗以养胃，食姜以御寒。'",
@@ -1449,7 +1482,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'立冬日，市肆皆煮羊汤，香气四溢，暖人心脾。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的冬季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1484,13 +1517,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'立冬后，市井多售萝卜饼，温暖可口，最解寒气。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的冬季小食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "立冬进补，《岁时集》载：'立冬之日，食羊以暖身，食萝卜以健胃。'",
             source: "《东京梦华录》《梦粱录》《岁时集》"
         ),
-
+        
         "小雪": FoodArrangement(
             solarTerm: "小雪",
             foods: [
@@ -1526,7 +1559,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'小雪时节，茶肆多以姜汁点奶，香浓可口，暖人心脾。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的冬季饮品"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1561,13 +1594,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'小雪后，贵家多食栗糯饭，温补养身，最宜冬日。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的冬季饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "小雪养生，《岁时集》载：'小雪之日，饮姜以暖胃，食栗以养脾。'",
             source: "《武林旧事》《东京梦华录》《岁时集》"
         ),
-
+        
         "大雪": FoodArrangement(
             solarTerm: "大雪",
             foods: [
@@ -1602,7 +1635,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'大雪时节，市肆多售羊肉煲，暖身御寒，最解寒气。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的冬季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1637,7 +1670,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'大雪时节，茶肆多煮桂圆汤，甜香可口，暖人心脾。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的冬季饮品"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "大雪进补，《岁时集》载：'大雪之日，食羊以暖身，饮桂以养心。'",
@@ -1678,7 +1711,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'冬至日，市肆皆售圆子，取其团圆之意，以应节令。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的冬至习俗"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1713,13 +1746,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'冬至日，贵家必备赤豆粥，滋补养身，以应时令。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的冬至饮食"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "冬至养生，《岁时集》载：'冬至之日，食圆以团圆，食豆以养生。'",
             source: "《武林旧事》《梦粱录》《岁时集》"
         ),
-
+        
         "小寒": FoodArrangement(
             solarTerm: "小寒",
             foods: [
@@ -1754,7 +1787,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《宋东京考》载：'小寒时节，市肆多售当归鸭，暖身养血，最御寒气。'",
                         source: "《宋东京考》",
                         background: "记载宋代都城的冬季饮食"
-                    )
+                    ), poetry: nil
                 ),
                 
                 SeasonalFood(
@@ -1789,13 +1822,13 @@ public class SongDaiSeasonalFoodManager {
                         content: "《武林旧事》载：'小寒日，市肆多售姜汤圆，温暖甜香，最解寒气。'",
                         source: "《武林旧事》",
                         background: "记载南宋临安城的冬季点心"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "小寒进补，《岁时集》载：'小寒之日，食鸭以养血，食圆以暖胃。'",
             source: "《宋东京考》《武林旧事》《岁时集》"
         ),
-
+        
         "大寒": FoodArrangement(
             solarTerm: "大寒",
             foods: [
@@ -1831,7 +1864,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《东京梦华录》载：'大寒时节，市肆多设火锅，暖身御寒，宾主尽欢。'",
                         source: "《东京梦华录》",
                         background: "记载宋代都城的冬季饮食"
-                    )
+                    ), poetry:nil
                 ),
                 
                 SeasonalFood(
@@ -1866,7 +1899,7 @@ public class SongDaiSeasonalFoodManager {
                         content: "《梦粱录》载：'大寒时节，贵家皆饮姜枣茶，暖身御寒，最解寒气。'",
                         source: "《梦粱录》",
                         background: "记载南宋临安城的冬季饮品"
-                    )
+                    ), poetry:nil
                 )
             ],
             custom: "大寒养生，《岁时集》载：'大寒之日，食羊以暖身，饮姜以御寒。'",

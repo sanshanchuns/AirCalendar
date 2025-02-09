@@ -1,15 +1,3 @@
-struct Incense {
-    let name: String
-    let ingredients: [(name: String, amount: String)]  // 添加具体用量
-    let preparation: [String]  // 材料准备步骤
-    let method: [String]  // 详细制作步骤
-    let dryingMethod: String  // 晾干方法
-    let storage: String   // 储存方法
-    let usage: String
-    let effect: String
-    let poetry: Poetry
-}
-
 class SongDaiIncenseManager {
     let incenseCalendar: [String: IncenseArrangement] = [
         "立春": IncenseArrangement(
@@ -249,7 +237,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        ("牡丹花需晾干研磨",
+                        "牡丹花需晾干研磨",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
                         "蜂蜜调至稀薄"
@@ -340,7 +328,7 @@ class SongDaiIncenseManager {
                     preparation: [
                         "檀香粉需过细筛",
                         "栀子花需晾干研磨",
-                        ("茉莉花需晾干碾碎",
+                        "茉莉花需晾干碾碎",
                         "丁香需研磨成粉",
                         "蜂蜜调至稀薄"
                     ],
