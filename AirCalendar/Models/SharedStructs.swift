@@ -50,4 +50,34 @@ struct FoodArrangement {
     let foods: [SeasonalFood]
     let custom: String
     let source: String
-} 
+}
+
+struct ModernActivity {
+    let name: String
+    let location: String
+    let address: String
+    let description: String
+    let details: [String]
+    let tips: [String]
+    let historicalConnection: String
+}
+
+struct ModernActivityArrangement {
+    let solarTerm: String
+    let activities: [ModernActivity]
+}
+
+struct Activity {
+    let name: String
+    let description: String
+    let details: [String]
+    let custom: String
+    let source: String
+}
+
+struct ActivityArrangement {
+    let solarTerm: String
+    let activities: [Activity]
+    let custom: String
+    let source: String
+}
