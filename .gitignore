@@ -71,7 +71,6 @@ project.xcworkspace/
 xcuserdata/
 
 # Audio files
-*.mp3
 *.wav
 *.m4a
 *.aac
