@@ -25,6 +25,12 @@
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
 		B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
+		B3CCF0A52D59D162003BCDC2 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF09F2D59D162003BCDC2 /* rain.mp3 */; };
+		B3CCF0A62D59D162003BCDC2 /* wave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A02D59D162003BCDC2 /* wave.mp3 */; };
+		B3CCF0A72D59D162003BCDC2 /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A12D59D162003BCDC2 /* forest.mp3 */; };
+		B3CCF0A82D59D162003BCDC2 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A22D59D162003BCDC2 /* wind.mp3 */; };
+		B3CCF0A92D59D162003BCDC2 /* creek.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A32D59D162003BCDC2 /* creek.mp3 */; };
+		B3CCF0AA2D59D162003BCDC2 /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A42D59D162003BCDC2 /* fire.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +53,12 @@
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		B3CCF0822D576521003BCDC2 /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B3CCF09F2D59D162003BCDC2 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		B3CCF0A02D59D162003BCDC2 /* wave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wave.mp3; sourceTree = "<group>"; };
+		B3CCF0A12D59D162003BCDC2 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
+		B3CCF0A22D59D162003BCDC2 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		B3CCF0A32D59D162003BCDC2 /* creek.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = creek.mp3; sourceTree = "<group>"; };
+		B3CCF0A42D59D162003BCDC2 /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				B31E58892D57058800B9F545 /* AirCalendarApp.swift */,
+				B3CCF09E2D59D162003BCDC2 /* Resources */,
 				B3CCF0762D576521003BCDC2 /* Models */,
 				B3CCF0792D576521003BCDC2 /* Services */,
 				B3CCF07C2D576521003BCDC2 /* Utils */,
@@ -165,6 +178,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		B3CCF09E2D59D162003BCDC2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3CCF09F2D59D162003BCDC2 /* rain.mp3 */,
+				B3CCF0A02D59D162003BCDC2 /* wave.mp3 */,
+				B3CCF0A12D59D162003BCDC2 /* forest.mp3 */,
+				B3CCF0A22D59D162003BCDC2 /* wind.mp3 */,
+				B3CCF0A32D59D162003BCDC2 /* creek.mp3 */,
+				B3CCF0A42D59D162003BCDC2 /* fire.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,7 +250,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
+				B3CCF0A62D59D162003BCDC2 /* wave.mp3 in Resources */,
+				B3CCF0A82D59D162003BCDC2 /* wind.mp3 in Resources */,
 				B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */,
+				B3CCF0AA2D59D162003BCDC2 /* fire.mp3 in Resources */,
+				B3CCF0A72D59D162003BCDC2 /* forest.mp3 in Resources */,
+				B3CCF0A52D59D162003BCDC2 /* rain.mp3 in Resources */,
+				B3CCF0A92D59D162003BCDC2 /* creek.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
