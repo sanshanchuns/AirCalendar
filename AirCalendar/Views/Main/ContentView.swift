@@ -1,123 +1,207 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentDate = Date()
-    @State private var scrollPosition: String?
+    @State private var selectedDate: Date? = nil
+    @State private var showingDetail = false
     
     var body: some View {
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: 0) {
-                    // 使用相对日期范围：前7天到后7天
-                    ForEach(-365...365, id: \.self) { offset in
-                        if let date = Calendar.current.date(byAdding: .day, value: offset, to: Date()) {
-                            DayView(dayItem: DayItem(date: date))
-                                .frame(height: UIScreen.main.bounds.height)
-                                .id(dateToString(date)) // 用于跟踪滚动位置
-                        }
+        NavigationStack {
+            LazyDateView()
+                .ignoresSafeArea()
+                .navigationDestination(isPresented: $showingDetail) {
+                    if let date = selectedDate {
+                        DetailView(date: date, isPresented: $showingDetail)
                     }
                 }
-            }
-            .scrollPosition(id: $scrollPosition)
-            .scrollTargetBehavior(.paging)
-            .ignoresSafeArea()
-            .scrollContentBackground(.hidden)
-            .contentMargins(0)
-            .onAppear {
-                // 初始定位到今天
-                scrollPosition = dateToString(Date())
-            }
         }
-    
-    private func dateToString(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
     }
 }
 
-private struct LegacyView: View {
-    @Binding var currentDate: Date
-    @State private var offset: CGFloat = 0
-    @State private var isDragging = false
+// 自定义 Cell
+class DayCollectionViewCell: UICollectionViewCell {
+    static let reuseIdentifier = "DayCell"
+    private var hostingController: UIHostingController<DayView>?
+    
+    // 配置方法
+    func configure(with date: Date) {
+        // 如果 hostingController 已存在，只更新内容
+        if let hostingController = hostingController {
+            hostingController.rootView = DayView(dayItem: DayItem(date: date))
+        } else {
+            // 首次创建 hostingController
+            let dayView = DayView(dayItem: DayItem(date: date))
+            let hosting = UIHostingController(rootView: dayView)
+            
+            hostingController = hosting
+            
+            hosting.view.frame = contentView.bounds
+            hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            contentView.addSubview(hosting.view)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 保留 hostingController，只更新内容
+    }
+}
+
+struct LazyDateView: UIViewRepresentable {
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+    
+    func makeUIView(context: Context) -> UICollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width,
+                               height: UIScreen.main.bounds.height)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemBackground
+        collectionView.isPagingEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = context.coordinator
+        collectionView.dataSource = context.coordinator
+        collectionView.register(DayCollectionViewCell.self, 
+                              forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
+        
+        context.coordinator.collectionView = collectionView
+        return collectionView
+    }
+    
+    func updateUIView(_ collectionView: UICollectionView, context: Context) {
+        // 更新逻辑
+    }
+    
+    class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+        let parent: LazyDateView
+        let calendar = Calendar.current
+        var loadedDates: [Date] = []
+        var visibleDateRange: ClosedRange<Date>
+        var initialIndex: Int = 0
+        var initialScrollDone = false
+        var initialLoadNextDone = false
+        weak var collectionView: UICollectionView?
+        
+        // 用于跟踪预加载的日期
+        private var prefetchedDates: Set<Date> = []
+        
+        init(parent: LazyDateView) {
+            self.parent = parent
+            
+            let today = Date()
+            let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+            
+            self.loadedDates = [yesterday, today, tomorrow]
+            self.visibleDateRange = yesterday...tomorrow
+            
+            super.init()
+        }
+        
+        // MARK: - UICollectionViewDataSource
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 1
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return loadedDates.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: DayCollectionViewCell.reuseIdentifier,
+                for: indexPath) as? DayCollectionViewCell else {
+                fatalError("Unable to dequeue DayCollectionViewCell")
+            }
+            
+            let date = loadedDates[indexPath.row]
+            print("date: \(date)")
+            cell.configure(with: date)
+            
+            return cell
+        }
+        
+         // MARK: - UIScrollViewDelegate
+         func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+             guard let collectionView = scrollView as? UICollectionView else { return }
+             let page = Int(scrollView.contentOffset.y / scrollView.bounds.height)
+            
+             if page == loadedDates.count - 1 {
+                 if let lastDate = loadedDates.last,
+                    let nextDate = calendar.date(byAdding: .day, value: 1, to: lastDate) {
+                     loadedDates.append(nextDate)
+                     //刷新最后一个Cell
+                     collectionView.performBatchUpdates {
+                         collectionView.insertItems(at: [IndexPath(item: loadedDates.count - 1, section: 0)])
+                     }
+                 }
+             } else if page == 0 {
+                 if let firstDate = loadedDates.first,
+                    let previousDate = calendar.date(byAdding: .day, value: -1, to: firstDate) {
+                     loadedDates.insert(previousDate, at: 0)
+                     //刷新第一个Cell
+                     collectionView.performBatchUpdates {
+                         collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
+                     }
+                 }
+             }
+         }
+      
+        // MARK: - UICollectionViewDelegate
+        func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            // 首次布局完成后，滚动到今天
+            if !initialScrollDone && indexPath.item == initialIndex {
+                initialScrollDone = true
+                collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.bounds.height+1), animated: false)
+            }
+        }
+    }
+}
+
+// 详情页视图
+struct DetailView: View {
+    let date: Date
+    @Binding var isPresented: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollViewReader { proxy in
-                ScrollView(.vertical, showsIndicators: false) {
-                    LazyVStack(spacing: 0) {
-                        ForEach(-365...365, id: \.self) { offset in
-                            if let date = Calendar.current.date(byAdding: .day, value: offset, to: Date()) {
-                                DayView(dayItem: DayItem(date: date))
-                                    .frame(height: geometry.size.height)
-                                    .id(date)
-                                    .overlay(
-                                        GeometryReader { proxy in
-                                            Color.clear
-                                                .preference(
-                                                    key: OffsetPreferenceKey.self,
-                                                    value: proxy.frame(in: .named("scroll")).minY
-                                                )
-                                        }
-                                    )
-                            }
-                        }
-                    }
-                }
-                .coordinateSpace(name: "scroll")
-                .onPreferenceChange(OffsetPreferenceKey.self) { offset in
-                    self.offset = offset
-                    if !isDragging {
-                        snapToPage(proxy: proxy, geometry: geometry)
-                    }
-                }
-                .gesture(
-                    DragGesture()
-                        .onChanged { _ in
-                            isDragging = true
-                        }
-                        .onEnded { value in
-                            isDragging = false
-                            let velocity = value.predictedEndLocation.y - value.location.y
-                            snapToPage(proxy: proxy, geometry: geometry, velocity: velocity)
-                        }
-                )
+        VStack {
+            // 详情页内容
+            Text("详情页: \(dateFormatter.string(from: date))")
+                .font(.title)
+            
+            // 其他详情内容
+            
+            // 返回按钮
+            Button("返回") {
+                isPresented = false
             }
+            .padding()
         }
-        .edgesIgnoringSafeArea(.all)
-    }
-    
-    private func snapToPage(proxy: ScrollViewProxy, geometry: GeometryProxy, velocity: CGFloat = 0) {
-        let pageHeight = geometry.size.height
-        let currentPage = round(abs(offset) / pageHeight)
-        var targetPage = currentPage
-        
-        // 处理快速滑动
-        if abs(velocity) > 200 {
-            targetPage += velocity > 0 ? -1 : 1
-        }
-        
-        // 确保页面在有效范围内
-        targetPage = max(0, min(targetPage, 730)) // 365*2
-        
-        // 计算目标日期
-        if let targetDate = Calendar.current.date(byAdding: .day, 
-                                                value: Int(targetPage) - 365, 
-                                                to: Date()) {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                proxy.scrollTo(targetDate, anchor: .top)
-                currentDate = targetDate
+        .navigationBarBackButtonHidden(true) // 隐藏默认返回按钮
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    isPresented = false
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("返回")
+                    }
+                }
             }
         }
     }
 }
 
-struct OffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
-//#Preview {
-//    ContentView()
-//} 
+// 日期格式化器
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    return formatter
+}() 
