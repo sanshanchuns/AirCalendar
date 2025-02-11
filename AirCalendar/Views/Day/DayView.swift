@@ -10,7 +10,7 @@ public struct DayView: View {
     
     // 为每个 Cell 随机分配一个声音
     private var randomSound: String {
-        return audioManager.randomSound(date: date)
+        return audioManager.randomSound(date: dayItem.date)
     }
     
     private var poetryQuote: PoetryQuote {
@@ -18,10 +18,10 @@ public struct DayView: View {
     }
     
     private func toggleSound() {
-        if audioManager.isPlaying && audioManager.currentSoundName != randomSound.name {
+        if audioManager.isPlaying && audioManager.currentSound != randomSound {
             audioManager.stop()
         }
-        audioManager.togglePlay(name: randomSound.key)
+        audioManager.togglePlay(name: randomSound)
     }
     
     public var body: some View {
@@ -92,14 +92,14 @@ public struct DayView: View {
                     
                     if let sound = dayItem.dailyContent.randomSound {
                         Button(action: {
-                            audioManager.togglePlay(name: sound.key)
+                            audioManager.togglePlay(name: sound)
                         }) {
                             HStack(spacing: 8) {
-                                Image(systemName: audioManager.isPlaying && audioManager.currentSoundName == sound.name
+                                Image(systemName: audioManager.isPlaying && audioManager.currentSound == sound
                                       ? "speaker.wave.2.fill"
                                       : "speaker.wave.2")
                                     .foregroundColor(.gray)
-                                Text(sound.name)
+                                Text(sound)
                                     .foregroundColor(.gray)
                                     .font(.system(size: 14))
                                 Spacer()
@@ -117,17 +117,17 @@ public struct DayView: View {
         }
         .onAppear {
             // 页面出现时，如果有其他音频在播放，先停止
-            if audioManager.isPlaying && audioManager.currentSoundName != randomSound.name {
+            if audioManager.isPlaying && audioManager.currentSound != randomSound {
                 audioManager.stop()
             }
             // 自动开始播放当前页面的音频
             if !audioManager.isPlaying {
-                audioManager.playSound(name: randomSound.name)
+                audioManager.playSound(name: randomSound)
             }
         }
         .onDisappear {
             // 当视图消失时停止音频
-            if audioManager.currentSoundName == randomSound.name {
+            if audioManager.currentSound == randomSound {
                 audioManager.stop()
             }
         }

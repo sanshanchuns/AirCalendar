@@ -14,7 +14,7 @@ public class AudioManager: NSObject, ObservableObject {
     private var audioSession: AVAudioSession?
     
     @Published public var isPlaying = false
-    @Published public var currentSoundName: String?
+    @Published public var currentSound: String?
     
     public let natureSounds: [String] = [
         "细雨绵绵",
@@ -41,8 +41,8 @@ public class AudioManager: NSObject, ObservableObject {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.playCommand.addTarget { [weak self] _ in
-            if let currentSoundName = self?.currentSoundName {
-                self?.playSound(name: currentSoundName)
+            if let currentSound = self?.currentSound {
+                self?.playSound(name: currentSound)
                 return .success
             }
             return .commandFailed
@@ -75,7 +75,7 @@ public class AudioManager: NSObject, ObservableObject {
             audioPlayer?.prepareToPlay() // 预加载音频
             audioPlayer?.play()
             isPlaying = true
-            currentSoundName = name
+            currentSound = name
             
             // 设置锁屏和控制中心的信息
             setupNowPlaying(name: name)
@@ -105,14 +105,14 @@ public class AudioManager: NSObject, ObservableObject {
         audioPlayer?.stop()
         audioPlayer = nil
         isPlaying = false
-        currentSoundName = nil
+        currentSound = nil
         
         // 清除锁屏和控制中心的信息
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
     
     public func togglePlay(name: String) {
-        if isPlaying && currentSoundName == name {
+        if isPlaying && currentSound == name {
             stop()
         } else {
             playSound(name: name)
