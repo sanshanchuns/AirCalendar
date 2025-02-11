@@ -25,12 +25,14 @@
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
 		B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
-		B3CCF0A52D59D162003BCDC2 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF09F2D59D162003BCDC2 /* rain.mp3 */; };
-		B3CCF0A62D59D162003BCDC2 /* wave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A02D59D162003BCDC2 /* wave.mp3 */; };
-		B3CCF0A72D59D162003BCDC2 /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A12D59D162003BCDC2 /* forest.mp3 */; };
-		B3CCF0A82D59D162003BCDC2 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A22D59D162003BCDC2 /* wind.mp3 */; };
-		B3CCF0A92D59D162003BCDC2 /* creek.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A32D59D162003BCDC2 /* creek.mp3 */; };
-		B3CCF0AA2D59D162003BCDC2 /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF0A42D59D162003BCDC2 /* fire.mp3 */; };
+		B3CCF15E2D59F8C8003BCDC2 /* 溪水潺潺.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */; };
+		B3CCF15F2D59F8C8003BCDC2 /* 细雨绵绵.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */; };
+		B3CCF1602D59F8C8003BCDC2 /* 温暖篝火.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */; };
+		B3CCF1612D59F8C8003BCDC2 /* 海浪轻拍.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */; };
+		B3CCF1622D59F8C8003BCDC2 /* 林间鸟语.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */; };
+		B3CCF1632D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */; };
+		B3CCF1642D59F8C8003BCDC2 /* 微风拂叶.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */; };
+		B3CCF1652D59F8C8003BCDC2 /* 山涧流水.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,12 +55,15 @@
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		B3CCF0822D576521003BCDC2 /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B3CCF09F2D59D162003BCDC2 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
-		B3CCF0A02D59D162003BCDC2 /* wave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wave.mp3; sourceTree = "<group>"; };
-		B3CCF0A12D59D162003BCDC2 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
-		B3CCF0A22D59D162003BCDC2 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
-		B3CCF0A32D59D162003BCDC2 /* creek.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = creek.mp3; sourceTree = "<group>"; };
-		B3CCF0A42D59D162003BCDC2 /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
+		B3CCF0AB2D59D2D4003BCDC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "溪水潺潺.mp3"; sourceTree = "<group>"; };
+		B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "细雨绵绵.mp3"; sourceTree = "<group>"; };
+		B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "温暖篝火.mp3"; sourceTree = "<group>"; };
+		B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "海浪轻拍.mp3"; sourceTree = "<group>"; };
+		B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "林间鸟语.mp3"; sourceTree = "<group>"; };
+		B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "夜晚虫鸣.mp3"; sourceTree = "<group>"; };
+		B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "微风拂叶.mp3"; sourceTree = "<group>"; };
+		B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "山涧流水.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +96,7 @@
 		B31E58882D57058800B9F545 /* AirCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				B3CCF0AB2D59D2D4003BCDC2 /* Info.plist */,
 				B31E58892D57058800B9F545 /* AirCalendarApp.swift */,
 				B3CCF09E2D59D162003BCDC2 /* Resources */,
 				B3CCF0762D576521003BCDC2 /* Models */,
@@ -181,12 +187,14 @@
 		B3CCF09E2D59D162003BCDC2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B3CCF09F2D59D162003BCDC2 /* rain.mp3 */,
-				B3CCF0A02D59D162003BCDC2 /* wave.mp3 */,
-				B3CCF0A12D59D162003BCDC2 /* forest.mp3 */,
-				B3CCF0A22D59D162003BCDC2 /* wind.mp3 */,
-				B3CCF0A32D59D162003BCDC2 /* creek.mp3 */,
-				B3CCF0A42D59D162003BCDC2 /* fire.mp3 */,
+				B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */,
+				B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */,
+				B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */,
+				B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */,
+				B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */,
+				B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */,
+				B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */,
+				B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -249,14 +257,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3CCF15F2D59F8C8003BCDC2 /* 细雨绵绵.mp3 in Resources */,
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
-				B3CCF0A62D59D162003BCDC2 /* wave.mp3 in Resources */,
-				B3CCF0A82D59D162003BCDC2 /* wind.mp3 in Resources */,
+				B3CCF1652D59F8C8003BCDC2 /* 山涧流水.mp3 in Resources */,
+				B3CCF1612D59F8C8003BCDC2 /* 海浪轻拍.mp3 in Resources */,
+				B3CCF1622D59F8C8003BCDC2 /* 林间鸟语.mp3 in Resources */,
+				B3CCF15E2D59F8C8003BCDC2 /* 溪水潺潺.mp3 in Resources */,
 				B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */,
-				B3CCF0AA2D59D162003BCDC2 /* fire.mp3 in Resources */,
-				B3CCF0A72D59D162003BCDC2 /* forest.mp3 in Resources */,
-				B3CCF0A52D59D162003BCDC2 /* rain.mp3 in Resources */,
-				B3CCF0A92D59D162003BCDC2 /* creek.mp3 in Resources */,
+				B3CCF1602D59F8C8003BCDC2 /* 温暖篝火.mp3 in Resources */,
+				B3CCF1642D59F8C8003BCDC2 /* 微风拂叶.mp3 in Resources */,
+				B3CCF1632D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,11 +429,13 @@
 				DEVELOPMENT_TEAM = 7U634AK5AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirCalendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,11 +460,13 @@
 				DEVELOPMENT_TEAM = 7U634AK5AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirCalendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -3,18 +3,14 @@ import SwiftUI
 public struct DayView: View {
     @ObservedObject var dayItem: DayItem
     @StateObject private var audioManager = AudioManager.shared
-    @State private var isPlaying = false
     
     public init(dayItem: DayItem) {
         self.dayItem = dayItem
     }
     
     // 为每个 Cell 随机分配一个声音
-    private var randomSound: (key: String, name: String) {
-        let sounds = Array(audioManager.natureSounds)
-        let randomIndex = abs(dayItem.date.hashValue) % sounds.count
-        let sound = sounds[randomIndex]
-        return (key: sound.key, name: sound.value)
+    private var randomSound: String {
+        return audioManager.randomSound(date: date)
     }
     
     private var poetryQuote: PoetryQuote {
@@ -22,7 +18,7 @@ public struct DayView: View {
     }
     
     private func toggleSound() {
-        if audioManager.isPlaying && audioManager.currentSound != randomSound.key {
+        if audioManager.isPlaying && audioManager.currentSoundName != randomSound.name {
             audioManager.stop()
         }
         audioManager.togglePlay(name: randomSound.key)
@@ -94,16 +90,22 @@ public struct DayView: View {
                         .padding()
                     }
                     
-                    if let soundName = dayItem.dailyContent.randomSound {
-                        HStack(spacing: 8) {
-                            Image(systemName: "speaker.wave.2")
-                                .foregroundColor(.gray)
-                            Text(soundName)
-                                .foregroundColor(.gray)
-                                .font(.system(size: 14))
-                            Spacer()
+                    if let sound = dayItem.dailyContent.randomSound {
+                        Button(action: {
+                            audioManager.togglePlay(name: sound.key)
+                        }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: audioManager.isPlaying && audioManager.currentSoundName == sound.name
+                                      ? "speaker.wave.2.fill"
+                                      : "speaker.wave.2")
+                                    .foregroundColor(.gray)
+                                Text(sound.name)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 14))
+                                Spacer()
+                            }
+                            .padding(.top, 8)
                         }
-                        .padding(.top, 8)
                     }
                 }
                 .padding(.horizontal, 20)
@@ -115,17 +117,17 @@ public struct DayView: View {
         }
         .onAppear {
             // 页面出现时，如果有其他音频在播放，先停止
-            if audioManager.isPlaying && audioManager.currentSound != randomSound.key {
+            if audioManager.isPlaying && audioManager.currentSoundName != randomSound.name {
                 audioManager.stop()
             }
             // 自动开始播放当前页面的音频
             if !audioManager.isPlaying {
-                audioManager.playSound(name: randomSound.key)
+                audioManager.playSound(name: randomSound.name)
             }
         }
         .onDisappear {
             // 当视图消失时停止音频
-            if audioManager.currentSound == randomSound.key {
+            if audioManager.currentSoundName == randomSound.name {
                 audioManager.stop()
             }
         }

@@ -33,7 +33,7 @@ public class DayItem: ObservableObject {
             quote: poetry.quote,
             author: poetry.author,
             title: poetry.title,
-            randomSound: sound.name
+            randomSound: sound
         )
     }
     
@@ -156,16 +156,5 @@ public class DayItem: ObservableObject {
     
     public var solarTerm: String? {
         SolarTerms.getTerm(for: date)
-    }
-    
-    private func getRandomSound() -> String {
-        let sounds = [
-            "细雨绵绵", "风吹竹林", "溪水潺潺", "蝉鸣阵阵",
-            "鸟语花香", "雨打芭蕉", "松涛阵阵", "流水淙淙",
-            "风铃叮当", "雪落无声", "蛙声一片", "虫鸣悠扬",
-            "风过稻田", "雨打梨花", "涛声阵阵", "风吹落叶",
-            "雷声滚滚", "风过竹林", "雨打芭蕉", "蝶舞翩翩"
-        ]
-        return sounds[Int.random(in: 0..<sounds.count)]
     }
 } 
