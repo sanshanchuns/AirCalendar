@@ -6,7 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            LazyDateView()
+            LazyDateView(selectedDate: $selectedDate, showingDetail: $showingDetail)
                 .ignoresSafeArea()
                 .navigationDestination(isPresented: $showingDetail) {
                     if let date = selectedDate {
@@ -17,37 +17,51 @@ struct ContentView: View {
     }
 }
 
-// 自定义 Cell
 class DayCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "DayCell"
     private var hostingController: UIHostingController<DayView>?
+    var onTap: (() -> Void)?
     
-    // 配置方法
-    func configure(with date: Date) {
-        // 如果 hostingController 已存在，只更新内容
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupTapGesture()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupTapGesture()
+    }
+    
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        contentView.addGestureRecognizer(tapGesture)
+        contentView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleTap() {
+        onTap?()
+    }
+    
+    func configure(with date: Date, onTap: @escaping () -> Void) {
+        self.onTap = onTap
+        
         if let hostingController = hostingController {
             hostingController.rootView = DayView(dayItem: DayItem(date: date))
         } else {
-            // 首次创建 hostingController
             let dayView = DayView(dayItem: DayItem(date: date))
             let hosting = UIHostingController(rootView: dayView)
-            
             hostingController = hosting
-            
             hosting.view.frame = contentView.bounds
             hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
             contentView.addSubview(hosting.view)
         }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        // 保留 hostingController，只更新内容
     }
 }
 
 struct LazyDateView: UIViewRepresentable {
+    @Binding var selectedDate: Date?
+    @Binding var showingDetail: Bool
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
@@ -73,39 +87,23 @@ struct LazyDateView: UIViewRepresentable {
         return collectionView
     }
     
-    func updateUIView(_ collectionView: UICollectionView, context: Context) {
-        // 更新逻辑
-    }
+    func updateUIView(_ uiView: UICollectionView, context: Context) {}
     
     class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
         let parent: LazyDateView
         let calendar = Calendar.current
         var loadedDates: [Date] = []
-        var visibleDateRange: ClosedRange<Date>
         var initialIndex: Int = 0
         var initialScrollDone = false
-        var initialLoadNextDone = false
         weak var collectionView: UICollectionView?
-        
-        // 用于跟踪预加载的日期
-        private var prefetchedDates: Set<Date> = []
         
         init(parent: LazyDateView) {
             self.parent = parent
-            
             let today = Date()
             let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
             let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
-            
             self.loadedDates = [yesterday, today, tomorrow]
-            self.visibleDateRange = yesterday...tomorrow
-            
             super.init()
-        }
-        
-        // MARK: - UICollectionViewDataSource
-        func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 1
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -120,8 +118,13 @@ struct LazyDateView: UIViewRepresentable {
             }
             
             let date = loadedDates[indexPath.row]
-            print("date: \(date)")
-            cell.configure(with: date)
+            cell.configure(with: date, onTap: { [weak self] in
+                // 确保在主线程更新 UI 状态
+                DispatchQueue.main.async {
+                    self?.parent.selectedDate = date
+                    self?.parent.showingDetail = true
+                }
+            })
             
             return cell
         }
@@ -160,6 +163,7 @@ struct LazyDateView: UIViewRepresentable {
                 collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.bounds.height+1), animated: false)
             }
         }
+        
     }
 }
 
