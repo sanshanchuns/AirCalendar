@@ -24,10 +24,10 @@ struct CachedAsyncImage<Content: View, Placeholder: View>: View {
                 content(Image(uiImage: image))
             } else {
                 placeholder()
+                    .onAppear {
+                        loader.load(from: url)
+                    }
             }
-        }
-        .onAppear {
-            loader.load(from: url)
         }
         .onChange(of: url) { newUrl in
             loader.load(from: newUrl)
