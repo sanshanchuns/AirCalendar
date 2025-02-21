@@ -239,7 +239,20 @@ public struct DayView: View {
                     .padding(.trailing, 20)
                 }
                 // 图片部分
-                CachedAsyncImage(url: dayItem.imageUrl)
+                CachedAsyncImage(
+                        url: URL(string: dayItem.imageUrl),
+                        content: { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        },
+                        placeholder: {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .foregroundColor(.gray)
+                        }
+                    )
                     .scaledToFill()
                     .frame(height: 200)
                     .clipped()

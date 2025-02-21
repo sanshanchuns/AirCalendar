@@ -20,8 +20,19 @@ public class DayItem: ObservableObject {
     
     public init(date: Date) {
         self.date = date
-        setupImageUrl()
+        setupImageUrl(date)
         setupDailyContent()
+    }
+    
+    private func setupImageUrl(_ :Date) {
+        let seed = generateSeed()
+        self.imageUrl = "https://picsum.photos/seed/\(seed)/400/300"
+    }
+    
+    private func generateSeed() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        return dateFormatter.string(from: date)
     }
     
     private func setupDailyContent() {
@@ -35,86 +46,6 @@ public class DayItem: ObservableObject {
             title: poetry.title,
             randomSound: sound
         )
-    }
-    
-    private func setupImageUrl() {
-        // 先检查本地缓存
-        if let localUrl = getLocalImageUrl(),
-           FileManager.default.fileExists(atPath: localUrl.path) {
-            imageUrl = localUrl.absoluteString
-        } else {
-            // 如果本地没有，使用远程 URL
-            let seed = generateSeed()
-            imageUrl = "https://picsum.photos/seed/\(seed)/400/300"
-            // 开始下载并缓存
-            downloadAndCacheImage()
-        }
-    }
-    
-    private func generateSeed() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        return dateFormatter.string(from: date)
-    }
-    
-    private func getLocalImageUrl() -> URL? {
-        let fileManager = FileManager.default
-        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, 
-                                                      in: .userDomainMask).first else {
-            return nil
-        }
-        let fileName = "image_\(generateSeed()).jpg"
-        return documentsDirectory.appendingPathComponent(fileName)
-    }
-    
-    private func downloadAndCacheImage() {
-        guard let remoteUrl = URL(string: imageUrl),
-              let localUrl = getLocalImageUrl() else { return }
-        
-        Task {
-            do {
-                let (data, _) = try await URLSession.shared.data(from: remoteUrl)
-                try data.write(to: localUrl)
-                // 下载完成后更新 URL 为本地路径
-                DispatchQueue.main.async {
-                    self.imageUrl = localUrl.absoluteString
-                }
-            } catch {
-                print("图片下载或保存失败: \(error)")
-            }
-        }
-    }
-    
-    // 清理过期缓存
-    public static func cleanOldCache() {
-        let fileManager = FileManager.default
-        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, 
-                                                      in: .userDomainMask).first else { return }
-        
-        do {
-            let files = try fileManager.contentsOfDirectory(at: documentsDirectory,
-                                                          includingPropertiesForKeys: nil)
-            let imageFiles = files.filter { $0.lastPathComponent.hasPrefix("image_") }
-            
-            // 可以根据需要设置清理规则，比如只保留最近一个月的图片
-            let calendar = Calendar.current
-            let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date())!
-            
-            for file in imageFiles {
-                let fileName = file.lastPathComponent
-                let dateString = fileName.replacingOccurrences(of: "image_", with: "")
-                                      .replacingOccurrences(of: ".jpg", with: "")
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyyMMdd"
-                if let fileDate = formatter.date(from: dateString),
-                   fileDate < oneMonthAgo {
-                    try? fileManager.removeItem(at: file)
-                }
-            }
-        } catch {
-            print("清理缓存失败: \(error)")
-        }
     }
     
     public var month: Int {
