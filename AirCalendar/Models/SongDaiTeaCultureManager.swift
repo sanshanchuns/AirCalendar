@@ -1,31 +1,58 @@
-public class SongDaiTeaCultureManager {
+public class SongDaiTeaCultureManager: SongDaiBaseManager {
     public static let shared = SongDaiTeaCultureManager()
     
+    private init() {}
+    
     public struct TeaCulture {
-        let solarTerm: String
-        let teaTypes: [Tea]
-        let custom: String
-        let poetry: [Poetry]
-        let source: String
+        public let solarTerm: String
+        public let teaTypes: [Tea]
+        public let custom: String
+        public let poetry: [Poetry]
+        public let source: String
+        
+        public init(solarTerm: String, teaTypes: [Tea], custom: String, poetry: [Poetry], source: String) {
+            self.solarTerm = solarTerm
+            self.teaTypes = teaTypes
+            self.custom = custom
+            self.poetry = poetry
+            self.source = source
+        }
     }
     
     public struct Tea {
-        let name: String
-        let description: String
-        let origin: String
-        let brewingMethod: BrewingMethod
-        let teaWare: [String]
-        let healthBenefits: String
+        public let name: String
+        public let description: String
+        public let origin: String
+        public let brewingMethod: BrewingMethod
+        public let teaWare: [String]
+        public let healthBenefits: String
+        
+        public init(name: String, description: String, origin: String,
+                   brewingMethod: BrewingMethod, teaWare: [String], healthBenefits: String) {
+            self.name = name
+            self.description = description
+            self.origin = origin
+            self.brewingMethod = brewingMethod
+            self.teaWare = teaWare
+            self.healthBenefits = healthBenefits
+        }
     }
     
     public struct BrewingMethod {
-        let waterTemperature: String
-        let steepingTime: String
-        let steps: [String]
-        let tips: [String]
+        public let waterTemperature: String
+        public let steepingTime: String
+        public let steps: [String]
+        public let tips: [String]
+        
+        public init(waterTemperature: String, steepingTime: String, steps: [String], tips: [String]) {
+            self.waterTemperature = waterTemperature
+            self.steepingTime = steepingTime
+            self.steps = steps
+            self.tips = tips
+        }
     }
     
-    private let teaCulture: [String: TeaCulture] = [
+    public let calendar: [String: TeaCulture] = [
         "立春": TeaCulture(
             solarTerm: "立春",
             teaTypes: [
@@ -1202,7 +1229,22 @@ public class SongDaiTeaCultureManager {
         // ... 继续添加其他节气的茶文化 ...
     ]
     
-    public func getTeaCulture(for solarTerm: String) -> TeaCulture? {
-        return teaCulture[solarTerm]
+    public func getArrangement(for solarTerm: String) -> TeaCulture? {
+        return calendar[solarTerm]
+    }
+    
+    public func getInfos(_ date: Date) -> [String] {
+        guard let arrangement = getArrangement(for: date) else {
+            return []
+        }
+        return arrangement.teaTypes.flatMap { tea in
+            [
+                "茶名：\(tea.name)",
+                "描述：\(tea.description)",
+                "产地：\(tea.origin)",
+                "功效：\(tea.healthBenefits)",
+                "茶具：\(tea.teaWare.joined(separator: "、"))"
+            ]
+        }
     }
 } 

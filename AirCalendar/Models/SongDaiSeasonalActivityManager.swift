@@ -1,5 +1,39 @@
-class SongDaiSeasonalActivityManager {
-    let seasonalActivityCalendar: [String: ActivityArrangement] = [
+public class SongDaiSeasonalActivityManager: SongDaiBaseManager {
+    public static let shared = SongDaiSeasonalActivityManager()
+    
+    private init() {}
+    
+    public struct ActivityArrangement {
+        public let solarTerm: String
+        public let activities: [Activity]
+        public let custom: String
+        public let source: String
+        
+        public init(solarTerm: String, activities: [Activity], custom: String, source: String) {
+            self.solarTerm = solarTerm
+            self.activities = activities
+            self.custom = custom
+            self.source = source
+        }
+    }
+    
+    public struct Activity {
+        public let name: String
+        public let description: String
+        public let details: [String]
+        public let custom: String
+        public let source: String
+        
+        public init(name: String, description: String, details: [String], custom: String, source: String) {
+            self.name = name
+            self.description = description
+            self.details = details
+            self.custom = custom
+            self.source = source
+        }
+    }
+    
+    public let calendar: [String: ActivityArrangement] = [
         "立春": ActivityArrangement(
             solarTerm: "立春",
             activities: [
@@ -736,4 +770,22 @@ class SongDaiSeasonalActivityManager {
             source: "《梦粱录》《武林旧事》"
         )
     ]
+    
+    public func getArrangement(for solarTerm: String) -> ActivityArrangement? {
+        return calendar[solarTerm]
+    }
+    
+    public func getInfos(_ date: Date) -> [String] {
+        guard let arrangement = getArrangement(for: date) else {
+            return []
+        }
+        return arrangement.activities.flatMap { activity in
+            [
+                "活动：\(activity.name)",
+                "描述：\(activity.description)",
+                "细节：\(activity.details.joined(separator: "；"))",
+                "习俗：\(activity.custom)"
+            ]
+        }
+    }
 }

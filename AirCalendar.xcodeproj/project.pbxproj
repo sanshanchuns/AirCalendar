@@ -8,22 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13412D5887F40000D3B9 /* PoetryManager.swift */; };
-		670B13472D58F4680000D3B9 /* SongDaiFlowerArrangementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13432D58F4670000D3B9 /* SongDaiFlowerArrangementManager.swift */; };
-		670B13482D58F4680000D3B9 /* SongDaiSeasonalFoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13442D58F4680000D3B9 /* SongDaiSeasonalFoodManager.swift */; };
-		670B13492D58F4680000D3B9 /* SongDaiIncenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13452D58F4680000D3B9 /* SongDaiIncenseManager.swift */; };
-		670B134A2D58F4680000D3B9 /* SongDaiTeaCultureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13462D58F4680000D3B9 /* SongDaiTeaCultureManager.swift */; };
 		670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B134B2D5904840000D3B9 /* SharedStructs.swift */; };
-		670B134F2D5915F00000D3B9 /* SongDaiSeasonalActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B134D2D5915F00000D3B9 /* SongDaiSeasonalActivityManager.swift */; };
-		670B13502D5915F00000D3B9 /* ModernHangzhouActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B134E2D5915F00000D3B9 /* ModernHangzhouActivityManager.swift */; };
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
+		B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3352D64824900B7E9BC /* DetailCollectionView.swift */; };
+		B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */; };
 		B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */; };
 		B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0782D576521003BCDC2 /* DayItem.swift */; };
 		B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07B2D576521003BCDC2 /* AudioManager.swift */; };
 		B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */; };
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
-		B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayView.swift */; };
+		B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
 		B3CCF15E2D59F8C8003BCDC2 /* 溪水潺潺.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */; };
 		B3CCF15F2D59F8C8003BCDC2 /* 细雨绵绵.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */; };
@@ -37,23 +33,19 @@
 
 /* Begin PBXFileReference section */
 		670B13412D5887F40000D3B9 /* PoetryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetryManager.swift; sourceTree = "<group>"; };
-		670B13432D58F4670000D3B9 /* SongDaiFlowerArrangementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiFlowerArrangementManager.swift; sourceTree = "<group>"; };
-		670B13442D58F4680000D3B9 /* SongDaiSeasonalFoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiSeasonalFoodManager.swift; sourceTree = "<group>"; };
-		670B13452D58F4680000D3B9 /* SongDaiIncenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiIncenseManager.swift; sourceTree = "<group>"; };
-		670B13462D58F4680000D3B9 /* SongDaiTeaCultureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiTeaCultureManager.swift; sourceTree = "<group>"; };
 		670B134B2D5904840000D3B9 /* SharedStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedStructs.swift; sourceTree = "<group>"; };
-		670B134D2D5915F00000D3B9 /* SongDaiSeasonalActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiSeasonalActivityManager.swift; sourceTree = "<group>"; };
-		670B134E2D5915F00000D3B9 /* ModernHangzhouActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernHangzhouActivityManager.swift; sourceTree = "<group>"; };
 		B31E58862D57058800B9F545 /* AirCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B31E58902D57058900B9F545 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B393C3352D64824900B7E9BC /* DetailCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
+		B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiBaseManager.swift; sourceTree = "<group>"; };
 		B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendar.swift; sourceTree = "<group>"; };
 		B3CCF0782D576521003BCDC2 /* DayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayItem.swift; sourceTree = "<group>"; };
 		B3CCF07B2D576521003BCDC2 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarTerms.swift; sourceTree = "<group>"; };
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
-		B3CCF0822D576521003BCDC2 /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B3CCF0AB2D59D2D4003BCDC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "溪水潺潺.mp3"; sourceTree = "<group>"; };
@@ -123,13 +115,8 @@
 				B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */,
 				670B13412D5887F40000D3B9 /* PoetryManager.swift */,
 				B3CCF0782D576521003BCDC2 /* DayItem.swift */,
-				670B13432D58F4670000D3B9 /* SongDaiFlowerArrangementManager.swift */,
-				670B13452D58F4680000D3B9 /* SongDaiIncenseManager.swift */,
-				670B13442D58F4680000D3B9 /* SongDaiSeasonalFoodManager.swift */,
-				670B13462D58F4680000D3B9 /* SongDaiTeaCultureManager.swift */,
-				670B134E2D5915F00000D3B9 /* ModernHangzhouActivityManager.swift */,
-				670B134D2D5915F00000D3B9 /* SongDaiSeasonalActivityManager.swift */,
 				670B134B2D5904840000D3B9 /* SharedStructs.swift */,
+				B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +124,7 @@
 		B3CCF0792D576521003BCDC2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */,
 				B3CCF07B2D576521003BCDC2 /* AudioManager.swift */,
 			);
 			path = Services;
@@ -153,35 +141,11 @@
 		B3CCF07E2D576521003BCDC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3CCF07F2D576521003BCDC2 /* Components */,
-				B3CCF0812D576521003BCDC2 /* Day */,
-				B3CCF0832D576521003BCDC2 /* Main */,
+				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
+				B393C3352D64824900B7E9BC /* DetailCollectionView.swift */,
+				B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B3CCF07F2D576521003BCDC2 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		B3CCF0812D576521003BCDC2 /* Day */ = {
-			isa = PBXGroup;
-			children = (
-				B3CCF0822D576521003BCDC2 /* DayView.swift */,
-			);
-			path = Day;
-			sourceTree = "<group>";
-		};
-		B3CCF0832D576521003BCDC2 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		B3CCF09E2D59D162003BCDC2 /* Resources */ = {
@@ -277,21 +241,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				670B134F2D5915F00000D3B9 /* SongDaiSeasonalActivityManager.swift in Sources */,
 				B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */,
+				B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */,
 				B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */,
+				B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */,
 				670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */,
 				B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */,
-				B3CCF08B2D576521003BCDC2 /* DayView.swift in Sources */,
-				670B134A2D58F4680000D3B9 /* SongDaiTeaCultureManager.swift in Sources */,
-				670B13502D5915F00000D3B9 /* ModernHangzhouActivityManager.swift in Sources */,
-				670B13472D58F4680000D3B9 /* SongDaiFlowerArrangementManager.swift in Sources */,
+				B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */,
 				B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */,
-				670B13492D58F4680000D3B9 /* SongDaiIncenseManager.swift in Sources */,
 				670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */,
 				B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */,
 				B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */,
-				670B13482D58F4680000D3B9 /* SongDaiSeasonalFoodManager.swift in Sources */,
 				B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

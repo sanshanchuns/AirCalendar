@@ -1,5 +1,63 @@
-class SongDaiIncenseManager {
-    let incenseCalendar: [String: IncenseArrangement] = [
+public class SongDaiIncenseManager: SongDaiBaseManager {
+    public static let shared = SongDaiIncenseManager()
+    
+    private init() {}
+    
+    public struct IncenseArrangement {
+        public let solarTerm: String
+        public let incenses: [Incense]
+        public let custom: String
+        public let source: String
+        
+        public init(solarTerm: String, incenses: [Incense], custom: String, source: String) {
+            self.solarTerm = solarTerm
+            self.incenses = incenses
+            self.custom = custom
+            self.source = source
+        }
+    }
+    
+    public struct Incense {
+        public let name: String
+        public let ingredients: [(String, String)]
+        public let preparation: [String]
+        public let method: [String]
+        public let dryingMethod: String
+        public let storage: String
+        public let usage: String
+        public let effect: String
+        public let poetry: Poetry?
+        
+        public init(name: String, ingredients: [(String, String)], preparation: [String], 
+                   method: [String], dryingMethod: String, storage: String, usage: String, 
+                   effect: String, poetry: Poetry?) {
+            self.name = name
+            self.ingredients = ingredients
+            self.preparation = preparation
+            self.method = method
+            self.dryingMethod = dryingMethod
+            self.storage = storage
+            self.usage = usage
+            self.effect = effect
+            self.poetry = poetry
+        }
+    }
+    
+    public struct Poetry {
+        public let title: String
+        public let author: String
+        public let content: String
+        public let background: String
+        
+        public init(title: String, author: String, content: String, background: String) {
+            self.title = title
+            self.author = author
+            self.content = content
+            self.background = background
+        }
+    }
+    
+    public let calendar: [String: IncenseArrangement] = [
         "立春": IncenseArrangement(
             solarTerm: "立春",
             incenses: [
@@ -237,7 +295,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "牡丹花需晾干研磨",
+                        ("牡丹花需晾干研磨",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
                         "蜂蜜调至稀薄"
@@ -327,7 +385,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "栀子花需晾干研磨",
+                        ("栀子花需晾干研磨",
                         "茉莉花需晾干碾碎",
                         "丁香需研磨成粉",
                         "蜂蜜调至稀薄"
@@ -373,7 +431,7 @@ class SongDaiIncenseManager {
                     preparation: [
                         "沉香粉需过细筛",
                         "荷叶需晾干研磨",
-                        "石菖蒲需研磨成粉",
+                        ("石菖蒲需研磨成粉",
                         "龙脑需细碾",
                         "准备温水"
                     ],
@@ -417,7 +475,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "莲心需晾干研磨",
+                        ("莲心需晾干研磨",
                         "菖蒲需研磨成粉",
                         "丁香需细碾",
                         "蜂蜜调至稀薄"
@@ -462,7 +520,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "荷花蕊需晾干研磨",
+                        ("荷花蕊需晾干研磨",
                         "金银花需晾干碾碎",
                         "龙脑需细碾",
                         "准备温水"
@@ -507,7 +565,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "莲子心需晾干研磨",
+                        ("莲子心需晾干研磨",
                         "石菖蒲需研磨成粉",
                         "丁香需细碾",
                         "蜂蜜调至稀薄"
@@ -552,7 +610,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "桂花需晾干研磨",
+                        ("桂花需晾干研磨",
                         "白芷需研磨成粉",
                         "龙脑需细碾",
                         "准备温水"
@@ -597,7 +655,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "桂花需晾干研磨",
+                        ("桂花需晾干研磨",
                         "菊花需研磨成粉",
                         "丁香需细碾",
                         "蜂蜜调至稀薄"
@@ -642,7 +700,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "菊花需晾干研磨",
+                        ("菊花需晾干研磨",
                         "桂花需晾干碾碎",
                         "龙脑需细碾",
                         "准备温水"
@@ -687,7 +745,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "桂花需晾干研磨",
+                        ("桂花需晾干研磨",
                         "菊花需研磨成粉",
                         "丁香需细碾",
                         "蜂蜜调至稀薄"
@@ -732,7 +790,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "寒菊需晾干研磨",
+                        ("寒菊需晾干研磨",
                         "桂花需晾干碾碎",
                         "龙脑需细碾",
                         "准备温水"
@@ -777,7 +835,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        "桂花需晾干研磨",
+                        ("桂花需晾干研磨",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
                         "蜂蜜调至稀薄"
@@ -822,7 +880,7 @@ class SongDaiIncenseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        "丁香需研磨成粉",
+                        ("丁香需研磨成粉",
                         "肉桂需研磨成粉",
                         "龙脑需细碾",
                         "准备温水"
@@ -866,7 +924,7 @@ class SongDaiIncenseManager {
                         ("蜂蜜", "适量")
                     ],
                     preparation: [
-                        "檀香粉需过细筛",
+                        ("檀香粉需过细筛",
                         "肉桂需研磨成粉",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
@@ -911,7 +969,7 @@ class SongDaiIncenseManager {
                         ("清水", "适量")
                     ],
                     preparation: [
-                        "沉香粉需过细筛",
+                        ("沉香粉需过细筛",
                         "肉桂需研磨成粉",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
@@ -956,7 +1014,7 @@ class SongDaiIncenseManager {
                         ("蜂蜜", "适量")
                     ],
                     preparation: [
-                        "檀香粉需过细筛",
+                        ("沉香粉需过细筛",
                         "肉桂需研磨成粉",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
@@ -1001,7 +1059,7 @@ class SongDaiIncenseManager {
                         ("清水", "适量")
                     ],
                     preparation: [
-                        "沉香粉需过细筛",
+                        ("沉香粉需过细筛",
                         "肉桂需研磨成粉",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
@@ -1046,7 +1104,7 @@ class SongDaiIncenseManager {
                         ("蜂蜜", "适量")
                     ],
                     preparation: [
-                        "檀香粉需过细筛",
+                        ("沉香粉需过细筛",
                         "肉桂需研磨成粉",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
@@ -1078,4 +1136,23 @@ class SongDaiIncenseManager {
             source: "《香谱》《宋代香事》"
         )
     ]
+    
+    public func getArrangement(for solarTerm: String) -> IncenseArrangement? {
+        return calendar[solarTerm]
+    }
+    
+    public func getInfos(_ date: Date) -> [String] {
+        guard let arrangement = getArrangement(for: date) else {
+            return []
+        }
+        return arrangement.incenses.flatMap { incense in
+            [
+                "名称：\(incense.name)",
+                "效果：\(incense.effect)",
+                "用法：\(incense.usage)",
+                "存储：\(incense.storage)",
+                "制作方法：\(incense.method.joined(separator: "；"))"
+            ]
+        }
+    }
 } 

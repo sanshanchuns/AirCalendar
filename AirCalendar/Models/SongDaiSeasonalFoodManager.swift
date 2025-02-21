@@ -1,28 +1,9 @@
-public class SongDaiSeasonalFoodManager {
+public class SongDaiSeasonalFoodManager: SongDaiBaseManager {
     public static let shared = SongDaiSeasonalFoodManager()
     
-    public struct SeasonalFood {
-        let name: String
-        let ingredients: [(name: String, amount: String)]
-        let preparation: [String]  // 准备步骤
-        let method: [String]      // 制作步骤
-        let tips: String          // 制作要点
-        let storage: String       // 储存方法
-        let usage: String         // 食用方法
-        let effect: String        // 功效
-        let cultural: String      // 文化背景
-        let story: Story         // 相关典故
-        let poetry: Poetry?  // 添加诗词字段
-    }
+    private init() {}
     
-    public struct FoodArrangement {
-        let solarTerm: String
-        let foods: [SeasonalFood]
-        let custom: String    // 节气习俗
-        let source: String    // 典籍来源
-    }
-    
-    private let seasonalFoodCalendar: [String: FoodArrangement] = [
+    public let calendar: [String: FoodArrangement] = [
         "立春": FoodArrangement(
             solarTerm: "立春",
             foods: [
@@ -257,7 +238,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "惊蛰食姜豆芽，《历时习俗》载：'惊蛰之日，食姜以御寒，食芽以助阳。'",
-            source: "《武林旧事》《宋东京考》《历时习俗》"
+            source: "《武林旧事》《宋东京考","历时习俗》"
         ),
         "春分": FoodArrangement(
             solarTerm: "春分",
@@ -414,7 +395,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "清明食青团香椿，《历时集》载：'清明之日，食青团以祭祖，食香椿以尝春。'",
-            source: "《武林旧事》《东京梦华录》《历时集》"
+            source: "《武林旧事》《东京梦华录","历时集》"
         ),
         "谷雨": FoodArrangement(
             solarTerm: "谷雨",
@@ -491,7 +472,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "谷雨尝新茶食豆芽，《历时杂记》载：'谷雨之日，尝新茶以清心，食豆芽以助长。'",
-            source: "《梦粱录》《宋东京考》《历时杂记》"
+            source: "《梦粱录》《宋东京考","历时杂记》"
         ),
         "立夏": FoodArrangement(
             solarTerm: "立夏",
@@ -568,7 +549,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "立夏避暑，《历时集》载：'立夏之日，食绿豆粥以消暑，食凉糕以生津。'",
-            source: "《东京梦华录》《武林旧事》《历时集》"
+            source: "《东京梦华录","武林旧事","历时集》"
         ),
         "小满": FoodArrangement(
             solarTerm: "小满",
@@ -681,7 +662,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "小满食枇杷艾粽，《岁时集》载：'小满之时，食枇杷以清热，食艾粽以祛湿。'",
-            source: "《本草纲目》《东京梦华录》《岁时集》"
+            source: "《本草纲目","东京梦华录","岁时集》"
         ),
         
         "芒种": FoodArrangement(
@@ -757,7 +738,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "芒种尝新酿酒，《岁时杂记》载：'芒种之日，尝新麦以报岁，酿樱桃以待客。'",
-            source: "《梦粱录》《东京梦华录》《岁时杂记》"
+            source: "《梦粱录","东京梦华录","岁时杂记》"
         ),
         "夏至": FoodArrangement(
             solarTerm: "夏至",
@@ -836,7 +817,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "夏至食荷饮酸，《岁时集》载：'夏至之日，食荷以清心，饮酸以生津。'",
-            source: "《东京梦华录》《梦粱录》《岁时集》"
+            source: "《东京梦华录","梦粱录","岁时集》"
         ),
         
         "小暑": FoodArrangement(
@@ -914,7 +895,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "小暑食莲食凉，《岁时杂记》载：'小暑之日，食莲以清心，食凉以解暑。'",
-            source: "《宋东京考》《武林旧事》《岁时杂记》"
+            source: "《宋东京考","武林旧事","岁时杂记》"
         ),
         
         "大暑": FoodArrangement(
@@ -991,7 +972,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "大暑避暑，《岁时集》载：'大暑之日，饮荷叶茶以清心，食冰梨以解暑。'",
-            source: "《梦粱录》《宋东京考》《岁时集》"
+            source: "《梦粱录","宋东京考","岁时集》"
         ),
         "立秋": FoodArrangement(
             solarTerm: "立秋",
@@ -1065,7 +1046,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "立秋养生，《岁时集》载：'立秋之日，食梨以润燥，饮菊以明目。'",
-            source: "《东京梦华录》《梦粱录》《岁时集》"
+            source: "《东京梦华录","梦粱录","岁时集》"
         ),
         
         "处暑": FoodArrangement(
@@ -1141,7 +1122,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "处暑养生，《岁时杂记》载：'处暑之日，食藕以清热，食桂以理气。'",
-            source: "《宋东京考》《武林旧事》《岁时杂记》"
+            source: "《宋东京考","武林旧事","岁时杂记》"
         ),
         
         "白露": FoodArrangement(
@@ -1217,7 +1198,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "白露养生，《岁时集》载：'白露之日，食蟹以养胃，食栗以健脾。'",
-            source: "《东京梦华录》《梦粱录》《岁时集》"
+            source: "《东京梦华录","梦粱录","岁时集》"
         ),
         "秋分": FoodArrangement(
             solarTerm: "秋分",
@@ -1293,7 +1274,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "秋分养生，《岁时集》载：'秋分之日，饮桂以养心，食芝以补血。'",
-            source: "《梦粱录》《东京梦华录》《岁时集》"
+            source: "《梦粱录","东京梦华录","岁时集》"
         ),
         
         "寒露": FoodArrangement(
@@ -1369,7 +1350,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "寒露养生，《岁时集》载：'寒露之日，食枣以养血，饮菊以明目。'",
-            source: "《武林旧事》《梦粱录》《岁时集》"
+            source: "《武林旧事","梦粱录","岁时集》"
         ),
         
         "霜降": FoodArrangement(
@@ -1446,7 +1427,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "霜降养生，《岁时集》载：'霜降之日，食栗以养胃，食姜以御寒。'",
-            source: "《东京梦华录》《宋东京考》《岁时集》"
+            source: "《东京梦华录","宋东京考","岁时集》"
         ),
         "立冬": FoodArrangement(
             solarTerm: "立冬",
@@ -1521,7 +1502,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "立冬进补，《岁时集》载：'立冬之日，食羊以暖身，食萝卜以健胃。'",
-            source: "《东京梦华录》《梦粱录》《岁时集》"
+            source: "《东京梦华录","梦粱录","岁时集》"
         ),
         
         "小雪": FoodArrangement(
@@ -1598,7 +1579,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "小雪养生，《岁时集》载：'小雪之日，饮姜以暖胃，食栗以养脾。'",
-            source: "《武林旧事》《东京梦华录》《岁时集》"
+            source: "《武林旧事","东京梦华录","岁时集》"
         ),
         
         "大雪": FoodArrangement(
@@ -1674,7 +1655,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "大雪进补，《岁时集》载：'大雪之日，食羊以暖身，饮桂以养心。'",
-            source: "《梦粱录》《宋东京考》《岁时集》"
+            source: "《梦粱录","宋东京考","岁时集》"
         ),
         "冬至": FoodArrangement(
             solarTerm: "冬至",
@@ -1750,7 +1731,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "冬至养生，《岁时集》载：'冬至之日，食圆以团圆，食豆以养生。'",
-            source: "《武林旧事》《梦粱录》《岁时集》"
+            source: "《武林旧事","梦粱录","岁时集》"
         ),
         
         "小寒": FoodArrangement(
@@ -1826,7 +1807,7 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "小寒进补，《岁时集》载：'小寒之日，食鸭以养血，食圆以暖胃。'",
-            source: "《宋东京考》《武林旧事》《岁时集》"
+            source: "《宋东京考","武林旧事","岁时集》"
         ),
         
         "大寒": FoodArrangement(
@@ -1903,11 +1884,26 @@ public class SongDaiSeasonalFoodManager {
                 )
             ],
             custom: "大寒养生，《岁时集》载：'大寒之日，食羊以暖身，饮姜以御寒。'",
-            source: "《东京梦华录》《梦粱录》《岁时集》"
+            source: "《东京梦华录","梦粱录","岁时集》"
         )
     ]
     
-    public func getSeasonalFood(for solarTerm: String) -> FoodArrangement? {
-        return seasonalFoodCalendar[solarTerm]
+    public func getArrangement(for solarTerm: String) -> FoodArrangement? {
+        return calendar[solarTerm]
+    }
+    
+    public func getInfos(_ date: Date) -> [String] {
+        guard let arrangement = getArrangement(for: date) else {
+            return []
+        }
+        return arrangement.foods.flatMap { food in
+            [
+                "名称：\(food.name)",
+                "效果：\(food.effect)",
+                "用法：\(food.usage)",
+                "存储：\(food.storage)",
+                "小贴士：\(food.tips)"
+            ]
+        }
     }
 }
