@@ -113,16 +113,28 @@ struct DayCollectionView: UIViewRepresentable {
 class DayCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "DayCell"
     private var hostingController: UIHostingController<DayView>?
+    private var dayItem: DayItem?
     var onTap: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupTapGesture()
+        setupHostingController()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupTapGesture()
+        setupHostingController()
+    }
+    
+    private func setupHostingController() {
+        let dayView = DayView(dayItem: DayItem(date: Date()))
+        let hosting = UIHostingController(rootView: dayView)
+        hostingController = hosting
+        hosting.view.frame = contentView.bounds
+        hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView.addSubview(hosting.view)
     }
     
     private func setupTapGesture() {
@@ -138,16 +150,25 @@ class DayCollectionViewCell: UICollectionViewCell {
     func configure(with date: Date, onTap: @escaping () -> Void) {
         self.onTap = onTap
         
-        if let hostingController = hostingController {
-            hostingController.rootView = DayView(dayItem: DayItem(date: date))
-        } else {
-            let dayView = DayView(dayItem: DayItem(date: date))
-            let hosting = UIHostingController(rootView: dayView)
-            hostingController = hosting
-            hosting.view.frame = contentView.bounds
-            hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            contentView.addSubview(hosting.view)
+        // 如果 dayItem 已存在且日期相同，则不需要更新
+        if let existingDayItem = dayItem, Calendar.current.isDate(existingDayItem.date, inSameDayAs: date) {
+            return
         }
+        
+        // 只更新 dayItem 的内容
+        let newDayItem = DayItem(date: date)
+        self.dayItem = newDayItem
+        
+        // 更新 hostingController 的 rootView
+        if let hostingController = hostingController {
+            hostingController.rootView.updateDayItem(newDayItem)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 清理不再需要的数据
+        onTap = nil
     }
 }
 
@@ -173,6 +194,10 @@ public struct DayView: View {
             audioManager.stop()
         }
         audioManager.togglePlay(name: randomSound)
+    }
+    
+    mutating func updateDayItem(_ newDayItem: DayItem) {
+        self.dayItem = newDayItem
     }
     
     public var body: some View {
