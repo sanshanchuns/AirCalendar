@@ -288,6 +288,7 @@ public struct DayView: View {
                                       ? "speaker.wave.2.fill"
                                       : "speaker.wave.2")
                                     .foregroundColor(.gray)
+                                    .environmentObject(audioManager)
                                 Text(sound)
                                     .foregroundColor(.gray)
                                     .font(.system(size: 14))
@@ -305,19 +306,30 @@ public struct DayView: View {
             .frame(minHeight: UIScreen.main.bounds.height)
         }
         .onAppear {
-            // 页面出现时，如果有其他音频在播放，先停止
-            if audioManager.isPlaying && audioManager.currentSound != randomSound {
-                audioManager.stop()
-            }
-            // 自动开始播放当前页面的音频
-            if !audioManager.isPlaying {
-                audioManager.playSound(name: randomSound)
+            Task {
+                await MainActor.run {
+                    // 页面出现时，如果有其他音频在播放，先停止
+                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
+                        audioManager.stop()
+                    }
+                }
+                
+                // 自动开始播放当前页面的音频
+                await MainActor.run {
+                    if !audioManager.isPlaying {
+                        audioManager.playSound(name: randomSound)
+                    }
+                }
             }
         }
         .onDisappear {
-            // 当视图消失时停止音频
-            if audioManager.currentSound == randomSound {
-                audioManager.stop()
+            Task {
+                await MainActor.run {
+                    // 当视图消失时停止音频
+                    if audioManager.currentSound == randomSound {
+                        audioManager.stop()
+                    }
+                }
             }
         }
     }

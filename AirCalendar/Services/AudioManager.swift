@@ -81,6 +81,8 @@ public class AudioManager: NSObject, ObservableObject {
             setupNowPlaying(name: name)
             
         } catch {
+            isPlaying = false
+            currentSound = nil
             print("播放音频失败: \(error.localizedDescription)")
         }
     }
