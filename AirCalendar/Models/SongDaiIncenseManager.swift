@@ -295,7 +295,7 @@ public class SongDaiIncenseManager: SongDaiBaseManager {
                     ],
                     preparation: [
                         "沉香粉需过细筛",
-                        ("牡丹花需晾干研磨",
+                        "牡丹花需晾干研磨",
                         "丁香需研磨成粉",
                         "龙脑需细碾",
                         "蜂蜜调至稀薄"
@@ -385,7 +385,7 @@ public class SongDaiIncenseManager: SongDaiBaseManager {
                     ],
                     preparation: [
                         "檀香粉需过细筛",
-                        ("栀子花需晾干研磨",
+                        "栀子花需晾干研磨",
                         "茉莉花需晾干碾碎",
                         "丁香需研磨成粉",
                         "蜂蜜调至稀薄"
