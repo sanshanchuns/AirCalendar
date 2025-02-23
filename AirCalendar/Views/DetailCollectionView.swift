@@ -68,7 +68,7 @@ struct ThemeCollectionView: UIViewRepresentable {
                                height: UIScreen.main.bounds.height)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
+//        collectionView.backgroundColor = .yellow
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -125,63 +125,74 @@ class ThemeViewModel: ObservableObject {
 
 class ThemeCell: UICollectionViewCell {
     static let reuseIdentifier = "ThemeCell"
-    private var hostingController: UIHostingController<ThemeContentView>?
+    private var frontView: UIView?
+    private var backView: UIView?
     private let viewModel = ThemeViewModel(theme: .flower, date: Date())
+    private var isShowingFront = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupHostingController()
+        setupViews()
         setupTapGesture()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupHostingController()
+        setupViews()
         setupTapGesture()
+    }
+    
+    private func setupViews() {
+        // 设置前视图（ThemeContentView）
+        let frontContentView = ThemeContentView(viewModel: viewModel)
+        let frontHosting = UIHostingController(rootView: frontContentView)
+        frontHosting.view.frame = contentView.bounds
+        frontHosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        frontHosting.view.backgroundColor = .clear
+        frontView = frontHosting.view
+        
+        // 设置后视图（OperationView）
+        let backContentView = OperationView(theme: viewModel.theme, date: viewModel.date)
+        let backHosting = UIHostingController(rootView: backContentView)
+        backHosting.view.frame = contentView.bounds
+        backHosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backHosting.view.backgroundColor = .clear
+        backView = backHosting.view
+        
+        // 添加视图
+//         contentView.backgroundColor = .yellow // 设置背景色
+        contentView.addSubview(frontView!)
+        contentView.addSubview(backView!)
+        backView?.isHidden = true
     }
     
     private func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        self.contentView.addGestureRecognizer(tapGesture)
-        self.contentView.isUserInteractionEnabled = true
+        contentView.addGestureRecognizer(tapGesture)
+        contentView.isUserInteractionEnabled = true
     }
     
     @objc private func handleTap() {
-        // 创建 OperationView
-        let operationView = OperationView(theme: viewModel.theme, date: viewModel.date)
-        let operationHosting = UIHostingController(rootView: operationView)
+        guard let frontView = frontView, let backView = backView else { return }
         
-        // 获取当前的 UIViewController
-        guard let viewController = self.findViewController() else { return }
+        let duration: TimeInterval = 0.5
         
-        // 设置转场动画
-        operationHosting.modalPresentationStyle = .fullScreen
-        operationHosting.modalTransitionStyle = .flipHorizontal
-        
-        // 展示新页面
-        viewController.present(operationHosting, animated: true)
-    }
-    
-    // 辅助方法：查找当前 Cell 所在的 ViewController
-    private func findViewController() -> UIViewController? {
-        var responder: UIResponder? = self
-        while let nextResponder = responder?.next {
-            if let viewController = nextResponder as? UIViewController {
-                return viewController
-            }
-            responder = nextResponder
+        // 设置翻转动画
+        if isShowingFront {
+            UIView.transition(from: frontView,
+                            to: backView,
+                            duration: duration,
+                            options: [.transitionFlipFromRight, .showHideTransitionViews],
+                            completion: nil)
+        } else {
+            UIView.transition(from: backView,
+                            to: frontView,
+                            duration: duration,
+                            options: [.transitionFlipFromLeft, .showHideTransitionViews],
+                            completion: nil)
         }
-        return nil
-    }
-    
-    private func setupHostingController() {
-        let contentView = ThemeContentView(viewModel: viewModel)
-        let hosting = UIHostingController(rootView: contentView)
-        hostingController = hosting
         
-        hosting.view.frame = self.contentView.bounds
-        hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.contentView.addSubview(hosting.view)
+        isShowingFront.toggle()
     }
     
     func configure(theme: SongDaiTheme, date: Date) {
@@ -193,51 +204,53 @@ struct ThemeContentView: View {
     @ObservedObject var viewModel: ThemeViewModel
     
     var body: some View {
-        ZStack {
-            Image(systemName: "")
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height, alignment: .center)
-                .background(.yellow)
-            VStack {
-                Spacer()
-                ZStack {
-                    CachedAsyncImage(
-                            url: URL(string: "https://picsum.photos/seed/20250222/400/300"),
-                            content: { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                            },
-                            placeholder: {
-                                Image(systemName: "photo")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .foregroundColor(.gray)
-                            }
-                        )
-                        .scaledToFill()
-                        .frame(height: 200)
-                        .clipped()
-                        .cornerRadius(8)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 16)
-                    Text("节气图")
-                        .foregroundColor(.white)
-                        .font(.title)
-                }
-                Text("一句话简介")
-                    .font(.largeTitle)
-                    .padding()
-                Spacer()
-                HStack {
-                    ZStack {
-                        Circle()
-                            .foregroundColor(.white)
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                            .padding()
-                        Text("心流音乐")
-                    }
-                    
+        VStack {
+            ZStack {
+                Image(systemName: "")
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height, alignment: .center)
+                    .background(.clear)
+                VStack {
                     Spacer()
+                    ZStack {
+                        CachedAsyncImage(
+                                url: URL(string: "https://picsum.photos/seed/20250222/400/300"),
+                                content: { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                },
+                                placeholder: {
+                                    Image(systemName: "photo")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .foregroundColor(.gray)
+                                }
+                            )
+                            .scaledToFill()
+                            .frame(height: 200)
+                            .clipped()
+                            .cornerRadius(8)
+                            .padding(.horizontal, 20)
+                            .padding(.top, 16)
+                        Text("节气图")
+                            .foregroundColor(.white)
+                            .font(.title)
+                    }
+                    Text("一句话简介")
+                        .font(.largeTitle)
+                        .padding()
+                    Spacer()
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.white)
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                .padding()
+                            Text("心流音乐")
+                        }
+                        
+                        Spacer()
+                    }
                 }
             }
         }
@@ -255,65 +268,57 @@ private let dateFormatter: DateFormatter = {
 struct OperationView: View {
     let theme: SongDaiTheme
     let date: Date
-    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationView {
+        VStack(spacing: 20) {
             ZStack {
                 Image(systemName: "")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(.gray)
-                ScrollView {
-                    VStack(spacing: 20) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            
-                            Text("雨水")
-                                .font(.system(size: 30))
-                                .bold()
-                                .foregroundColor(.yellow)
-                                .padding(EdgeInsets(top: 100, leading: 0, bottom: 0, trailing: 0))
-                            Text("小巧雅致的雨水插花")
-                                .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
-                                .frame(width: 300, height: 60, alignment: .leading)
-                                .border(.yellow)
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            Text("花瓶：青白釉小瓷瓶 定窑瓷器")
-                                .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
-                                .frame(width: 300, height: 60, alignment: .leading)
-                                .border(.yellow)
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            Text("修剪步骤")
-                            Text("选择小巧枝条")
-                            Text("适度修剪")
-                            Text("轻柔插放")
-                            Text("调整造型")
-                        }
-                        Text("附一个制作视频或流程图")
-                            .frame(width: 300, height: 200)
-                            .border(.black)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 1) {
-                                Text("小花剪")
-                                    .frame(width: 100, height: 100)
-                                    .border(.black)
-                                Text("小花器")
-                                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                    .border(.black)
-                                Text("小喷壶")
-                                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                    .border(.black)
-                                Text("迷你固定器")
-                                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                    .border(.black)
-                            }
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height, alignment: .center)
+                    .background(.clear)
+                VStack {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("雨水")
+                            .font(.system(size: 30))
+                            .bold()
+                            .foregroundColor(.yellow)
+                            .padding(EdgeInsets(top: 100, leading: 0, bottom: 0, trailing: 0))
+                        Text("小巧雅致的雨水插花")
+                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
+                            .frame(width: 300, height: 60, alignment: .leading)
+                            .border(.yellow)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        Text("花瓶：青白釉小瓷瓶 定窑瓷器")
+                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
+                            .frame(width: 300, height: 60, alignment: .leading)
+                            .border(.yellow)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        Text("修剪步骤")
+                        Text("选择小巧枝条")
+                        Text("适度修剪")
+                        Text("轻柔插放")
+                        Text("调整造型")
+                    }
+                    Text("附一个制作视频或流程图")
+                        .frame(width: 300, height: 200)
+                        .border(.black)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 1) {
+                            Text("小花剪")
+                                .frame(width: 100, height: 100)
+                                .border(.black)
+                            Text("小花器")
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                .border(.black)
+                            Text("小喷壶")
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                .border(.black)
+                            Text("迷你固定器")
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                .border(.black)
                         }
                     }
                 }
             }
-            .ignoresSafeArea()
-            .navigationBarItems(leading: Button("返回") {
-                dismiss()
-            })
         }
     }
 }

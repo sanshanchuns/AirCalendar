@@ -76,10 +76,13 @@ struct DayCollectionView: UIViewRepresentable {
          func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
              guard let collectionView = scrollView as? UICollectionView else { return }
              let page = Int(scrollView.contentOffset.y / scrollView.bounds.height)
+             print("current page", page)
             
              if page == loadedDates.count - 1 {
+                 print("当前是最后一页，预加载下一页", page)
                  if let lastDate = loadedDates.last,
                     let nextDate = calendar.date(byAdding: .day, value: 1, to: lastDate) {
+                     print("下一个日期", nextDate)
                      loadedDates.append(nextDate)
                      //刷新最后一个Cell
                      collectionView.performBatchUpdates {
@@ -87,9 +90,12 @@ struct DayCollectionView: UIViewRepresentable {
                      }
                  }
              } else if page == 0 {
+                 print("当前是第一页，预加载上一页", page)
                  if let firstDate = loadedDates.first,
                     let previousDate = calendar.date(byAdding: .day, value: -1, to: firstDate) {
+                     print("上一个日期", previousDate)
                      loadedDates.insert(previousDate, at: 0)
+                     print("loadedDates", loadedDates)
                      //刷新第一个Cell
                      collectionView.performBatchUpdates {
                          collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
@@ -101,6 +107,7 @@ struct DayCollectionView: UIViewRepresentable {
         // MARK: - UICollectionViewDelegate
         func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             // 首次布局完成后，滚动到今天
+            print("indexPath", indexPath)
             if !initialScrollDone && indexPath.item == initialIndex {
                 initialScrollDone = true
                 collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.bounds.height+1), animated: false)
