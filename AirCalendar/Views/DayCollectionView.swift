@@ -95,11 +95,10 @@ struct DayCollectionView: UIViewRepresentable {
                     let previousDate = calendar.date(byAdding: .day, value: -1, to: firstDate) {
                      print("上一个日期", previousDate)
                      loadedDates.insert(previousDate, at: 0)
-                     print("loadedDates", loadedDates)
-                     //刷新第一个Cell
-                     collectionView.performBatchUpdates {
+                     UIView.performWithoutAnimation {
                          collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
                      }
+                     collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.bounds.height), animated: false)
                  }
              }
          }
