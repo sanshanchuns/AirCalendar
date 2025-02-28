@@ -49,8 +49,8 @@ public class DayItem: ObservableObject {
             author: poetry.author,
             title: poetry.title,
             randomSound: sound,
-            pentadName: period?.term,
-            pentadDesc: period?.description
+            pentadName: period?.name,
+            pentadDesc: period?.desc
         )
     }
     
@@ -92,6 +92,6 @@ public class DayItem: ObservableObject {
     }
     
     public var solarTerm: String? {
-        SolarTerms.getTerm(for: date)
+        LunarCalendar.getSolarTerm(for: date)
     }
 } 

@@ -17,7 +17,6 @@
 		B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */; };
 		B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0782D576521003BCDC2 /* DayItem.swift */; };
 		B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07B2D576521003BCDC2 /* AudioManager.swift */; };
-		B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */; };
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
 		B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
@@ -43,7 +42,6 @@
 		B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendar.swift; sourceTree = "<group>"; };
 		B3CCF0782D576521003BCDC2 /* DayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayItem.swift; sourceTree = "<group>"; };
 		B3CCF07B2D576521003BCDC2 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarTerms.swift; sourceTree = "<group>"; };
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 		B3CCF07C2D576521003BCDC2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B3CCF07D2D576521003BCDC2 /* SolarTerms.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3CCF0892D576521003BCDC2 /* SolarTerms.swift in Sources */,
 				B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */,
 				B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */,
 				B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */,
