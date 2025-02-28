@@ -197,4 +197,84 @@ public struct LunarCalendar {
         
         return nil
     }
+    
+    struct SolarTermPeriod {
+        let phase: Int        // 1-3 表示初候、二候、三候
+        let pantadName: String // 候的名称，如"草木萌动"
+        let pantadDesc: String // 侯的描述，如""
+    }
+    
+    static func getSolarTermPeriod(for date: Date) -> SolarTermPeriod? {
+        // 获取前后节气
+        let previousTerm = getPreviousSolarTerm(before: date)
+        let nextTerm = getNextSolarTerm(after: date)
+        
+        guard let previousDate = previousTerm?.date,
+              let nextDate = nextTerm?.date else { return nil }
+        
+        // 计算两个节气之间的总天数
+        let totalDays = Calendar.current.dateComponents([.day], from: previousDate, to: nextDate).day ?? 0
+        // 每候大约5天
+        let phaseLength = totalDays / 3
+        
+        // 计算当前日期在哪一候
+        let daysFromPrevious = Calendar.current.dateComponents([.day], from: previousDate, to: date).day ?? 0
+        let phase = (daysFromPrevious / phaseLength) + 1
+        
+        // 获取对应候的描述
+        let description = getPhaseDescription(term: previousTerm?.name ?? "", phase: phase)
+        
+        // 计算当前候的起止日期
+        let phaseStart = Calendar.current.date(byAdding: .day, value: (phase - 1) * phaseLength, to: previousDate)!
+        let phaseEnd = Calendar.current.date(byAdding: .day, value: phase * phaseLength, to: previousDate)!
+        
+        return SolarTermPeriod(
+            phase: phase,
+            description: description
+        )
+    }
+    
+    static func getPhaseDescription(term: String, phase: Int) -> String {
+        // 这里需要添加一个完整的节气三候对照表
+        let phaseDescriptions: [String: [String]] = [
+            "雨水": ["獭祭鱼", "候雁北", "草木萌动"],
+            "惊蛰": ["桃始华", "仓庚鸣", "鹰化为鸠"],
+            // ... 添加其他节气的三候描述
+        ]
+        
+        guard let descriptions = phaseDescriptions[term],
+              phase >= 1 && phase <= 3 else {
+            return ""
+        }
+        
+        return descriptions[phase - 1]
+    }
+    
+    static func getPreviousSolarTerm(before date: Date) -> (name: String, date: Date)? {
+        let calendar = Calendar.current
+        var currentDate = date
+        
+        // 最多往前查找31天
+        for _ in 0..<31 {
+            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+            if let term = LunarCalendar.getSolarTerm(for: currentDate) {
+                return (term, currentDate)
+            }
+        }
+        return nil
+    }
+    
+    static func getNextSolarTerm(after date: Date) -> (name: String, date: Date)? {
+        let calendar = Calendar.current
+        var currentDate = date
+        
+        // 最多往后查找31天
+        for _ in 0..<31 {
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+            if let term = LunarCalendar.getSolarTerm(for: currentDate) {
+                return (term, currentDate)
+            }
+        }
+        return nil
+    }
 }

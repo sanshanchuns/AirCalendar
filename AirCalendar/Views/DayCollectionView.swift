@@ -222,7 +222,20 @@ public struct DayView: View {
                     VStack(alignment: .trailing, spacing: 4) {
                         Text(dayItem.lunarDate)
                             .font(.system(size: 20, weight: .medium))
-                        
+                        // 添加七十二候信息展示
+                        if let pentadName = dayItem.dailyContent.pentadName {
+                            Text(pentadName)
+                                .font(.system(size: 14))
+                                .foregroundColor(.secondary)
+                            
+                            if let pentadDesc = dayItem.dailyContent.pentadDesc {
+                                Text(pentadDesc)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 4)
+                            }
+                        }
                         HStack(spacing: 8) {
                             Text(dayItem.yearMonth)
                                 .font(.system(size: 16))

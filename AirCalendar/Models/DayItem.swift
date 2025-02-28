@@ -16,6 +16,8 @@ public class DayItem: ObservableObject {
         var author: String?
         var title: String?
         var randomSound: String?
+        var pentadName: String? // 七十二候名称
+        var pentadDesc: String? // 七十二候描述
     }
     
     public init(date: Date) {
@@ -38,13 +40,17 @@ public class DayItem: ObservableObject {
     private func setupDailyContent() {
         let poetry = PoetryManager.shared.randomQuote(for: date)
         let sound = AudioManager.shared.randomSound(date: date)
+        let period = LunarCalendar.getSolarTermPeriod(for: date)
+        
         dailyContent = DailyContent(
             festival: LunarCalendar.getFestival(for: date),
             solarTerm: LunarCalendar.getSolarTerm(for: date),
             quote: poetry.quote,
             author: poetry.author,
             title: poetry.title,
-            randomSound: sound
+            randomSound: sound,
+            pentadName: period?.term,
+            pentadDesc: period?.description
         )
     }
     
