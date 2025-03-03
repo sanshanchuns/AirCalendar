@@ -10,14 +10,15 @@ public class DayItem: ObservableObject {
     @Published private(set) var dailyContent: DailyContent = DailyContent()
     
     public struct DailyContent {
+        var monthDay: String?
+        var weekDay: String?
         var festival: String?
-        var solarTerm: String?
-        var quote: String?
-        var author: String?
-        var title: String?
         var randomSound: String?
-        var pentadName: String? // 七十二候名称
-        var pentadDesc: String? // 七十二候描述
+        var solarTerm: String?
+        var periodRank: String?
+        var periodPhenomenon: String?
+        var periodAnalysis: String?
+        var periodStoryLine: String?
     }
     
     public init(date: Date) {
@@ -38,60 +39,22 @@ public class DayItem: ObservableObject {
     }
     
     private func setupDailyContent() {
-        let poetry = PoetryManager.shared.randomQuote(for: date)
         let sound = AudioManager.shared.randomSound(date: date)
-        let period = LunarCalendar.getSolarTermPeriod(for: date)
+        let festival = CalendarManager.getFestival(for: date)
+        let period = CalendarManager.getSolarTermPeriod(for: date)
+        let monthDay = CalendarManager.getMonthDay(from: date)
+        let weekDay = CalendarManager.getWeekday(from: date)
         
         dailyContent = DailyContent(
-            festival: LunarCalendar.getFestival(for: date),
-            solarTerm: LunarCalendar.getSolarTerm(for: date),
-            quote: poetry.quote,
-            author: poetry.author,
-            title: poetry.title,
+            monthDay: monthDay,
+            weekDay: weekDay,
+            festival: festival,
             randomSound: sound,
-            pentadName: period?.name,
-            pentadDesc: period?.desc
+            solarTerm: period?.termName,
+            periodRank: period?.rank,
+            periodPhenomenon: period?.phenomenon,
+            periodAnalysis: period?.analysis,
+            periodStoryLine: period?.storyLine
         )
-    }
-    
-    public var month: Int {
-        Calendar.current.component(.month, from: date)
-    }
-    
-    public var lunarDate: String {
-        let lunar = LunarCalendar.getLunarDate(from: date)
-        var result = "\(lunar.monthStr)\(lunar.dayStr)"
-        if lunar.isLeapMonth {
-            result = "闰" + result
-        }
-        return result
-    }
-    
-    public var yearMonth: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM"
-        return formatter.string(from: date)
-    }
-    
-    public var weekday: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
-        let weekdayNumber = Calendar.current.component(.weekday, from: date)
-        let weekdaySymbols = ["日", "一", "二", "三", "四", "五", "六"]
-        return "星期" + weekdaySymbols[weekdayNumber - 1]
-    }
-    
-    public var festival: String? {
-        let lunar = LunarCalendar.getLunarDate(from: date)
-        
-        if let lunarFestival = LunarCalendar.getLunarFestival(month: lunar.month, day: lunar.day) {
-            return lunarFestival
-        }
-        
-        return LunarCalendar.getSolarFestival(month: month, day: day)
-    }
-    
-    public var solarTerm: String? {
-        LunarCalendar.getSolarTerm(for: date)
     }
 } 

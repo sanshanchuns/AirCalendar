@@ -12,9 +12,10 @@
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
+		B35449C92D759EFF004911D5 /* DayCollectionViewV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */; };
 		B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3352D64824900B7E9BC /* DetailCollectionView.swift */; };
 		B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */; };
-		B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */; };
+		B3CCF0852D576521003BCDC2 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* CalendarManager.swift */; };
 		B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0782D576521003BCDC2 /* DayItem.swift */; };
 		B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07B2D576521003BCDC2 /* AudioManager.swift */; };
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
@@ -37,9 +38,10 @@
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B31E58902D57058900B9F545 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewV2.swift; sourceTree = "<group>"; };
 		B393C3352D64824900B7E9BC /* DetailCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
 		B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiBaseManager.swift; sourceTree = "<group>"; };
-		B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendar.swift; sourceTree = "<group>"; };
+		B3CCF0772D576521003BCDC2 /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		B3CCF0782D576521003BCDC2 /* DayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayItem.swift; sourceTree = "<group>"; };
 		B3CCF07B2D576521003BCDC2 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		B3CCF0762D576521003BCDC2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B3CCF0772D576521003BCDC2 /* LunarCalendar.swift */,
+				B3CCF0772D576521003BCDC2 /* CalendarManager.swift */,
 				670B13412D5887F40000D3B9 /* PoetryManager.swift */,
 				B3CCF0782D576521003BCDC2 /* DayItem.swift */,
 				670B134B2D5904840000D3B9 /* SharedStructs.swift */,
@@ -141,6 +143,7 @@
 				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
 				B393C3352D64824900B7E9BC /* DetailCollectionView.swift */,
 				B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */,
+				B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,9 +247,10 @@
 				670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */,
 				B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */,
 				B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */,
-				B3CCF0852D576521003BCDC2 /* LunarCalendar.swift in Sources */,
+				B3CCF0852D576521003BCDC2 /* CalendarManager.swift in Sources */,
 				670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */,
 				B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */,
+				B35449C92D759EFF004911D5 /* DayCollectionViewV2.swift in Sources */,
 				B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */,
 				B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */,
 			);

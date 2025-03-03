@@ -10,7 +10,7 @@ public protocol SongDaiBaseManager {
 
 public extension SongDaiBaseManager {
     func getArrangement(for date: Date) -> ArrangementType? {
-        guard let solarTerm = LunarCalendar.getSolarTerm(for: date) else {
+        guard let solarTerm = CalendarManager.getSolarTerm(for: date) else {
             return nil
         }
         return getArrangement(for: solarTerm)

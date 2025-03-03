@@ -32,7 +32,7 @@ public class PoetryManager {
         default: season = .winter
         }
         
-        let solarTerm = LunarCalendar.getSolarTerm(for: date)
+        let solarTerm = CalendarManager.getSolarTerm(for: date)
         
         if let term = solarTerm {
             return getSolarTermPoetry(term) ?? getSeasonPoetry(season)
