@@ -29,7 +29,7 @@ public struct CalendarManager {
         formatter.locale = Locale(identifier: "zh_CN")
         let weekdayNumber = Calendar.current.component(.weekday, from: date)
         let weekdaySymbols = ["日", "一", "二", "三", "四", "五", "六"]
-        return "星期" + weekdaySymbols[weekdayNumber - 1]
+        return "周" + weekdaySymbols[weekdayNumber - 1]
     }
     
     public static func getTodayInUTC8() -> Date {
@@ -310,6 +310,7 @@ public struct CalendarManager {
     public struct SolarTermPeriod {
         let termName: String    // 节气名，如"雨水"
         let rank: String      // 三候名，如"初候"
+        let ordinal: String  // 候细分中的第几天，如"子"
         let phenomenon: String  // 候象名，如"獭祭鱼"
         let analysis: String    // 解析
         let storyLine: String // 5句故事线中的一句
@@ -358,12 +359,17 @@ public struct CalendarManager {
         // 获取三候名称
         let rankNames = ["初候", "次候", "末侯"]
         let rank = rankNames[phase - 1]
+
+        // 获取侯细分中的第几天
+        let ordinalNumbers: [String] = ["子", "丑", "寅", "卯", "辰"]
+        let ordinal: String = ordinalNumbers[dayIndex]
         
         // 获取详细信息
         if let phaseInfo = getPhaseDescription(term: previousTerm!.name, phase: phase) {
             return SolarTermPeriod(
                 termName: previousTerm!.name,
                 rank: rank,
+                ordinal: ordinal,
                 phenomenon: phaseInfo.phenomenon,
                 analysis: phaseInfo.analysis,
                 storyLine: phaseInfo.storyLines[dayIndex]
@@ -379,31 +385,31 @@ public struct CalendarManager {
                 "初候": ["东风解冻": [
                     "解析": "春风吹拂黄河流域，冰封大地融裂成块，裂缝中升起湿润水汽。《礼记》曰：天地解而雷雨作，雷雨作而百果草木皆甲坼",
                     "故事线": [
-                        "东风拂面来，冰雪渐消融",
-                        "暖气浮青冢，寒冰化春泉",
-                        "解冻山河动，万物复苏时",
-                        "地脉传温意，冻土化春泥",
-                        "一夜东风至，千里冰消时"
+                        "子：东风拂面来，冰雪渐消融",
+                        "丑：暖气浮青冢，寒冰化春泉",
+                        "寅：解冻山河动，万物复苏时",
+                        "卯：地脉传温意，冻土化春泥",
+                        "辰：一夜东风至，千里冰消时"
                     ]
                 ]],
                 "次候": ["蛰虫始振": [
                     "解析": "洞穴中冬眠的蛇虫感受到地温回升，触角微颤但未出穴，甲骨文「辰」字即为此态",
                     "故事线": [
-                        "地暖虫初醒，春风唤万灵",
-                        "蛰虫闻气动，蠢蠢欲出巢",
-                        "地脉传温意，蛰虫知节来",
-                        "春泥藏微动，万物共苏醒",
-                        "天机启蛰户，春色入虫窝"
+                        "子：地暖虫初醒，春风唤万灵",
+                        "丑：蛰虫闻气动，蠢蠢欲出巢",
+                        "寅：地脉传温意，蛰虫知节来",
+                        "卯：春泥藏微动，万物共苏醒",
+                        "辰：天机启蛰户，春色入虫窝"
                     ]
                 ]],
                 "末侯": ["鱼陟负冰": [
                     "解析": "河水表冰未全化，鱼群上浮时背脊顶开薄冰，形成锯齿状冰裂线",
                     "故事线": [
-                        "冰消鱼渐动，春水暖鳞翔",
-                        "负冰寻暖处，游鱼贴水浮",
-                        "春江水渐暖，鱼戏白波间",
-                        "冰层裂纹起，鱼影掠春光",
-                        "水暖鱼知节，浮游贴冰层"
+                        "子：冰消鱼渐动，春水暖鳞翔",
+                        "丑：负冰寻暖处，游鱼贴水浮",
+                        "寅：春江水渐暖，鱼戏白波间",
+                        "卯：冰层裂纹起，鱼影掠春光",
+                        "辰：水暖鱼知节，浮游贴冰层"
                     ]
                 ]]
             ],
@@ -411,21 +417,21 @@ public struct CalendarManager {
                 "初候": ["獭祭鱼": [
                     "解析": "水獭捕鱼排列岸边的古老误会（实为进食前清洗猎物），古人视为开春吉兆",
                     "故事线": [
-                        "晓江獭伏岸，鱼列如祭陈",
-                        "水寒鳞尚美，择鲜供晨餐",
-                        "冰消鱼渐活，春意暗中传",
-                        "獭爪分鱼肉，江畔留腥痕",
-                        "渔人知时至，撒网趁春温"
+                        "子：晓江獭伏岸，鱼列如祭陈",
+                        "丑：水寒鳞尚美，择鲜供晨餐",
+                        "寅：冰消鱼渐活，春意暗中传",
+                        "卯：獭爪分鱼肉，江畔留腥痕",
+                        "辰：渔人知时至，撒网趁春温"
                     ]
                 ]],
                 "次候": ["鸿雁来": [
                     "解析": "迁徙大雁以'人'字队形掠过正在消融的黄河冰面，鸣声经冰原反射形成特殊混响",
                     "故事线": [
-                        "云端雁字归，春风引翅轻",
-                        "北望故巢远，南去雪消融",
-                        "行行天际过，点点破晴空",
-                        "一声春讯至，唤醒万物生",
-                        "候鸟知时节，迁徙应春风"
+                        "子：云端雁字归，春风引翅轻",
+                        "丑：北望故巢远，南去雪消融",
+                        "寅：行行天际过，点点破晴空",
+                        "卯：一声春讯至，唤醒万物生",
+                        "辰：候鸟知时节，迁徙应春风"
                     ]
                 ]],
                 "末侯": ["草木萌动": [

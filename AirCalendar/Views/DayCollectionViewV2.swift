@@ -54,6 +54,14 @@ struct DayCollectionView: UIViewRepresentable {
             let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
             self.loadedDates = [yesterday, today, tomorrow]
             super.init()
+            
+            // 打印所有可用字体名称
+            for family in UIFont.familyNames.sorted() {
+                print("Family: \(family)")
+                for name in UIFont.fontNames(forFamilyName: family) {
+                    print("   Font: \(name)")
+                }
+            }
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -113,7 +121,6 @@ struct DayCollectionView: UIViewRepresentable {
         // MARK: - UICollectionViewDelegate
         func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             // 首次布局完成后，滚动到今天
-            print("indexPath", indexPath)
             if !initialScrollDone && indexPath.item == initialIndex {
                 initialScrollDone = true
                 collectionView.setContentOffset(CGPoint(x: 0, y: UIScreen.main.bounds.size.height + 1), animated: false)
@@ -217,42 +224,47 @@ public struct DayView: View {
     public var body: some View {
         VStack(spacing: 0) {
             HStack {
-                // 左侧大数字
-                ZStack {
-                    if let stamp = dayItem.dailyContent.solarTerm {
-                        Image(stamp)
-                            .frame(width: 20, height: 40)
-                            .padding(.bottom, 150)
-                            .padding(.trailing, 80)
+                // 左侧大字
+                HStack(alignment: .top) {
+                    VStack {
+                        if let stamp = dayItem.dailyContent.solarTerm {
+//                            Image(stamp)
+//                                .frame(width: 20, height: 40)
+                            Text(stamp.map { String($0) }.joined(separator: "\n"))
+                                .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.bottom, 1)
+                        }
+                        if let periodRank = dayItem.dailyContent.periodRank {
+                            Text(periodRank.map { String($0) }.joined(separator: "\n"))
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary)
+                        }
                     }
-                    if let period =
-                        dayItem.dailyContent.periodPhenomenon {
-                        Image(period)
-                            .frame(width: 90, height: 200)
+                    HStack(alignment: .bottom) {
+                        if let periodPhenomenon =
+                            dayItem.dailyContent.periodPhenomenon {
+                            Text(periodPhenomenon.map { String($0) }.joined(separator: "\n"))
+                                .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
+                                .multilineTextAlignment(.center)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        if let periodOrdinal =
+                            dayItem.dailyContent.periodOrdinal {
+                            Text(periodOrdinal)
+                                .font(.custom("SSCYZ-2021", size: 20))
+                                .foregroundColor(.red)
+                        }
                     }
                 }
                 Spacer()
                 
                 // 右侧日期信息
                 VStack(alignment: .trailing, spacing: 4) {
-                    HStack {
-                        if let periodRank = dayItem.dailyContent.periodRank {
-                            Text(periodRank)
-                                .font(.system(size: 12))
-                                .foregroundColor(.secondary)
-                        }
-                        if let periodPhenomenon = dayItem.dailyContent.periodPhenomenon {
-                            Text(periodPhenomenon)
-                                .font(.system(size: 20, weight: .medium))
-                        }
-                    }
-                    // 添加节气、侯rank、侯名
-                    if let solarTerm = dayItem.dailyContent.solarTerm {
-                        Text(solarTerm)
-                            .font(.system(size: 16))
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
                     HStack(spacing: 8) {
                         Text(dayItem.dailyContent.monthDay!)
                             .font(.system(size: 12))

@@ -16,6 +16,7 @@ public class DayItem: ObservableObject {
         var randomSound: String?
         var solarTerm: String?
         var periodRank: String?
+        var periodOrdinal: String?
         var periodPhenomenon: String?
         var periodAnalysis: String?
         var periodStoryLine: String?
@@ -52,6 +53,7 @@ public class DayItem: ObservableObject {
             randomSound: sound,
             solarTerm: period?.termName,
             periodRank: period?.rank,
+            periodOrdinal: period?.ordinal,
             periodPhenomenon: period?.phenomenon,
             periodAnalysis: period?.analysis,
             periodStoryLine: period?.storyLine
