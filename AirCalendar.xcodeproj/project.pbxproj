@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13412D5887F40000D3B9 /* PoetryManager.swift */; };
 		670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B134B2D5904840000D3B9 /* SharedStructs.swift */; };
+		672284662D77D409007FBA8D /* 欧洲夏天.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 672284652D77D409007FBA8D /* 欧洲夏天.mp3 */; };
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
@@ -21,19 +22,12 @@
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
 		B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
-		B3CCF15E2D59F8C8003BCDC2 /* 溪水潺潺.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */; };
-		B3CCF15F2D59F8C8003BCDC2 /* 细雨绵绵.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */; };
-		B3CCF1602D59F8C8003BCDC2 /* 温暖篝火.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */; };
-		B3CCF1612D59F8C8003BCDC2 /* 海浪轻拍.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */; };
-		B3CCF1622D59F8C8003BCDC2 /* 林间鸟语.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */; };
-		B3CCF1632D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */; };
-		B3CCF1642D59F8C8003BCDC2 /* 微风拂叶.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */; };
-		B3CCF1652D59F8C8003BCDC2 /* 山涧流水.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		670B13412D5887F40000D3B9 /* PoetryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetryManager.swift; sourceTree = "<group>"; };
 		670B134B2D5904840000D3B9 /* SharedStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedStructs.swift; sourceTree = "<group>"; };
+		672284652D77D409007FBA8D /* 欧洲夏天.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "欧洲夏天.mp3"; sourceTree = "<group>"; };
 		B31E58862D57058800B9F545 /* AirCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,14 +42,6 @@
 		B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B3CCF0AB2D59D2D4003BCDC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "溪水潺潺.mp3"; sourceTree = "<group>"; };
-		B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "细雨绵绵.mp3"; sourceTree = "<group>"; };
-		B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "温暖篝火.mp3"; sourceTree = "<group>"; };
-		B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "海浪轻拍.mp3"; sourceTree = "<group>"; };
-		B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "林间鸟语.mp3"; sourceTree = "<group>"; };
-		B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "夜晚虫鸣.mp3"; sourceTree = "<group>"; };
-		B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "微风拂叶.mp3"; sourceTree = "<group>"; };
-		B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "山涧流水.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,14 +137,7 @@
 		B3CCF09E2D59D162003BCDC2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B3CCF1592D59F8C8003BCDC2 /* 海浪轻拍.mp3 */,
-				B3CCF15A2D59F8C8003BCDC2 /* 林间鸟语.mp3 */,
-				B3CCF15D2D59F8C8003BCDC2 /* 山涧流水.mp3 */,
-				B3CCF15C2D59F8C8003BCDC2 /* 微风拂叶.mp3 */,
-				B3CCF1582D59F8C8003BCDC2 /* 温暖篝火.mp3 */,
-				B3CCF1562D59F8C8003BCDC2 /* 溪水潺潺.mp3 */,
-				B3CCF1572D59F8C8003BCDC2 /* 细雨绵绵.mp3 */,
-				B3CCF15B2D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 */,
+				672284652D77D409007FBA8D /* 欧洲夏天.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -221,16 +200,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3CCF15F2D59F8C8003BCDC2 /* 细雨绵绵.mp3 in Resources */,
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
-				B3CCF1652D59F8C8003BCDC2 /* 山涧流水.mp3 in Resources */,
-				B3CCF1612D59F8C8003BCDC2 /* 海浪轻拍.mp3 in Resources */,
-				B3CCF1622D59F8C8003BCDC2 /* 林间鸟语.mp3 in Resources */,
-				B3CCF15E2D59F8C8003BCDC2 /* 溪水潺潺.mp3 in Resources */,
+				672284662D77D409007FBA8D /* 欧洲夏天.mp3 in Resources */,
 				B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */,
-				B3CCF1602D59F8C8003BCDC2 /* 温暖篝火.mp3 in Resources */,
-				B3CCF1642D59F8C8003BCDC2 /* 微风拂叶.mp3 in Resources */,
-				B3CCF1632D59F8C8003BCDC2 /* 夜晚虫鸣.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

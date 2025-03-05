@@ -314,21 +314,21 @@ public struct DayView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-//            Task {
-//                await MainActor.run {
-//                    // 页面出现时，如果有其他音频在播放，先停止
-//                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
-//                        audioManager.stop()
-//                    }
-//                }
-//                
-//                // 自动开始播放当前页面的音频
-//                await MainActor.run {
-//                    if !audioManager.isPlaying {
-//                        audioManager.playSound(name: randomSound)
-//                    }
-//                }
-//            }
+            Task {
+                await MainActor.run {
+                    // 页面出现时，如果有其他音频在播放，先停止
+                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
+                        audioManager.stop()
+                    }
+                }
+                
+                // 自动开始播放当前页面的音频
+                await MainActor.run {
+                    if !audioManager.isPlaying {
+                        audioManager.playSound(name: randomSound)
+                    }
+                }
+            }
         }
         .onDisappear {
             Task {
