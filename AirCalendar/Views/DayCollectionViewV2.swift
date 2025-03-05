@@ -218,11 +218,19 @@ public struct DayView: View {
         VStack(spacing: 0) {
             HStack {
                 // 左侧大数字
-                Text("图标")
-                    .font(.system(size: 60, weight: .bold))
-                    .frame(alignment: .leading)
-                    .padding(.leading, 20)
-                
+                ZStack {
+                    if let stamp = dayItem.dailyContent.solarTerm {
+                        Image(stamp)
+                            .frame(width: 20, height: 40)
+                            .padding(.bottom, 150)
+                            .padding(.trailing, 80)
+                    }
+                    if let period =
+                        dayItem.dailyContent.periodPhenomenon {
+                        Image(period)
+                            .frame(width: 90, height: 200)
+                    }
+                }
                 Spacer()
                 
                 // 右侧日期信息
@@ -306,21 +314,21 @@ public struct DayView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-            Task {
-                await MainActor.run {
-                    // 页面出现时，如果有其他音频在播放，先停止
-                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
-                        audioManager.stop()
-                    }
-                }
-                
-                // 自动开始播放当前页面的音频
-                await MainActor.run {
-                    if !audioManager.isPlaying {
-                        audioManager.playSound(name: randomSound)
-                    }
-                }
-            }
+//            Task {
+//                await MainActor.run {
+//                    // 页面出现时，如果有其他音频在播放，先停止
+//                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
+//                        audioManager.stop()
+//                    }
+//                }
+//                
+//                // 自动开始播放当前页面的音频
+//                await MainActor.run {
+//                    if !audioManager.isPlaying {
+//                        audioManager.playSound(name: randomSound)
+//                    }
+//                }
+//            }
         }
         .onDisappear {
             Task {
