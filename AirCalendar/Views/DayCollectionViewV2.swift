@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct DayCollectionView: UIViewRepresentable {
     @Binding var selectedDate: Date?
@@ -91,13 +92,10 @@ struct DayCollectionView: UIViewRepresentable {
          func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
              guard let collectionView = scrollView as? UICollectionView else { return }
              let page = Int(scrollView.contentOffset.y / scrollView.bounds.height)
-             print("current page", page)
             
              if page == loadedDates.count - 1 {
-                 print("当前是最后一页，预加载下一页", page)
                  if let lastDate = loadedDates.last,
                     let nextDate = calendar.date(byAdding: .day, value: 1, to: lastDate) {
-                     print("下一个日期", nextDate)
                      loadedDates.append(nextDate)
                      //刷新最后一个Cell
                      collectionView.performBatchUpdates {
@@ -105,10 +103,8 @@ struct DayCollectionView: UIViewRepresentable {
                      }
                  }
              } else if page == 0 {
-                 print("当前是第一页，预加载上一页", page)
                  if let firstDate = loadedDates.first,
                     let previousDate = calendar.date(byAdding: .day, value: -1, to: firstDate) {
-                     print("上一个日期", previousDate)
                      loadedDates.insert(previousDate, at: 0)
                      UIView.performWithoutAnimation {
                          collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
@@ -265,39 +261,63 @@ public struct DayView: View {
                 
                 // 右侧日期信息
                 VStack(alignment: .trailing, spacing: 4) {
+                    Spacer()
                     HStack(spacing: 8) {
                         Text(dayItem.dailyContent.monthDay!)
                             .font(.system(size: 12))
                         Text(dayItem.dailyContent.weekDay!)
                             .font(.system(size: 12))
+                        // 标记部分
+                        if Calendar.current.isDateInToday(dayItem.date) {
+                            TagView(text: "今天", color: .blue)
+                        }
+                        if let festival = dayItem.dailyContent.festival {
+                            TagView(text: festival, color: .red)
+                        }
                     }
                     .foregroundColor(.gray)
-
-                    // 标记部分
-                    if Calendar.current.isDateInToday(dayItem.date) {
-                        TagView(text: "今天", color: .blue)
-                    }
-                    if let festival = dayItem.dailyContent.festival {
-                        TagView(text: festival, color: .red)
+                    
+                    if let quote = dayItem.dailyContent.periodStoryLine {
+                        Text(quote)
+                            .font(.system(size: 12))
+                            .foregroundStyle(.gray)
                     }
                 }
-                .padding(.trailing, 20)
             }
-            .padding(.vertical, 80)
-            .padding(.horizontal, 40)
+            .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))
             
             // 底部文字部分
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .center, spacing: 4) {
                 if let desc = dayItem.dailyContent.periodAnalysis {
                     Text(desc)
-                        .font(.system(size: 18))
+                        .font(.system(size: 12))
+                        .foregroundStyle(Color.gray)
                         .padding(.all, 10)
                 }
-                if let quote = dayItem.dailyContent.periodStoryLine {
-                    Text(quote)
-                        .font(.system(size: 18))
-                        .padding(.all, 10)
+//                Image("桃始华子")
+//                    .frame(width: 300, height: 300)
+                if let videoURL = Bundle.main.url(forResource: "欧洲夏天", withExtension: "mp4") {
+                    let player = AVPlayer(url: videoURL)
+                    let width = UIScreen.main.bounds.size.width
+                    VideoPlayer(player: player)
+                        .frame(width: width, height: width*9/16)
+                        .onAppear {
+                            // 自动播放
+                            player.play()
+                            
+                            // 循环播放
+                            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                                object: player.currentItem, queue: .main) { _ in
+                                player.seek(to: .zero)
+                                player.play()
+                            }
+                        }
+                        .onDisappear {
+                            // 停止播放
+                            player.pause()
+                        }
                 }
+                Spacer()
             }
             .padding(.horizontal, 20)
 
@@ -319,7 +339,8 @@ public struct DayView: View {
                                 .font(.system(size: 14))
                             Spacer()
                         }
-                        .padding(.all, 40)
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 0))
+//                        .border(.black)
                     }
                 }
             }
@@ -364,7 +385,7 @@ struct TagView: View {
         Text(text)
             .font(.system(size: 14))
             .foregroundColor(color)
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 6)
             .padding(.vertical, 4)
             .background(color.opacity(0.1))
             .cornerRadius(4)
