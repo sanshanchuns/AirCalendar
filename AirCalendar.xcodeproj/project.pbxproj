@@ -16,9 +16,7 @@
 		B35449C92D759EFF004911D5 /* DayCollectionViewV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */; };
 		B3544CF32D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */; };
 		B3544CF72D787FDE004911D5 /* SSCYZ-2021.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3544CF62D787FDE004911D5 /* SSCYZ-2021.ttf */; };
-		B3544CF92D789203004911D5 /* 春天.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3544CF82D789203004911D5 /* 春天.mp4 */; };
 		B3544CFB2D789208004911D5 /* 春天.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3544CFA2D789208004911D5 /* 春天.mp3 */; };
-		B3544CFD2D7892AD004911D5 /* 欧洲夏天.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3544CFC2D7892AD004911D5 /* 欧洲夏天.mp4 */; };
 		B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3352D64824900B7E9BC /* DetailCollectionView.swift */; };
 		B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */; };
 		B3CCF0852D576521003BCDC2 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0772D576521003BCDC2 /* CalendarManager.swift */; };
@@ -40,9 +38,7 @@
 		B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewV2.swift; sourceTree = "<group>"; };
 		B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CHAO-ShadowGBT-Flash.ttf"; sourceTree = "<group>"; };
 		B3544CF62D787FDE004911D5 /* SSCYZ-2021.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SSCYZ-2021.ttf"; sourceTree = "<group>"; };
-		B3544CF82D789203004911D5 /* 春天.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "春天.mp4"; sourceTree = "<group>"; };
 		B3544CFA2D789208004911D5 /* 春天.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "春天.mp3"; sourceTree = "<group>"; };
-		B3544CFC2D7892AD004911D5 /* 欧洲夏天.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "欧洲夏天.mp4"; sourceTree = "<group>"; };
 		B393C3352D64824900B7E9BC /* DetailCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionView.swift; sourceTree = "<group>"; };
 		B393C3DF2D64A29300B7E9BC /* SongDaiBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDaiBaseManager.swift; sourceTree = "<group>"; };
 		B3CCF0772D576521003BCDC2 /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
@@ -148,9 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				B3544CFA2D789208004911D5 /* 春天.mp3 */,
-				B3544CF82D789203004911D5 /* 春天.mp4 */,
 				672284652D77D409007FBA8D /* 欧洲夏天.mp3 */,
-				B3544CFC2D7892AD004911D5 /* 欧洲夏天.mp4 */,
 				B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */,
 				B3544CF62D787FDE004911D5 /* SSCYZ-2021.ttf */,
 			);
@@ -215,9 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3544CFD2D7892AD004911D5 /* 欧洲夏天.mp4 in Resources */,
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
-				B3544CF92D789203004911D5 /* 春天.mp4 in Resources */,
 				B3544CF32D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf in Resources */,
 				672284662D77D409007FBA8D /* 欧洲夏天.mp3 in Resources */,
 				B3544CF72D787FDE004911D5 /* SSCYZ-2021.ttf in Resources */,

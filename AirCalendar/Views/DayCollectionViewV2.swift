@@ -57,12 +57,12 @@ struct DayCollectionView: UIViewRepresentable {
             super.init()
             
             // 打印所有可用字体名称
-            for family in UIFont.familyNames.sorted() {
-                print("Family: \(family)")
-                for name in UIFont.fontNames(forFamilyName: family) {
-                    print("   Font: \(name)")
-                }
-            }
+//            for family in UIFont.familyNames.sorted() {
+//                print("Family: \(family)")
+//                for name in UIFont.fontNames(forFamilyName: family) {
+//                    print("   Font: \(name)")
+//                }
+//            }
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -218,129 +218,117 @@ public struct DayView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                // 左侧大字
-                HStack(alignment: .top) {
-                    VStack {
-                        if let stamp = dayItem.dailyContent.solarTerm {
-//                            Image(stamp)
-//                                .frame(width: 20, height: 40)
-                            Text(stamp.map { String($0) }.joined(separator: "\n"))
-                                .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
-                                .foregroundColor(.red)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(nil)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .padding(.bottom, 1)
-                        }
-                        if let periodRank = dayItem.dailyContent.periodRank {
-                            Text(periodRank.map { String($0) }.joined(separator: "\n"))
-                                .font(.system(size: 12))
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    HStack(alignment: .bottom) {
-                        if let periodPhenomenon =
-                            dayItem.dailyContent.periodPhenomenon {
-                            Text(periodPhenomenon.map { String($0) }.joined(separator: "\n"))
-                                .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
-                                .multilineTextAlignment(.center)
-                                .lineLimit(nil)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        if let periodOrdinal =
-                            dayItem.dailyContent.periodOrdinal {
-                            Text(periodOrdinal)
-                                .font(.custom("SSCYZ-2021", size: 20))
-                                .foregroundColor(.red)
-                        }
-                    }
-                }
-                Spacer()
-                
-                // 右侧日期信息
-                VStack(alignment: .trailing, spacing: 4) {
-                    Spacer()
-                    HStack(spacing: 8) {
-                        Text(dayItem.dailyContent.monthDay!)
-                            .font(.system(size: 12))
-                        Text(dayItem.dailyContent.weekDay!)
-                            .font(.system(size: 12))
-                        // 标记部分
-                        if Calendar.current.isDateInToday(dayItem.date) {
-                            TagView(text: "今天", color: .blue)
-                        }
-                        if let festival = dayItem.dailyContent.festival {
-                            TagView(text: festival, color: .red)
-                        }
-                    }
-                    .foregroundColor(.gray)
-                    
-                    if let quote = dayItem.dailyContent.periodStoryLine {
-                        Text(quote)
-                            .font(.system(size: 12))
-                            .foregroundStyle(.gray)
-                    }
-                }
-            }
-            .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))
-            
-            // 底部文字部分
-            VStack(alignment: .center, spacing: 4) {
-                if let desc = dayItem.dailyContent.periodAnalysis {
-                    Text(desc)
-                        .font(.system(size: 12))
-                        .foregroundStyle(Color.gray)
-                        .padding(.all, 10)
-                }
-//                Image("桃始华子")
-//                    .frame(width: 300, height: 300)
-                if let videoURL = Bundle.main.url(forResource: "欧洲夏天", withExtension: "mp4") {
-                    let player = AVPlayer(url: videoURL)
-                    let width = UIScreen.main.bounds.size.width
-                    VideoPlayer(player: player)
-                        .frame(width: width, height: width*9/16)
-                        .onAppear {
-                            // 自动播放
-                            player.play()
-                            
-                            // 循环播放
-                            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                                                object: player.currentItem, queue: .main) { _ in
-                                player.seek(to: .zero)
-                                player.play()
+        ZStack {
+//            let width = UIScreen.main.bounds.width;
+//            let height = UIScreen.main.bounds.height;
+            Image("bg1")
+//                .frame(width: width, height: height)
+//                .opacity(0.3)
+            VStack(spacing: 0) {
+                HStack {
+                    // 左侧大字
+                    HStack(alignment: .top) {
+                        VStack {
+                            if let stamp = dayItem.dailyContent.solarTerm {
+    //                            Image(stamp)
+    //                                .frame(width: 20, height: 40)
+                                Text(stamp.map { String($0) }.joined(separator: "\n"))
+                                    .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.bottom, 1)
+                            }
+                            if let periodRank = dayItem.dailyContent.periodRank {
+                                Text(periodRank.map { String($0) }.joined(separator: "\n"))
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.secondary)
                             }
                         }
-                        .onDisappear {
-                            // 停止播放
-                            player.pause()
+                        HStack(alignment: .bottom) {
+                            if let periodPhenomenon =
+                                dayItem.dailyContent.periodPhenomenon {
+                                Text(periodPhenomenon.map { String($0) }.joined(separator: "\n"))
+                                    .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            if let periodOrdinal =
+                                dayItem.dailyContent.periodOrdinal {
+                                Text(periodOrdinal)
+                                    .font(.custom("SSCYZ-2021", size: 20))
+                                    .foregroundColor(.red)
+                            }
                         }
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-
-            Spacer()
-            
-            HStack {
-                if let sound = dayItem.dailyContent.randomSound {
-                    Button(action: {
-                        audioManager.togglePlay(name: sound)
-                    }) {
+                    }
+                    Spacer()
+                    
+                    // 右侧日期信息
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Spacer()
                         HStack(spacing: 8) {
-                            Image(systemName: audioManager.isPlaying && audioManager.currentSound == sound
-                                  ? "speaker.wave.2.fill"
-                                  : "speaker.wave.2")
-                                .foregroundColor(.gray)
-                                .environmentObject(audioManager)
-                            Text(sound)
-                                .foregroundColor(.gray)
-                                .font(.system(size: 14))
-                            Spacer()
+                            Text(dayItem.dailyContent.monthDay!)
+                                .font(.system(size: 12))
+                            Text(dayItem.dailyContent.weekDay!)
+                                .font(.system(size: 12))
+                            // 标记部分
+                            if Calendar.current.isDateInToday(dayItem.date) {
+                                TagView(text: "今天", color: .blue)
+                            }
+                            if let festival = dayItem.dailyContent.festival {
+                                TagView(text: festival, color: .red)
+                            }
                         }
-                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 0))
-//                        .border(.black)
+                        .foregroundColor(.gray)
+                        
+                        if let quote = dayItem.dailyContent.periodStoryLine {
+                            Text(quote)
+                                .font(.system(size: 12))
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                }
+                .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))
+                
+                // 底部文字部分
+                VStack(alignment: .center, spacing: 4) {
+                    if let desc = dayItem.dailyContent.periodAnalysis {
+                        Text(desc)
+                            .font(.system(size: 12))
+                            .foregroundStyle(Color.gray)
+                            .padding(.all, 10)
+                    }
+                    Spacer()
+//                    Image("桃始华子")
+//                        .frame(width: 375, height: 213)
+//                    Spacer()
+                    
+                }
+                .padding(.horizontal, 20)
+
+                Spacer()
+                
+                HStack {
+                    if let sound = dayItem.dailyContent.randomSound {
+                        Button(action: {
+                            audioManager.togglePlay(name: sound)
+                        }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: audioManager.isPlaying && audioManager.currentSound == sound
+                                      ? "speaker.wave.2.fill"
+                                      : "speaker.wave.2")
+                                    .foregroundColor(.gray)
+                                    .environmentObject(audioManager)
+                                Text(sound)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 14))
+                                Spacer()
+                            }
+                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 0))
+    //                        .border(.black)
+                        }
                     }
                 }
             }
