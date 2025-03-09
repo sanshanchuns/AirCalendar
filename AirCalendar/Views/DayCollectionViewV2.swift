@@ -219,11 +219,14 @@ public struct DayView: View {
     
     public var body: some View {
         ZStack {
-//            let width = UIScreen.main.bounds.width;
-//            let height = UIScreen.main.bounds.height;
-            Image("bg1")
-//                .frame(width: width, height: height)
-//                .opacity(0.3)
+            let width = UIScreen.main.bounds.width;
+            let height = UIScreen.main.bounds.height;
+            if let periodPhenomenon =
+                dayItem.dailyContent.periodPhenomenon {
+                Image(periodPhenomenon)
+                    .frame(width: width, height: height)
+                    .opacity(0.2)
+            }
             VStack(spacing: 0) {
                 HStack {
                     // 左侧大字
@@ -351,16 +354,16 @@ public struct DayView: View {
                 }
             }
         }
-        .onDisappear {
-            Task {
-                await MainActor.run {
-                    // 当视图消失时停止音频
-                    if audioManager.currentSound == randomSound {
-                        audioManager.stop()
-                    }
-                }
-            }
-        }
+//        .onDisappear {
+//            Task {
+//                await MainActor.run {
+//                    // 当视图消失时停止音频
+//                    if audioManager.currentSound == randomSound {
+//                        audioManager.stop()
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

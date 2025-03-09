@@ -34,7 +34,6 @@ struct DetailCollectionView: View {
     
     var body: some View {
         ThemeCollectionView(date: date)
-            .navigationTitle("Detail")
             .ignoresSafeArea()
 //            .toolbarBackground(.hidden, for: .navigationBar)
     }
@@ -204,56 +203,42 @@ struct ThemeContentView: View {
     @ObservedObject var viewModel: ThemeViewModel
     
     var body: some View {
-        VStack {
-            ZStack {
-                Image(systemName: "")
-                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height, alignment: .center)
-                    .background(.clear)
-                VStack {
-                    Spacer()
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        ZStack {
+            Color.indigo
+                .ignoresSafeArea()
+            VStack {
+    //            Spacer()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.white)
+                        .padding(20)
+                    VStack {
+                        Text("惊蛰时节，春笋初出，煮羹最佳。")
+                            .font(.largeTitle)
+                            .padding(28)
+                        Text("采摘春笋, 烹饪尝新, 市集售笋, 亲朋宴饮")
+                        Image("尝笋")
+                    }
+                    
+                }
+                Spacer()
+                HStack {
                     ZStack {
-                        CachedAsyncImage(
-                                url: URL(string: "https://picsum.photos/seed/20250222/400/300"),
-                                content: { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                },
-                                placeholder: {
-                                    Image(systemName: "photo")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .foregroundColor(.gray)
-                                }
-                            )
-                            .scaledToFill()
-                            .frame(height: 200)
-                            .clipped()
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
-                            .padding(.top, 16)
-                        Text("节气图")
+                        RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(.white)
-                            .font(.title)
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                            .padding()
+                        Text("心流音乐")
                     }
-                    Text("一句话简介")
-                        .font(.largeTitle)
-                        .padding()
+                    
                     Spacer()
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                .padding()
-                            Text("心流音乐")
-                        }
-                        
-                        Spacer()
-                    }
                 }
             }
         }
+        
     }
 }
 
@@ -270,59 +255,45 @@ struct OperationView: View {
     let date: Date
     
     var body: some View {
-        VStack(spacing: 20) {
-            ZStack {
-                Image(systemName: "")
-                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height, alignment: .center)
-                    .background(.clear)
-                VStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("雨水")
-                            .font(.system(size: 30))
-                            .bold()
-                            .foregroundColor(.yellow)
-                            .padding(EdgeInsets(top: 100, leading: 0, bottom: 0, trailing: 0))
-                        Text("小巧雅致的雨水插花")
-                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
-                            .frame(width: 300, height: 60, alignment: .leading)
-                            .border(.yellow)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        Text("花瓶：青白釉小瓷瓶 定窑瓷器")
-                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
-                            .frame(width: 300, height: 60, alignment: .leading)
-                            .border(.yellow)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        Text("修剪步骤")
-                        Text("选择小巧枝条")
-                        Text("适度修剪")
-                        Text("轻柔插放")
-                        Text("调整造型")
-                    }
-                    Text("附一个制作视频或流程图")
-                        .frame(width: 300, height: 200)
-                        .border(.black)
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 1) {
-                            Text("小花剪")
-                                .frame(width: 100, height: 100)
-                                .border(.black)
-                            Text("小花器")
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                .border(.black)
-                            Text("小喷壶")
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                .border(.black)
-                            Text("迷你固定器")
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                .border(.black)
-                        }
-                    }
-                }
+        VStack(spacing: 0) {
+            Rectangle()
+                .ignoresSafeArea()
+                .foregroundColor(.yellow)
+                .cornerRadius(10)
+            HStack {
+                Text("古法")
+                    .padding(20)
+                Spacer()
             }
+            HStack {
+                Text("元素")
+                    .padding(20)
+                Spacer()
+            }
+            HStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 50, height: 50)
+                    .padding()
+                Text("新鲜竹笋")
+                    .padding(20)
+                Spacer()
+            }
+            HStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 50, height: 50)
+                    .padding()
+                Text("新鲜竹笋2")
+                    .padding(20)
+                Spacer()
+            }
+            
+            
+            Spacer()
         }
     }
 }
 
 #Preview {
     OperationView(theme: .flower, date: Date())
+//    ThemeContentView(viewModel: ThemeViewModel(theme: .flower, date: Date()))
 }
