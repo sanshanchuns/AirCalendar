@@ -55,7 +55,7 @@ public class AudioManager: NSObject, ObservableObject {
     }
     
     public func randomSound(date: Date) -> String {
-        return "春天"
+        return ""
 //        let randomIndex = abs(date.hashValue) % natureSounds.count
 //        return natureSounds[randomIndex]
     }

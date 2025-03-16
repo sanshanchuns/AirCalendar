@@ -18,6 +18,7 @@ public class DayItem: ObservableObject {
         var periodRank: String?
         var periodOrdinal: String?
         var periodPhenomenon: String?
+        var periodNumber: String?
         var periodAnalysis: String?
         var periodStoryLine: String?
     }
@@ -55,6 +56,7 @@ public class DayItem: ObservableObject {
             periodRank: period?.rank,
             periodOrdinal: period?.ordinal,
             periodPhenomenon: period?.phenomenon,
+            periodNumber: period?.number,
             periodAnalysis: period?.analysis,
             periodStoryLine: period?.storyLine
         )
