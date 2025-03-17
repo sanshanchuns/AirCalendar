@@ -224,8 +224,6 @@ public struct DayView: View {
                 HStack(alignment: .top) {
                     VStack {
                         if let stamp = dayItem.dailyContent.solarTerm {
-//                            Image(stamp)
-//                                .frame(width: 20, height: 40)
                             Text(stamp.map { String($0) }.joined(separator: "\n"))
                                 .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
                                 .foregroundColor(.red)
