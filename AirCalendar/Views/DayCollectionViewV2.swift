@@ -260,20 +260,18 @@ public struct DayView: View {
                 // 右侧日期信息
                 VStack(alignment: .trailing, spacing: 4) {
                     Spacer()
-                    HStack(spacing: 8) {
-                        Text(dayItem.dailyContent.monthDay!)
-                            .font(.system(size: 12))
-                        Text(dayItem.dailyContent.weekDay!)
-                            .font(.system(size: 12))
-                        // 标记部分
-                        if Calendar.current.isDateInToday(dayItem.date) {
-                            TagView(text: "今天", color: .blue)
-                        }
-                        if let festival = dayItem.dailyContent.festival {
-                            TagView(text: festival, color: .red)
-                        }
+                    Text(dayItem.dailyContent.monthDay!)
+                        .font(.system(size: 16))
+                        .bold()
+                    Text(dayItem.dailyContent.weekDay!)
+                        .font(.system(size: 14))
+                    // 标记部分
+                    if Calendar.current.isDateInToday(dayItem.date) {
+                        TagView(text: "今天", color: .blue)
                     }
-                    .foregroundColor(.gray)
+                    if let festival = dayItem.dailyContent.festival {
+                        TagView(text: festival, color: .red)
+                    }
                 }
             }
             .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))

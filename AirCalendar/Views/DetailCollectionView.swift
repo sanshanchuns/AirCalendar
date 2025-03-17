@@ -1,24 +1,5 @@
 import SwiftUI
 
-// 主题枚举
-enum SongDaiTheme: Int, CaseIterable {
-    case flower = 0
-    case incense
-    case activity
-    case food
-    case tea
-    
-    var title: String {
-        switch self {
-        case .flower: return "物件名称"
-        case .incense: return "2"
-        case .activity: return "3"
-        case .food: return "4"
-        case .tea: return "5"
-        }
-    }
-}
-
 // 详情页视图
 struct DetailCollectionView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -89,7 +70,7 @@ struct ThemeCollectionView: UIViewRepresentable {
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return SongDaiTheme.allCases.count
+            return 1
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,8 +80,7 @@ struct ThemeCollectionView: UIViewRepresentable {
                 fatalError("Unable to dequeue ThemeCell")
             }
             
-            let theme = SongDaiTheme(rawValue: indexPath.item)!
-            cell.configure(theme: theme, date: parent.date)
+            cell.configure(date: parent.date)
             
             return cell
         }
@@ -108,17 +88,17 @@ struct ThemeCollectionView: UIViewRepresentable {
 }
 
 class ThemeViewModel: ObservableObject {
-    @Published var theme: SongDaiTheme
     @Published var date: Date
+    @Published var term: (String, Date)?
     
-    init(theme: SongDaiTheme, date: Date) {
-        self.theme = theme
+    init(date: Date) {
         self.date = date
+        self.term = CalendarManager.getNearestSolarTerm(for: date)
     }
     
-    func update(theme: SongDaiTheme, date: Date) {
-        self.theme = theme
+    func update(date: Date) {
         self.date = date
+        self.term = CalendarManager.getNearestSolarTerm(for: date)
     }
 }
 
@@ -126,7 +106,7 @@ class ThemeCell: UICollectionViewCell {
     static let reuseIdentifier = "ThemeCell"
     private var frontView: UIView?
     private var backView: UIView?
-    private let viewModel = ThemeViewModel(theme: .flower, date: Date())
+    private let viewModel = ThemeViewModel(date: Date())
     private var isShowingFront = true
     
     override init(frame: CGRect) {
@@ -151,7 +131,7 @@ class ThemeCell: UICollectionViewCell {
         frontView = frontHosting.view
         
         // 设置后视图（OperationView）
-        let backContentView = OperationView(theme: viewModel.theme, date: viewModel.date)
+        let backContentView = OperationView(date: viewModel.date)
         let backHosting = UIHostingController(rootView: backContentView)
         backHosting.view.frame = contentView.bounds
         backHosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -194,8 +174,8 @@ class ThemeCell: UICollectionViewCell {
         isShowingFront.toggle()
     }
     
-    func configure(theme: SongDaiTheme, date: Date) {
-        viewModel.update(theme: theme, date: date)
+    func configure(date: Date) {
+        viewModel.update(date: date)
     }
 }
 
@@ -204,40 +184,15 @@ struct ThemeContentView: View {
     
     var body: some View {
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
+//        let height = UIScreen.main.bounds.height
         
-        ZStack {
-            Color.indigo
-                .ignoresSafeArea()
-            VStack {
-    //            Spacer()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.white)
-                        .padding(20)
-                    VStack {
-                        Text("惊蛰时节，春笋初出，煮羹最佳。")
-                            .font(.largeTitle)
-                            .padding(28)
-                        Text("采摘春笋, 烹饪尝新, 市集售笋, 亲朋宴饮")
-                        Image("尝笋")
-                    }
-                    
-                }
-                Spacer()
-                HStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .padding()
-                        Text("心流音乐")
-                    }
-                    
-                    Spacer()
-                }
+        VStack {
+            if let term = viewModel.term {
+                GIFImage(name: term.0 + ".gif", size: CGSize(width: width, height: width*768/1024))
             }
+            
         }
+        .ignoresSafeArea()
         
     }
 }
@@ -251,7 +206,6 @@ private let dateFormatter: DateFormatter = {
 
 // 新增 OperationView
 struct OperationView: View {
-    let theme: SongDaiTheme
     let date: Date
     
     var body: some View {
@@ -293,7 +247,102 @@ struct OperationView: View {
     }
 }
 
-#Preview {
-    OperationView(theme: .flower, date: Date())
-//    ThemeContentView(viewModel: ThemeViewModel(theme: .flower, date: Date()))
+// 添加 GIFImage 视图组件
+struct GIFImage: UIViewRepresentable {
+    let name: String
+    let size: CGSize
+    
+    init(name: String, size: CGSize) {
+        self.name = name
+        self.size = size
+    }
+    
+    func makeUIView(context: Context) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        
+        // 加载 GIF 图片
+        if let path = Bundle.main.path(forResource: name.replacingOccurrences(of: ".gif", with: ""), ofType: "gif"),
+           let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+           let source = CGImageSourceCreateWithData(data as CFData, nil) {
+            
+            // 获取 GIF 帧数
+            let count = CGImageSourceGetCount(source)
+            var images: [UIImage] = []
+            var totalDuration: TimeInterval = 0
+            
+            // 遍历所有帧并进行缩放
+            for i in 0..<count {
+                if let cgImage = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                    // 创建缩放后的图片
+                    let scale = UIScreen.main.scale
+                    UIGraphicsBeginImageContextWithOptions(size, false, scale)
+                    let context = UIGraphicsGetCurrentContext()
+                    context?.interpolationQuality = .high
+                    
+                    // 修正图像方向
+                    context?.translateBy(x: 0, y: size.height)
+                    context?.scaleBy(x: 1.0, y: -1.0)
+                    
+                    let drawRect = CGRect(origin: .zero, size: size)
+                    context?.draw(cgImage, in: drawRect)
+                    
+                    if let scaledImage = UIGraphicsGetImageFromCurrentImageContext() {
+                        images.append(scaledImage)
+                    }
+                    UIGraphicsEndImageContext()
+                    
+                    // 获取当前帧的持续时间
+                    if let properties = CGImageSourceCopyPropertiesAtIndex(source, i, nil) as? [String: Any],
+                       let gifProperties = properties[kCGImagePropertyGIFDictionary as String] as? [String: Any],
+                       let delayTime = gifProperties[kCGImagePropertyGIFDelayTime as String] as? Double {
+                        totalDuration += delayTime
+                    }
+                }
+            }
+            
+            // 设置动画
+            imageView.animationImages = images
+            imageView.animationDuration = totalDuration
+            imageView.animationRepeatCount = 0
+            imageView.startAnimating()
+        } else {
+            // 如果加载 GIF 失败，尝试加载并缩放静态图片
+            if let image = UIImage(named: name) {
+                UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+                image.draw(in: CGRect(origin: .zero, size: size))
+                let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                imageView.image = scaledImage
+            }
+        }
+        
+        // 添加约束
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: size.width),
+            imageView.heightAnchor.constraint(equalToConstant: size.height)
+        ])
+        
+        return imageView
+    }
+    
+    func updateUIView(_ uiView: UIImageView, context: Context) {
+        // 更新约束
+        uiView.constraints.forEach { constraint in
+            if constraint.firstAttribute == .width {
+                constraint.constant = size.width
+            }
+            if constraint.firstAttribute == .height {
+                constraint.constant = size.height
+            }
+        }
+    }
 }
+
+#Preview {
+//    OperationView(theme: .flower, date: Date())
+    ThemeContentView(viewModel: ThemeViewModel(date: Date()))
+}
+

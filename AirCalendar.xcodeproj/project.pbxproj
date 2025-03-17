@@ -10,6 +10,30 @@
 		670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B13412D5887F40000D3B9 /* PoetryManager.swift */; };
 		670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B134B2D5904840000D3B9 /* SharedStructs.swift */; };
 		672284662D77D409007FBA8D /* 欧洲夏天.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 672284652D77D409007FBA8D /* 欧洲夏天.mp3 */; };
+		6741C1FF2D887A3E008C2D08 /* 立夏.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1E72D887A3C008C2D08 /* 立夏.gif */; };
+		6741C2002D887A3E008C2D08 /* 惊蛰.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1E82D887A3C008C2D08 /* 惊蛰.gif */; };
+		6741C2012D887A3E008C2D08 /* 霜降.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1E92D887A3C008C2D08 /* 霜降.gif */; };
+		6741C2022D887A3E008C2D08 /* 秋分.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1EA2D887A3D008C2D08 /* 秋分.gif */; };
+		6741C2032D887A3E008C2D08 /* 春分.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1EB2D887A3D008C2D08 /* 春分.gif */; };
+		6741C2042D887A3E008C2D08 /* 立冬.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1EC2D887A3D008C2D08 /* 立冬.gif */; };
+		6741C2052D887A3E008C2D08 /* 冬至.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1ED2D887A3D008C2D08 /* 冬至.gif */; };
+		6741C2062D887A3E008C2D08 /* 小满.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1EE2D887A3D008C2D08 /* 小满.gif */; };
+		6741C2072D887A3E008C2D08 /* 大暑.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1EF2D887A3D008C2D08 /* 大暑.gif */; };
+		6741C2082D887A3E008C2D08 /* 夏至.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F02D887A3D008C2D08 /* 夏至.gif */; };
+		6741C2092D887A3E008C2D08 /* 寒露.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F12D887A3D008C2D08 /* 寒露.gif */; };
+		6741C20A2D887A3E008C2D08 /* 立秋.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F22D887A3D008C2D08 /* 立秋.gif */; };
+		6741C20B2D887A3E008C2D08 /* 清明.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F32D887A3D008C2D08 /* 清明.gif */; };
+		6741C20C2D887A3E008C2D08 /* 立春.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F42D887A3D008C2D08 /* 立春.gif */; };
+		6741C20D2D887A3E008C2D08 /* 小暑.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F52D887A3D008C2D08 /* 小暑.gif */; };
+		6741C20E2D887A3E008C2D08 /* 大雪.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F62D887A3D008C2D08 /* 大雪.gif */; };
+		6741C20F2D887A3E008C2D08 /* 谷雨.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F72D887A3E008C2D08 /* 谷雨.gif */; };
+		6741C2102D887A3E008C2D08 /* 处暑.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F82D887A3E008C2D08 /* 处暑.gif */; };
+		6741C2112D887A3E008C2D08 /* 小寒.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1F92D887A3E008C2D08 /* 小寒.gif */; };
+		6741C2122D887A3E008C2D08 /* 白露.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FA2D887A3E008C2D08 /* 白露.gif */; };
+		6741C2132D887A3E008C2D08 /* 小雪.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FB2D887A3E008C2D08 /* 小雪.gif */; };
+		6741C2142D887A3E008C2D08 /* 大寒.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FC2D887A3E008C2D08 /* 大寒.gif */; };
+		6741C2152D887A3E008C2D08 /* 雨水.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FD2D887A3E008C2D08 /* 雨水.gif */; };
+		6741C2162D887A3E008C2D08 /* 芒种.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FE2D887A3E008C2D08 /* 芒种.gif */; };
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
@@ -31,6 +55,30 @@
 		670B13412D5887F40000D3B9 /* PoetryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetryManager.swift; sourceTree = "<group>"; };
 		670B134B2D5904840000D3B9 /* SharedStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedStructs.swift; sourceTree = "<group>"; };
 		672284652D77D409007FBA8D /* 欧洲夏天.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "欧洲夏天.mp3"; sourceTree = "<group>"; };
+		6741C1E72D887A3C008C2D08 /* 立夏.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "立夏.gif"; sourceTree = "<group>"; };
+		6741C1E82D887A3C008C2D08 /* 惊蛰.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "惊蛰.gif"; sourceTree = "<group>"; };
+		6741C1E92D887A3C008C2D08 /* 霜降.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "霜降.gif"; sourceTree = "<group>"; };
+		6741C1EA2D887A3D008C2D08 /* 秋分.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "秋分.gif"; sourceTree = "<group>"; };
+		6741C1EB2D887A3D008C2D08 /* 春分.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "春分.gif"; sourceTree = "<group>"; };
+		6741C1EC2D887A3D008C2D08 /* 立冬.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "立冬.gif"; sourceTree = "<group>"; };
+		6741C1ED2D887A3D008C2D08 /* 冬至.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "冬至.gif"; sourceTree = "<group>"; };
+		6741C1EE2D887A3D008C2D08 /* 小满.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "小满.gif"; sourceTree = "<group>"; };
+		6741C1EF2D887A3D008C2D08 /* 大暑.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "大暑.gif"; sourceTree = "<group>"; };
+		6741C1F02D887A3D008C2D08 /* 夏至.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "夏至.gif"; sourceTree = "<group>"; };
+		6741C1F12D887A3D008C2D08 /* 寒露.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "寒露.gif"; sourceTree = "<group>"; };
+		6741C1F22D887A3D008C2D08 /* 立秋.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "立秋.gif"; sourceTree = "<group>"; };
+		6741C1F32D887A3D008C2D08 /* 清明.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "清明.gif"; sourceTree = "<group>"; };
+		6741C1F42D887A3D008C2D08 /* 立春.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "立春.gif"; sourceTree = "<group>"; };
+		6741C1F52D887A3D008C2D08 /* 小暑.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "小暑.gif"; sourceTree = "<group>"; };
+		6741C1F62D887A3D008C2D08 /* 大雪.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "大雪.gif"; sourceTree = "<group>"; };
+		6741C1F72D887A3E008C2D08 /* 谷雨.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "谷雨.gif"; sourceTree = "<group>"; };
+		6741C1F82D887A3E008C2D08 /* 处暑.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "处暑.gif"; sourceTree = "<group>"; };
+		6741C1F92D887A3E008C2D08 /* 小寒.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "小寒.gif"; sourceTree = "<group>"; };
+		6741C1FA2D887A3E008C2D08 /* 白露.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "白露.gif"; sourceTree = "<group>"; };
+		6741C1FB2D887A3E008C2D08 /* 小雪.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "小雪.gif"; sourceTree = "<group>"; };
+		6741C1FC2D887A3E008C2D08 /* 大寒.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "大寒.gif"; sourceTree = "<group>"; };
+		6741C1FD2D887A3E008C2D08 /* 雨水.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "雨水.gif"; sourceTree = "<group>"; };
+		6741C1FE2D887A3E008C2D08 /* 芒种.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "芒种.gif"; sourceTree = "<group>"; };
 		B31E58862D57058800B9F545 /* AirCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +109,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6741C1E62D887A28008C2D08 /* 二十四节气logo */ = {
+			isa = PBXGroup;
+			children = (
+				6741C1FA2D887A3E008C2D08 /* 白露.gif */,
+				6741C1F82D887A3E008C2D08 /* 处暑.gif */,
+				6741C1EB2D887A3D008C2D08 /* 春分.gif */,
+				6741C1FC2D887A3E008C2D08 /* 大寒.gif */,
+				6741C1EF2D887A3D008C2D08 /* 大暑.gif */,
+				6741C1F62D887A3D008C2D08 /* 大雪.gif */,
+				6741C1ED2D887A3D008C2D08 /* 冬至.gif */,
+				6741C1F72D887A3E008C2D08 /* 谷雨.gif */,
+				6741C1F12D887A3D008C2D08 /* 寒露.gif */,
+				6741C1E82D887A3C008C2D08 /* 惊蛰.gif */,
+				6741C1F42D887A3D008C2D08 /* 立春.gif */,
+				6741C1EC2D887A3D008C2D08 /* 立冬.gif */,
+				6741C1F22D887A3D008C2D08 /* 立秋.gif */,
+				6741C1E72D887A3C008C2D08 /* 立夏.gif */,
+				6741C1FE2D887A3E008C2D08 /* 芒种.gif */,
+				6741C1F32D887A3D008C2D08 /* 清明.gif */,
+				6741C1EA2D887A3D008C2D08 /* 秋分.gif */,
+				6741C1E92D887A3C008C2D08 /* 霜降.gif */,
+				6741C1F02D887A3D008C2D08 /* 夏至.gif */,
+				6741C1F92D887A3E008C2D08 /* 小寒.gif */,
+				6741C1EE2D887A3D008C2D08 /* 小满.gif */,
+				6741C1F52D887A3D008C2D08 /* 小暑.gif */,
+				6741C1FB2D887A3E008C2D08 /* 小雪.gif */,
+				6741C1FD2D887A3E008C2D08 /* 雨水.gif */,
+			);
+			path = "二十四节气logo";
+			sourceTree = "<group>";
+		};
 		B31E587D2D57058800B9F545 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +222,7 @@
 		B3CCF09E2D59D162003BCDC2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6741C1E62D887A28008C2D08 /* 二十四节气logo */,
 				B3544CFA2D789208004911D5 /* 春天.mp3 */,
 				672284652D77D409007FBA8D /* 欧洲夏天.mp3 */,
 				B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */,
@@ -209,12 +289,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6741C2112D887A3E008C2D08 /* 小寒.gif in Resources */,
+				6741C2052D887A3E008C2D08 /* 冬至.gif in Resources */,
+				6741C2132D887A3E008C2D08 /* 小雪.gif in Resources */,
+				6741C20E2D887A3E008C2D08 /* 大雪.gif in Resources */,
+				6741C20D2D887A3E008C2D08 /* 小暑.gif in Resources */,
+				6741C2012D887A3E008C2D08 /* 霜降.gif in Resources */,
+				6741C2092D887A3E008C2D08 /* 寒露.gif in Resources */,
+				6741C2042D887A3E008C2D08 /* 立冬.gif in Resources */,
 				B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */,
+				6741C20F2D887A3E008C2D08 /* 谷雨.gif in Resources */,
+				6741C2032D887A3E008C2D08 /* 春分.gif in Resources */,
 				B3544CF32D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf in Resources */,
 				672284662D77D409007FBA8D /* 欧洲夏天.mp3 in Resources */,
+				6741C1FF2D887A3E008C2D08 /* 立夏.gif in Resources */,
+				6741C2122D887A3E008C2D08 /* 白露.gif in Resources */,
+				6741C2142D887A3E008C2D08 /* 大寒.gif in Resources */,
+				6741C2062D887A3E008C2D08 /* 小满.gif in Resources */,
+				6741C20C2D887A3E008C2D08 /* 立春.gif in Resources */,
+				6741C2022D887A3E008C2D08 /* 秋分.gif in Resources */,
+				6741C20B2D887A3E008C2D08 /* 清明.gif in Resources */,
+				6741C2072D887A3E008C2D08 /* 大暑.gif in Resources */,
+				6741C2152D887A3E008C2D08 /* 雨水.gif in Resources */,
+				6741C2002D887A3E008C2D08 /* 惊蛰.gif in Resources */,
+				6741C2082D887A3E008C2D08 /* 夏至.gif in Resources */,
+				6741C20A2D887A3E008C2D08 /* 立秋.gif in Resources */,
+				6741C2162D887A3E008C2D08 /* 芒种.gif in Resources */,
 				B3544CF72D787FDE004911D5 /* SSCYZ-2021.ttf in Resources */,
 				B3544CFB2D789208004911D5 /* 春天.mp3 in Resources */,
 				B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */,
+				6741C2102D887A3E008C2D08 /* 处暑.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
