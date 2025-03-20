@@ -85,18 +85,18 @@ public struct CalendarManager {
         (12, 7, "大雪"), (12, 21, "冬至")
     ]
     
-    public static func getNearestSolarTerm(for date:Date) -> (String, Date)? {
+    public static func getNearestSolarTerm(for date:Date) -> String? {
         let calendar = Calendar.current
         
         // 向前查找最近的节气
         var currentDate = date
-        var currentTerm: (name: String, date: Date)? = nil
+        var currentTerm: String? = nil
         //        var nextTerm: (name: String, date: Date)? = nil
         
         // 向前查找最近的节气
         for _ in 0..<30 {
             if let term = getSolarTerm(for: currentDate) {
-                currentTerm = (term, currentDate)
+                currentTerm = term
                 break
             }
             currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!

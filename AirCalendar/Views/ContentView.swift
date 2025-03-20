@@ -11,6 +11,7 @@ struct ContentView: View {
                 .navigationDestination(isPresented: $showingDetail) {
                     if let date = selectedDate {
                         DetailCollectionView(date: date, isPresented: $showingDetail)
+                            .ignoresSafeArea()
                     }
                 }
         }

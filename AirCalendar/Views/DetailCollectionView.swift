@@ -15,8 +15,9 @@ struct DetailCollectionView: View {
     
     var body: some View {
         ThemeCollectionView(date: date)
-            .ignoresSafeArea()
-//            .toolbarBackground(.hidden, for: .navigationBar)
+//            .ignoresSafeArea()
+            .navigationTitle("节气")
+//           .toolbarBackground(.hidden, for: .navigationBar)
     }
     
     private func setupNavigationBarAppearance() {
@@ -24,7 +25,7 @@ struct DetailCollectionView: View {
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .clear
          appearance.shadowColor = .clear
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.red]
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.red]
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -41,7 +42,7 @@ struct ThemeCollectionView: UIViewRepresentable {
     func makeUIView(context: Context) -> UICollectionView {
         // 设置横向滚动布局
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width,
@@ -57,6 +58,19 @@ struct ThemeCollectionView: UIViewRepresentable {
         collectionView.dataSource = context.coordinator
         collectionView.register(ThemeCell.self, forCellWithReuseIdentifier: ThemeCell.reuseIdentifier)
         
+        let term = CalendarManager.getNearestSolarTerm(for: date)
+        if let backgroundImage = UIImage(named: term ?? "") {
+            // 创建背景图片视图
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.frame = UIScreen.main.bounds
+            backgroundImageView.contentMode = .scaleAspectFill
+            backgroundImageView.clipsToBounds = true
+            backgroundImageView.alpha = 0.5
+            
+            // 将背景图片视图插入到 collectionView 的底层
+            collectionView.backgroundView = backgroundImageView
+        }
+
         return collectionView
     }
     
@@ -65,40 +79,108 @@ struct ThemeCollectionView: UIViewRepresentable {
     class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
         let parent: ThemeCollectionView
         
+        // 添加管理器实例
+        private let flowerManager = SongDaiFlowerManager.shared
+        private let teaManager = SongDaiTeaManager.shared
+        private let incenseManager = SongDaiIncenseManager.shared
+        private let foodManager = SongDaiFoodManager.shared
+        private let travelManager = SongDaiTravelManager.shared
+        
         init(parent: ThemeCollectionView) {
             self.parent = parent
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 1
+            switch section {
+            case 0:
+                return flowerManager.getInfos(parent.date).count
+            case 1:
+                return teaManager.getInfos(parent.date).count
+            case 2:
+                return incenseManager.getInfos(parent.date).count
+            case 3:
+                return foodManager.getInfos(parent.date).count
+            case 4:
+                return travelManager.getInfos(parent.date).count
+            default:
+                return 0
+            }
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ThemeCell.reuseIdentifier,
-                for: indexPath) as? ThemeCell else {
-                fatalError("Unable to dequeue ThemeCell")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeCell.reuseIdentifier, for: indexPath) as! ThemeCell
+            
+            var infos: [SongDaiActivity] = []
+            
+            switch indexPath.section {
+            case 0:
+                infos = flowerManager.getInfos(parent.date)
+            case 1:
+                infos = teaManager.getInfos(parent.date)
+            case 2:
+                infos = incenseManager.getInfos(parent.date)
+            case 3:
+                infos = foodManager.getInfos(parent.date)
+            case 4:
+                infos = travelManager.getInfos(parent.date)
+            default:
+                break
             }
             
-            cell.configure(date: parent.date)
+            if !infos.isEmpty {
+                let info = infos[indexPath.item]
+                cell.configure(with: info, date: parent.date)
+            }
             
             return cell
+        }
+        
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 5  // 五道
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let width = collectionView.bounds.width - 32  // 左右各留16点边距
+            return CGSize(width: width, height: 120)  // 根据内容调整高度
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         }
     }
 }
 
 class ThemeViewModel: ObservableObject {
     @Published var date: Date
-    @Published var term: (String, Date)?
+    @Published var activityInfo: ActivityInfo = ActivityInfo()
     
-    init(date: Date) {
-        self.date = date
-        self.term = CalendarManager.getNearestSolarTerm(for: date)
+    struct ActivityInfo {
+        var name: String = ""
+        var description: String = ""
+        var details: String = ""
+        var custom: String = ""
+        var poetry: String = ""
+        var author: String = ""
+        var materials: [(String, String)] = []
+        var steps: [String] = []
     }
     
-    func update(date: Date) {
+    init() {
+        self.date = Date()
+    }
+    
+    func updateActivity(_ info: SongDaiActivity, _ date: Date) {
         self.date = date
-        self.term = CalendarManager.getNearestSolarTerm(for: date)
+        self.activityInfo = ActivityInfo(
+            name: info.name,
+            description: info.description,
+            details: info.details.joined(separator: "；"),
+            custom: info.custom,
+            poetry: info.poetry.content,
+            author: info.poetry.author,
+            materials: info.materials,
+            steps: info.steps
+        )
     }
 }
 
@@ -106,7 +188,7 @@ class ThemeCell: UICollectionViewCell {
     static let reuseIdentifier = "ThemeCell"
     private var frontView: UIView?
     private var backView: UIView?
-    private let viewModel = ThemeViewModel(date: Date())
+    private let viewModel = ThemeViewModel()
     private var isShowingFront = true
     
     override init(frame: CGRect) {
@@ -131,7 +213,7 @@ class ThemeCell: UICollectionViewCell {
         frontView = frontHosting.view
         
         // 设置后视图（OperationView）
-        let backContentView = OperationView(date: viewModel.date)
+        let backContentView = OperationView(viewModel: viewModel)
         let backHosting = UIHostingController(rootView: backContentView)
         backHosting.view.frame = contentView.bounds
         backHosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -139,10 +221,12 @@ class ThemeCell: UICollectionViewCell {
         backView = backHosting.view
         
         // 添加视图
-//         contentView.backgroundColor = .yellow // 设置背景色
+//        contentView.backgroundColor = .yellow // 设置背景色
         contentView.addSubview(frontView!)
         contentView.addSubview(backView!)
         backView?.isHidden = true
+//        contentView.layer.borderColor = Color.black.cgColor
+//        contentView.layer.borderWidth = 10
     }
     
     private func setupTapGesture() {
@@ -174,8 +258,11 @@ class ThemeCell: UICollectionViewCell {
         isShowingFront.toggle()
     }
     
-    func configure(date: Date) {
-        viewModel.update(date: date)
+    func configure(with info: SongDaiActivity, date: Date) {
+        // 更新 viewModel 中的数据
+        DispatchQueue.main.async {
+            self.viewModel.updateActivity(info, date)
+        }
     }
 }
 
@@ -183,17 +270,64 @@ struct ThemeContentView: View {
     @ObservedObject var viewModel: ThemeViewModel
     
     var body: some View {
-        let width = UIScreen.main.bounds.width
-//        let height = UIScreen.main.bounds.height
-        
-        VStack {
-            if let term = viewModel.term {
-                GIFImage(name: term.0 + ".gif", size: CGSize(width: width, height: width*768/1024))
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // 节气标题
+                HStack {
+                    Text(viewModel.activityInfo.name.map { String($0) }.joined(separator: "\n"))
+                        .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 100)
+                
+                // 活动名称
+                HStack {
+                    Text(viewModel.activityInfo.name)
+                        .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
+                        .padding(.horizontal, 16)
+                }
+                .frame(maxWidth: .infinity)
+                
+                
+                // 活动描述
+                Text(viewModel.activityInfo.description)
+                    .font(.system(size: 18))
+                    .padding(.top, 10)
+                    .padding(.horizontal, 16)
+                
+                // 活动细节
+                Text(viewModel.activityInfo.details)
+                    .font(.system(size: 16))
+                    .padding(.top, 5)
+                    .padding(.horizontal, 16)
+                
+                // 习俗
+                Text(viewModel.activityInfo.custom)
+                    .font(.system(size: 16))
+                    .padding(.top, 5)
+                    .padding(.horizontal, 16)
+                
+                // 诗词部分
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("诗词赏析")
+                        .font(.headline)
+                    Text("作者：\(viewModel.activityInfo.author)")
+                        .font(.subheadline)
+                    Text(viewModel.activityInfo.poetry)
+                        .font(.system(size: 16))
+                        .italic()
+                }
+                .padding(.top, 20)
+                .padding(.horizontal, 16)
+                
+                Spacer(minLength: 16)
             }
-            
+            .frame(maxWidth: .infinity)
         }
         .ignoresSafeArea()
-        
     }
 }
 
@@ -206,40 +340,49 @@ private let dateFormatter: DateFormatter = {
 
 // 新增 OperationView
 struct OperationView: View {
-    let date: Date
+    @ObservedObject var viewModel: ThemeViewModel
     
     var body: some View {
         VStack(spacing: 0) {
-            Rectangle()
-                .ignoresSafeArea()
-                .foregroundColor(.yellow)
-                .cornerRadius(10)
-            HStack {
-                Text("古法")
-                    .padding(20)
-                Spacer()
+            // 材料部分
+            Spacer()
+            VStack(alignment: .leading, spacing: 10) {
+                Text("所需材料")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                
+                ForEach(viewModel.activityInfo.materials, id: \.0) { material in
+                    HStack {
+                        Text(material.0)  // 材料名
+                            .font(.system(size: 16))
+                        Spacer()
+                        Text(material.1)  // 用量
+                            .font(.system(size: 16))
+                            .foregroundColor(.gray)
+                    }
+                }
             }
-            HStack {
-                Text("元素")
-                    .padding(20)
-                Spacer()
+            .padding(.horizontal, 16)
+            .padding(.top, 20)
+            
+            // 制作步骤
+            VStack(alignment: .leading, spacing: 10) {
+                Text("制作步骤")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                
+                ForEach(Array(viewModel.activityInfo.steps.enumerated()), id: \.offset) { index, step in
+                    HStack(alignment: .top) {
+                        Text("\(index + 1).")
+                            .font(.system(size: 16))
+                            .frame(width: 25, alignment: .leading)
+                        Text(step)
+                            .font(.system(size: 16))
+                    }
+                }
             }
-            HStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 50, height: 50)
-                    .padding()
-                Text("新鲜竹笋")
-                    .padding(20)
-                Spacer()
-            }
-            HStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 50, height: 50)
-                    .padding()
-                Text("新鲜竹笋2")
-                    .padding(20)
-                Spacer()
-            }
+            .padding(.horizontal, 16)
+            .padding(.top, 20)
             
             
             Spacer()
@@ -247,102 +390,27 @@ struct OperationView: View {
     }
 }
 
-// 添加 GIFImage 视图组件
-struct GIFImage: UIViewRepresentable {
-    let name: String
-    let size: CGSize
-    
-    init(name: String, size: CGSize) {
-        self.name = name
-        self.size = size
-    }
-    
-    func makeUIView(context: Context) -> UIImageView {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        
-        // 加载 GIF 图片
-        if let path = Bundle.main.path(forResource: name.replacingOccurrences(of: ".gif", with: ""), ofType: "gif"),
-           let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-           let source = CGImageSourceCreateWithData(data as CFData, nil) {
+struct DetailCollectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            // 当前日期的预览
+            NavigationView {
+                DetailCollectionView(
+                    date: Date(),
+                    isPresented: .constant(true)
+                )
+            }
+            .previewDisplayName("Current Date")
             
-            // 获取 GIF 帧数
-            let count = CGImageSourceGetCount(source)
-            var images: [UIImage] = []
-            var totalDuration: TimeInterval = 0
-            
-            // 遍历所有帧并进行缩放
-            for i in 0..<count {
-                if let cgImage = CGImageSourceCreateImageAtIndex(source, i, nil) {
-                    // 创建缩放后的图片
-                    let scale = UIScreen.main.scale
-                    UIGraphicsBeginImageContextWithOptions(size, false, scale)
-                    let context = UIGraphicsGetCurrentContext()
-                    context?.interpolationQuality = .high
-                    
-                    // 修正图像方向
-                    context?.translateBy(x: 0, y: size.height)
-                    context?.scaleBy(x: 1.0, y: -1.0)
-                    
-                    let drawRect = CGRect(origin: .zero, size: size)
-                    context?.draw(cgImage, in: drawRect)
-                    
-                    if let scaledImage = UIGraphicsGetImageFromCurrentImageContext() {
-                        images.append(scaledImage)
-                    }
-                    UIGraphicsEndImageContext()
-                    
-                    // 获取当前帧的持续时间
-                    if let properties = CGImageSourceCopyPropertiesAtIndex(source, i, nil) as? [String: Any],
-                       let gifProperties = properties[kCGImagePropertyGIFDictionary as String] as? [String: Any],
-                       let delayTime = gifProperties[kCGImagePropertyGIFDelayTime as String] as? Double {
-                        totalDuration += delayTime
-                    }
-                }
+            // 特定节气日期的预览
+            NavigationView {
+                DetailCollectionView(
+                    date: Calendar.current.date(from: DateComponents(year: 2024, month: 2, day: 4))!, // 立春
+                    isPresented: .constant(true)
+                )
             }
-            
-            // 设置动画
-            imageView.animationImages = images
-            imageView.animationDuration = totalDuration
-            imageView.animationRepeatCount = 0
-            imageView.startAnimating()
-        } else {
-            // 如果加载 GIF 失败，尝试加载并缩放静态图片
-            if let image = UIImage(named: name) {
-                UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-                image.draw(in: CGRect(origin: .zero, size: size))
-                let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                imageView.image = scaledImage
-            }
-        }
-        
-        // 添加约束
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: size.width),
-            imageView.heightAnchor.constraint(equalToConstant: size.height)
-        ])
-        
-        return imageView
-    }
-    
-    func updateUIView(_ uiView: UIImageView, context: Context) {
-        // 更新约束
-        uiView.constraints.forEach { constraint in
-            if constraint.firstAttribute == .width {
-                constraint.constant = size.width
-            }
-            if constraint.firstAttribute == .height {
-                constraint.constant = size.height
-            }
+            .previewDisplayName("立春")
         }
     }
-}
-
-#Preview {
-//    OperationView(theme: .flower, date: Date())
-    ThemeContentView(viewModel: ThemeViewModel(date: Date()))
 }
 
