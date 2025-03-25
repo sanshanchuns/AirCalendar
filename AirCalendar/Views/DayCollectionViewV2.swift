@@ -218,146 +218,149 @@ public struct DayView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                // 左侧大字
-                HStack(alignment: .top) {
-                    VStack {
-                        if let stamp = dayItem.dailyContent.solarTerm {
-                            Text(stamp.map { String($0) }.joined(separator: "\n"))
-                                .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
-                                .foregroundColor(.red)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(nil)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .padding(.bottom, 1)
-                        }
-                        if let periodRank = dayItem.dailyContent.periodRank {
-                            Text(periodRank.map { String($0) }.joined(separator: "\n"))
-                                .font(.system(size: 12))
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    HStack(alignment: .bottom) {
-                        if let periodPhenomenon =
-                            dayItem.dailyContent.periodPhenomenon {
-                            Text(periodPhenomenon.map { String($0) }.joined(separator: "\n"))
-                                .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
-                                .multilineTextAlignment(.center)
-                                .lineLimit(nil)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        if let periodOrdinal =
-                            dayItem.dailyContent.periodOrdinal {
-                            Text(periodOrdinal)
-                                .font(.custom("SSCYZ-2021", size: 20))
-                                .foregroundColor(.red)
-                        }
-                    }
-                }
-                Spacer()
-                
-                // 右侧日期信息
-                VStack(alignment: .trailing, spacing: 4) {
-                    Spacer()
-                    Text(dayItem.dailyContent.monthDay!)
-                        .font(.system(size: 16))
-                        .bold()
-                    Text(dayItem.dailyContent.weekDay!)
-                        .font(.system(size: 14))
-                    // 标记部分
-                    if Calendar.current.isDateInToday(dayItem.date) {
-                        TagView(text: "今天", color: .blue)
-                    }
-                    if let festival = dayItem.dailyContent.festival {
-                        TagView(text: festival, color: .red)
-                    }
-                }
-            }
-            .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))
-            
-            // 底部文字部分
-            HStack() {
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    if let desc = dayItem.dailyContent.periodAnalysis {
-                        Text(desc)
-                            .font(.system(size: 12))
-                            .foregroundStyle(Color.gray)
-                    }
-                    if let quote = dayItem.dailyContent.periodStoryLine {
-                        Text(quote)
-                            .font(.system(size: 14))
-                            .bold()
-                    }
-                    Spacer()
-                }
-//                .border(.black)
-                .padding(.horizontal, 20)
-                Spacer()
-            }
-            
+        ZStack {
             let screenWidth = UIScreen.main.bounds.width
-//                let screenHeight = UIScreen.main.bounds.height
+            let screenHeight = UIScreen.main.bounds.height
             
-            if let number =
-                dayItem.dailyContent.periodNumber {
-                Image(number)
-                    .resizable()  // 使图片可以调整大小
-                    .scaledToFit()  // 保持宽高比例适应框架
-                    .frame(width: screenWidth, height: screenWidth*111/269)
+            AsyncLocalImage(name: "bg") { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: screenWidth, height: screenHeight)
+                    .clipped()
+                    .edgesIgnoringSafeArea(.all)
+            } placeholder: {
+                Color.gray.opacity(0.1) // 加载时显示的占位颜色
             }
             
-            HStack {
-                if let sound = dayItem.dailyContent.randomSound {
-                    Button(action: {
-                        audioManager.togglePlay(name: sound)
-                    }) {
-                        HStack(spacing: 8) {
-                            Image(systemName: audioManager.isPlaying && audioManager.currentSound == sound
-                                  ? "speaker.wave.2.fill"
-                                  : "speaker.wave.2")
-                                .foregroundColor(.gray)
-                                .environmentObject(audioManager)
-                            Text(sound)
-                                .foregroundColor(.gray)
-                                .font(.system(size: 14))
-                            Spacer()
+            VStack(spacing: 0) {
+                HStack {
+                    // 左侧大字
+                    HStack(alignment: .top) {
+                        VStack {
+                            if let stamp = dayItem.dailyContent.solarTerm {
+                                Text(stamp.map { String($0) }.joined(separator: "\n"))
+                                    .font(.custom("SSCYZ-2021", size: 20, relativeTo: .body))
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.bottom, 1)
+                            }
+                            if let periodRank = dayItem.dailyContent.periodRank {
+                                Text(periodRank.map { String($0) }.joined(separator: "\n"))
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 0))
-//                        .border(.black)
+                        HStack(alignment: .bottom) {
+                            if let periodPhenomenon =
+                                dayItem.dailyContent.periodPhenomenon {
+                                Text(periodPhenomenon.map { String($0) }.joined(separator: "\n"))
+                                    .font(.custom("CHAO-ShadowGBT-Flash", size: 90, relativeTo: .body))
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            if let periodOrdinal =
+                                dayItem.dailyContent.periodOrdinal {
+                                Text(periodOrdinal)
+                                    .font(.custom("SSCYZ-2021", size: 20))
+                                    .foregroundColor(.red)
+                            }
+                        }
+                    }
+                    Spacer()
+                    
+                    // 右侧日期信息
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Spacer()
+                        Text(dayItem.dailyContent.monthDay!)
+                            .font(.system(size: 16))
+                            .bold()
+                        Text(dayItem.dailyContent.weekDay!)
+                            .font(.system(size: 14))
+                        // 标记部分
+                        if Calendar.current.isDateInToday(dayItem.date) {
+                            TagView(text: "今天", color: .blue)
+                        }
+                        if let festival = dayItem.dailyContent.festival {
+                            TagView(text: festival, color: .red)
+                        }
+                    }
+                }
+                .padding(EdgeInsets(top: 80, leading: 40, bottom: 20, trailing: 40))
+                
+                // 底部文字部分
+                HStack() {
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        if let desc = dayItem.dailyContent.periodAnalysis {
+                            Text(desc)
+                                .font(.system(size: 12))
+                                .foregroundStyle(Color.gray)
+                        }
+                        if let quote = dayItem.dailyContent.periodStoryLine {
+                            Text(quote)
+                                .font(.system(size: 14))
+                                .bold()
+                        }
+                        Spacer()
+                    }
+    //                .border(.black)
+                    .padding(.horizontal, 20)
+                    Spacer()
+                }
+                
+                let screenWidth = UIScreen.main.bounds.width
+                let screenHeight = UIScreen.main.bounds.height
+                // 428*926 = 1284*2778, 576*1024
+                if let number = dayItem.dailyContent.periodNumber {
+                    AsyncLocalImage(name: number) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: screenWidth*0.8, height: screenWidth*0.8)
+                    } placeholder: {
+                        ProgressView() // 加载时显示转圈动画
+                    }
+                }
+                
+                // 音频按钮部分
+                HStack {
+                    if let sound = dayItem.dailyContent.randomSound {
+                        Button(action: {
+                            audioManager.togglePlay(name: sound)
+                        }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: audioManager.isPlaying && audioManager.currentSound == sound
+                                      ? "speaker.wave.2.fill"
+                                      : "speaker.wave.2")
+                                    .foregroundColor(.gray)
+                                    .environmentObject(audioManager)
+                                Text(sound)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 14))
+                                Spacer()
+                            }
+                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 0))
+                        }
                     }
                 }
             }
         }
         .ignoresSafeArea()
         .onAppear {
-            Task {
-                await MainActor.run {
-                    // 页面出现时，如果有其他音频在播放，先停止
-                    if audioManager.isPlaying && audioManager.currentSound != randomSound {
-                        audioManager.stop()
-                    }
+            // 简化音频处理逻辑
+            if let sound = dayItem.dailyContent.randomSound {
+                if audioManager.isPlaying && audioManager.currentSound != sound {
+                    audioManager.stop()
                 }
-                
-                // 自动开始播放当前页面的音频
-                await MainActor.run {
-                    if !audioManager.isPlaying {
-                        audioManager.playSound(name: randomSound)
-                    }
+                if !audioManager.isPlaying {
+                    audioManager.playSound(name: sound)
                 }
             }
         }
-//        .onDisappear {
-//            Task {
-//                await MainActor.run {
-//                    // 当视图消失时停止音频
-//                    if audioManager.currentSound == randomSound {
-//                        audioManager.stop()
-//                    }
-//                }
-//            }
-//        }
     }
 }
 

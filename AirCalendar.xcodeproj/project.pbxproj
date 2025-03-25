@@ -47,7 +47,6 @@
 		B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0782D576521003BCDC2 /* DayItem.swift */; };
 		B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF07B2D576521003BCDC2 /* AudioManager.swift */; };
 		B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */; };
-		B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */; };
 		B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CCF0842D576521003BCDC2 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +92,6 @@
 		B3CCF0782D576521003BCDC2 /* DayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayItem.swift; sourceTree = "<group>"; };
 		B3CCF07B2D576521003BCDC2 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
-		B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionView.swift; sourceTree = "<group>"; };
 		B3CCF0842D576521003BCDC2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B3CCF0AB2D59D2D4003BCDC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,7 +211,6 @@
 			children = (
 				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
 				B393C3352D64824900B7E9BC /* DetailCollectionView.swift */,
-				B3CCF0822D576521003BCDC2 /* DayCollectionView.swift */,
 				B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */,
 			);
 			path = Views;
@@ -334,7 +331,6 @@
 				B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */,
 				670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */,
 				B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */,
-				B3CCF08B2D576521003BCDC2 /* DayCollectionView.swift in Sources */,
 				B3CCF0852D576521003BCDC2 /* CalendarManager.swift in Sources */,
 				670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */,
 				B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */,

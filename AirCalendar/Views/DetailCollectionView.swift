@@ -59,16 +59,27 @@ struct ThemeCollectionView: UIViewRepresentable {
         collectionView.register(ThemeCell.self, forCellWithReuseIdentifier: ThemeCell.reuseIdentifier)
         
         let term = CalendarManager.getNearestSolarTerm(for: date)
-        if let backgroundImage = UIImage(named: term ?? "") {
+        if let backgroundImage = UIImage(named: "bg2") {
             // 创建背景图片视图
-            let backgroundImageView = UIImageView(image: backgroundImage)
-            backgroundImageView.frame = UIScreen.main.bounds
-            backgroundImageView.contentMode = .scaleAspectFill
+            let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
+            backgroundImageView.image = backgroundImage
+            backgroundImageView.contentMode = .scaleAspectFill  // 改为 scaleAspectFill
             backgroundImageView.clipsToBounds = true
             backgroundImageView.alpha = 0.5
             
-            // 将背景图片视图插入到 collectionView 的底层
+            // 添加约束确保背景图片始终填充整个屏幕
+            backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
             collectionView.backgroundView = backgroundImageView
+            
+            // 添加自动布局约束
+            if let backgroundView = collectionView.backgroundView {
+                NSLayoutConstraint.activate([
+                    backgroundView.topAnchor.constraint(equalTo: collectionView.topAnchor),
+                    backgroundView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
+                    backgroundView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+                    backgroundView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
+                ])
+            }
         }
 
         return collectionView

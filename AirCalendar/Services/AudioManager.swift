@@ -1,5 +1,6 @@
 import AVFoundation
 import MediaPlayer
+import SwiftUI
 
 public class AudioManager: NSObject, ObservableObject {
     public static let shared = AudioManager()
@@ -12,6 +13,7 @@ public class AudioManager: NSObject, ObservableObject {
     
     private var audioPlayer: AVAudioPlayer?
     private var audioSession: AVAudioSession?
+    private let queue = DispatchQueue(label: "com.aircalendar.audio", qos: .userInitiated)
     
     @Published public var isPlaying = false
     @Published public var currentSound: String?
@@ -55,36 +57,43 @@ public class AudioManager: NSObject, ObservableObject {
     }
     
     public func randomSound(date: Date) -> String {
+        // 这里实现你的随机音频选择逻辑
         return ""
-//        let randomIndex = abs(date.hashValue) % natureSounds.count
-//        return natureSounds[randomIndex]
     }
     
     public func playSound(name: String) {
-        guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-            print("找不到音频文件: \(name)")
-            return
-        }
+        // 避免重复播放相同音频
+        guard currentSound != name || !isPlaying else { return }
         
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
-            audioPlayer?.numberOfLoops = -1 // 无限循环
-            audioPlayer?.volume = 0.5
-            audioPlayer?.prepareToPlay() // 预加载音频
-            audioPlayer?.play()
-            isPlaying = true
-            currentSound = name
+        queue.async { [weak self] in
+            guard let self = self else { return }
             
-            // 设置锁屏和控制中心的信息
-            setupNowPlaying(name: name)
+            // 停止当前播放
+            if self.isPlaying {
+                self.audioPlayer?.stop()
+            }
             
-        } catch {
-            isPlaying = false
-            currentSound = nil
-            print("播放音频失败: \(error.localizedDescription)")
+            // 加载并播放新音频
+            if let path = Bundle.main.path(forResource: name, ofType: "mp3") {
+                do {
+                    let url = URL(fileURLWithPath: path)
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    self.audioPlayer?.prepareToPlay()
+                    
+                    DispatchQueue.main.async {
+                        self.currentSound = name
+                        self.isPlaying = true
+                    }
+                    
+                    self.audioPlayer?.play()
+                } catch {
+                    print("Error playing sound: \(error)")
+                    DispatchQueue.main.async {
+                        self.isPlaying = false
+                        self.currentSound = nil
+                    }
+                }
+            }
         }
     }
     
@@ -105,20 +114,27 @@ public class AudioManager: NSObject, ObservableObject {
     }
     
     public func stop() {
-        audioPlayer?.stop()
-        audioPlayer = nil
-        isPlaying = false
-        currentSound = nil
+        queue.async { [weak self] in
+            self?.audioPlayer?.stop()
+            DispatchQueue.main.async {
+                self?.isPlaying = false
+                self?.currentSound = nil
+            }
+        }
         
         // 清除锁屏和控制中心的信息
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
     
     public func togglePlay(name: String) {
-        if isPlaying && currentSound == name {
-            stop()
-        } else {
-            playSound(name: name)
+        queue.async { [weak self] in
+            guard let self = self else { return }
+            
+            if self.isPlaying && self.currentSound == name {
+                self.stop()
+            } else {
+                self.playSound(name: name)
+            }
         }
     }
 }
