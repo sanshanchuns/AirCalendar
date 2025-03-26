@@ -34,10 +34,11 @@
 		6741C2142D887A3E008C2D08 /* 大寒.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FC2D887A3E008C2D08 /* 大寒.gif */; };
 		6741C2152D887A3E008C2D08 /* 雨水.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FD2D887A3E008C2D08 /* 雨水.gif */; };
 		6741C2162D887A3E008C2D08 /* 芒种.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6741C1FE2D887A3E008C2D08 /* 芒种.gif */; };
+		679BDFED2D944F8C0074B381 /* DayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BDFEC2D944F8C0074B381 /* DayCollectionView.swift */; };
+		679BDFEF2D9450A60074B381 /* AsyncLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BDFEE2D9450A60074B381 /* AsyncLocalImage.swift */; };
 		B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31E58892D57058800B9F545 /* AirCalendarApp.swift */; };
 		B31E588E2D57058900B9F545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E588D2D57058900B9F545 /* Assets.xcassets */; };
 		B31E58912D57058900B9F545 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31E58902D57058900B9F545 /* Preview Assets.xcassets */; };
-		B35449C92D759EFF004911D5 /* DayCollectionViewV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */; };
 		B3544CF32D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */; };
 		B3544CF72D787FDE004911D5 /* SSCYZ-2021.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3544CF62D787FDE004911D5 /* SSCYZ-2021.ttf */; };
 		B3544CFB2D789208004911D5 /* 春天.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3544CFA2D789208004911D5 /* 春天.mp3 */; };
@@ -78,11 +79,12 @@
 		6741C1FC2D887A3E008C2D08 /* 大寒.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "大寒.gif"; sourceTree = "<group>"; };
 		6741C1FD2D887A3E008C2D08 /* 雨水.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "雨水.gif"; sourceTree = "<group>"; };
 		6741C1FE2D887A3E008C2D08 /* 芒种.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "芒种.gif"; sourceTree = "<group>"; };
+		679BDFEC2D944F8C0074B381 /* DayCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionView.swift; sourceTree = "<group>"; };
+		679BDFEE2D9450A60074B381 /* AsyncLocalImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncLocalImage.swift; sourceTree = "<group>"; };
 		B31E58862D57058800B9F545 /* AirCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31E58892D57058800B9F545 /* AirCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCalendarApp.swift; sourceTree = "<group>"; };
 		B31E588D2D57058900B9F545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B31E58902D57058900B9F545 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewV2.swift; sourceTree = "<group>"; };
 		B3544CF22D787A1F004911D5 /* CHAO-ShadowGBT-Flash.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CHAO-ShadowGBT-Flash.ttf"; sourceTree = "<group>"; };
 		B3544CF62D787FDE004911D5 /* SSCYZ-2021.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SSCYZ-2021.ttf"; sourceTree = "<group>"; };
 		B3544CFA2D789208004911D5 /* 春天.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "春天.mp3"; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				B3CCF0802D576521003BCDC2 /* CachedAsyncImage.swift */,
 				B3CCF07B2D576521003BCDC2 /* AudioManager.swift */,
+				679BDFEE2D9450A60074B381 /* AsyncLocalImage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,7 +214,7 @@
 			children = (
 				B3CCF0842D576521003BCDC2 /* ContentView.swift */,
 				B393C3352D64824900B7E9BC /* DetailCollectionView.swift */,
-				B35449C82D759EFF004911D5 /* DayCollectionViewV2.swift */,
+				679BDFEC2D944F8C0074B381 /* DayCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,14 +330,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B393C3362D64824900B7E9BC /* DetailCollectionView.swift in Sources */,
+				679BDFED2D944F8C0074B381 /* DayCollectionView.swift in Sources */,
 				B3CCF0882D576521003BCDC2 /* AudioManager.swift in Sources */,
 				B393C3E02D64A29300B7E9BC /* SongDaiBaseManager.swift in Sources */,
+				679BDFEF2D9450A60074B381 /* AsyncLocalImage.swift in Sources */,
 				670B13422D5887F50000D3B9 /* PoetryManager.swift in Sources */,
 				B3CCF08A2D576521003BCDC2 /* CachedAsyncImage.swift in Sources */,
 				B3CCF0852D576521003BCDC2 /* CalendarManager.swift in Sources */,
 				670B134C2D5904840000D3B9 /* SharedStructs.swift in Sources */,
 				B3CCF08C2D576521003BCDC2 /* ContentView.swift in Sources */,
-				B35449C92D759EFF004911D5 /* DayCollectionViewV2.swift in Sources */,
 				B3CCF0862D576521003BCDC2 /* DayItem.swift in Sources */,
 				B31E588A2D57058800B9F545 /* AirCalendarApp.swift in Sources */,
 			);
