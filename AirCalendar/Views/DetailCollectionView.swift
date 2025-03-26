@@ -59,7 +59,7 @@ struct ThemeCollectionView: UIViewRepresentable {
         collectionView.register(ThemeCell.self, forCellWithReuseIdentifier: ThemeCell.reuseIdentifier)
         
         let term = CalendarManager.getNearestSolarTerm(for: date)
-        if let backgroundImage = UIImage(named: "bg2") {
+        if let backgroundImage = UIImage(named: "bg") {
             // 创建背景图片视图
             let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
             backgroundImageView.image = backgroundImage
